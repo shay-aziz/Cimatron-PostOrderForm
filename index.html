@@ -16,67 +16,60 @@ body{font-family:Arial,sans-serif;background:#f5f5f0;color:#222;min-height:100vh
 header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:flex;flex-direction:column;align-items:center;gap:3px}
 .header-title{font-size:15px;font-weight:700;color:#E8611A;text-align:center}
 .header-sub{font-size:12px;color:#888;text-align:center}
-.intro-box{background:#fff8f5;border:1px solid #f5c0a0;border-radius:10px;padding:14px 16px;margin:12px 16px;font-size:14px;line-height:1.7;color:#333}
+.version-tag{font-size:10px;color:#bbb;margin-top:2px}
+.intro-box{background:#fff8f5;border:1px solid #f5c0a0;border-radius:10px;padding:14px 16px;margin:12px 16px;font-size:14px;line-height:1.7;color:#333;white-space:pre-line}
 .step-content{padding:0 16px 140px}
 .step-title{font-size:19px;font-weight:700;margin:18px 0 14px;color:#222}
 .field-group{margin-bottom:14px}
-.field-label{font-size:14px;color:#444;margin-bottom:5px;display:flex;align-items:flex-start;gap:4px;flex-wrap:wrap;line-height:1.5}
-.required{color:#E8611A;flex-shrink:0}
+.field-label{font-size:14px;color:#444;margin-bottom:5px;line-height:1.5}
+.required{color:#E8611A}
 .field-input{width:100%;border:1px solid #ccc;border-radius:8px;padding:10px 12px;font-size:15px;font-family:Arial;outline:none;color:#222;background:#fff}
 .field-input:focus{border-color:#E8611A}
 .radio-group{display:flex;gap:10px;margin-top:4px;flex-wrap:wrap}
 .radio-option{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid #ccc;border-radius:8px;padding:8px 16px;cursor:pointer;font-size:14px}
 .radio-option.selected{border-color:#E8611A;background:#fff8f5}
-.radio-option input{accent-color:#E8611A}
+.radio-option input{accent-color:#E8611A;pointer-events:none}
 .checkbox-item{background:#fff;border:1px solid #ddd;border-radius:8px;padding:11px 14px;margin-bottom:7px;display:flex;align-items:center;justify-content:flex-end;gap:10px;cursor:pointer;font-size:14px;flex-direction:row-reverse}
 .checkbox-item input[type=checkbox]{accent-color:#E8611A;width:18px;height:18px;cursor:pointer;flex-shrink:0}
 .checkbox-item:has(input:checked){border-color:#E8611A;background:#fff8f5}
-.notice-box{background:#fff3e0;border:1px solid #ffe0b2;border-radius:8px;padding:11px 14px;font-size:13px;color:#555;margin:8px 0;line-height:1.6}
-.notice-box ul{margin-top:6px;padding-right:18px}
-.notice-box ul li{margin-bottom:3px}
-.notice-box strong{display:block;margin-bottom:4px;color:#E8611A}
+.notice-box{background:#fff3e0;border:1px solid #ffe0b2;border-radius:8px;padding:11px 14px;font-size:13px;color:#555;margin:8px 0;line-height:1.6;white-space:pre-line}
 .error-msg{color:#c0392b;font-size:12px;margin-top:5px;display:none}
-.hidden{display:none!important}
-.show{display:block!important}
 .card-group{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
 .type-card{background:#fff;border:1.5px solid #ddd;border-radius:10px;padding:12px 14px;cursor:pointer;text-align:center;font-size:14px;font-weight:700;transition:all .15s}
 .type-card:hover{border-color:#E8611A}
 .type-card.selected{border-color:#E8611A;background:#fff8f5;color:#E8611A}
-.section-card{background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:14px 16px;margin-bottom:12px;position:relative}
+.section-card{background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:14px 16px;margin-bottom:12px}
 .section-card-title{font-size:14px;font-weight:700;color:#E8611A;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between}
-.btn-remove-group{background:#fff;border:1px solid #e74c3c;color:#e74c3c;border-radius:6px;padding:3px 10px;font-size:12px;cursor:pointer}
-.btn-remove-group:hover{background:#fdf0f0}
-.btn-add-group{background:#E8611A;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;cursor:pointer;font-weight:700;margin-top:8px;display:flex;align-items:center;gap:6px}
-.btn-add-group:hover{background:#d4551a}
-.btn-add-group-wrap{display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap}
+.btn-remove{background:#fff;border:1px solid #e74c3c;color:#e74c3c;border-radius:6px;padding:3px 10px;font-size:12px;cursor:pointer}
+.btn-add{background:#E8611A;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;cursor:pointer;font-weight:700}
+.btn-add:hover{background:#d4551a}
+.btn-group-row{display:flex;gap:8px;align-items:center;margin-top:10px;flex-wrap:wrap}
 .file-label{display:inline-flex;align-items:center;gap:6px;background:#fff;border:1px dashed #ccc;border-radius:8px;padding:8px 14px;font-size:13px;color:#666;cursor:pointer;margin-top:6px}
 .file-label:hover{border-color:#E8611A;color:#E8611A}
-.file-label input{display:none}
+.file-label input[type=file]{display:none}
 .file-preview{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
-.file-preview img{width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ddd}
-.file-preview .fp-name{font-size:11px;color:#888;max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;text-align:center}
+.file-preview-item{display:flex;flex-direction:column;align-items:center;gap:2px}
+.file-preview-item img{width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ddd}
+.file-preview-item span{font-size:11px;color:#888;max-width:60px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bottom-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:794px;background:#fff;border-top:1px solid #ddd;padding:10px 16px;display:flex;align-items:center;justify-content:space-between;gap:8px;box-shadow:0 -2px 8px rgba(0,0,0,0.07)}
-.pager{font-size:13px;color:#888;white-space:nowrap;text-align:center}
+.pager{font-size:13px;color:#888;white-space:nowrap;text-align:center;flex:1}
 .btn{border:none;border-radius:8px;padding:11px 20px;font-size:14px;cursor:pointer;font-weight:700;white-space:nowrap}
 .btn-next{background:#E8611A;color:#fff}
-.btn-next:hover{background:#d4551a}
 .btn-prev{background:#fff;color:#E8611A;border:2px solid #E8611A}
-.btn-prev:hover{background:#fff8f5}
-.textarea-field{width:100%;border:1px solid #ccc;border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial;min-height:80px;outline:none;resize:vertical;direction:inherit;background:#fff}
+.textarea-field{width:100%;border:1px solid #ccc;border-radius:8px;padding:10px 12px;font-size:14px;font-family:Arial;min-height:80px;outline:none;resize:vertical;background:#fff}
 .textarea-field:focus{border-color:#E8611A}
-/* Summary */
 .summary-wrap{padding:0 16px 140px}
 .summary-section{background:#fff;border:1px solid #e0e0e0;border-radius:10px;padding:14px 16px;margin-bottom:10px}
 .summary-section-title{font-size:14px;font-weight:700;color:#E8611A;margin-bottom:8px;border-bottom:1px solid #f0e0d8;padding-bottom:6px}
 .summary-row{display:flex;gap:8px;font-size:13px;margin-bottom:6px;line-height:1.5}
 .summary-label{color:#999;min-width:140px;flex-shrink:0;font-size:12px}
 .summary-val{color:#222;flex:1}
-.summary-img-row{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
-.summary-img-row img{width:70px;height:70px;object-fit:cover;border-radius:6px;border:1px solid #ddd}
-.action-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px;justify-content:center}
-.btn-action{padding:12px 22px;font-size:15px;border-radius:10px;cursor:pointer;font-weight:700;border:none;display:flex;align-items:center;gap:8px}
+.email-note{background:#e8f4f8;border:1px solid #b3d9e8;border-radius:8px;padding:10px 14px;font-size:13px;color:#1a5f7a;margin-top:16px;text-align:center}
+.action-bar{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px;justify-content:center}
+.btn-action{padding:12px 20px;font-size:14px;border-radius:10px;cursor:pointer;font-weight:700;border:none;display:flex;align-items:center;gap:6px}
 .btn-pdf{background:#E8611A;color:#fff}
-.btn-copy{background:#2A5FA8;color:#fff}
+.btn-share{background:#2A5FA8;color:#fff}
+.btn-copy{background:#555;color:#fff}
 .btn-reset-partial{background:#fff;color:#E8611A;border:2px solid #E8611A}
 .btn-reset-full{background:#fff;color:#c0392b;border:2px solid #c0392b}
 .btn-edit{background:#fff;color:#2A5FA8;border:2px solid #2A5FA8}
@@ -84,1314 +77,1108 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .loading-overlay.show{display:flex}
 .spinner{width:44px;height:44px;border:4px solid #eee;border-top-color:#E8611A;border-radius:50%;animation:spin 0.8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
-.loading-text{font-size:15px;color:#555}
-#pdf-template{display:none;position:fixed;top:-99999px;left:0;width:900px;background:#fff;font-family:Arial,sans-serif;color:#222;direction:rtl}
-.confirm-overlay{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:100%;max-width:794px;height:100%;background:rgba(0,0,0,0.4);z-index:998;align-items:center;justify-content:center}
+.confirm-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.4);z-index:998;align-items:center;justify-content:center}
 .confirm-overlay.show{display:flex}
 .confirm-box{background:#fff;border-radius:12px;padding:24px;max-width:320px;width:90%;text-align:center}
-.confirm-box h3{font-size:16px;margin-bottom:10px}
-.confirm-box p{font-size:14px;color:#666;margin-bottom:18px}
+.confirm-box p{font-size:14px;color:#555;margin-bottom:18px;line-height:1.6}
 .confirm-btns{display:flex;gap:10px;justify-content:center}
-.email-note{background:#e8f4f8;border:1px solid #b3d9e8;border-radius:8px;padding:10px 14px;font-size:13px;color:#1a5f7a;margin-top:16px;text-align:center}
-.step-indicator{display:flex;align-items:center;gap:4px;overflow-x:auto;padding:8px 16px;background:#fff;border-bottom:1px solid #eee;scrollbar-width:none}
+.step-indicator{display:flex;align-items:center;overflow-x:auto;padding:8px 16px;background:#fff;border-bottom:1px solid #eee;scrollbar-width:none}
 .step-indicator::-webkit-scrollbar{display:none}
-.step-dot{width:28px;height:28px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa;flex-shrink:0;cursor:pointer}
+.step-dot{width:26px;height:26px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:11px;color:#aaa;flex-shrink:0;cursor:pointer;transition:.15s}
 .step-dot.done{background:#E8611A;border-color:#E8611A;color:#fff}
 .step-dot.active{border-color:#E8611A;color:#E8611A;font-weight:700}
-.step-line{flex:1;height:2px;background:#eee;flex-shrink:0;min-width:8px}
+.step-line{flex:1;height:2px;background:#eee;min-width:6px}
 .step-line.done{background:#E8611A}
+#pdf-template{display:none;position:fixed;top:-9999px;left:0;width:900px;background:#fff;font-family:Arial,sans-serif;direction:rtl}
 @media(max-width:500px){
   body{font-size:13px}
   .card-group{grid-template-columns:1fr}
-  .field-input,.textarea-field{font-size:14px}
-  .btn{padding:10px 14px;font-size:13px}
-  .summary-label{min-width:100px;font-size:11px}
+  .btn{padding:9px 12px;font-size:13px}
 }
+.date-orange::-webkit-datetime-edit{display:none}
+.date-orange::-webkit-calendar-picker-indicator{font-size:24px;cursor:pointer;opacity:1;filter:invert(40%) sepia(90%) saturate(500%) hue-rotate(0deg)}
 </style>
 </head>
 <body>
 <div class="page-wrapper">
-<div class="loading-overlay" id="loading-overlay"><div class="spinner"></div><div class="loading-text" id="loading-text">מכין PDF...</div></div>
-<div class="confirm-overlay" id="confirm-overlay">
-  <div class="confirm-box">
-    <h3 id="confirm-title">אישור</h3>
-    <p id="confirm-msg"></p>
-    <div class="confirm-btns">
-      <button class="btn btn-next" id="confirm-yes" style="flex:1"></button>
-      <button class="btn btn-prev" id="confirm-no" style="flex:1"></button>
+  <div class="loading-overlay" id="loading-overlay"><div class="spinner"></div><div id="loading-text" style="font-size:15px;color:#555">מכין PDF...</div></div>
+  <div class="confirm-overlay" id="confirm-overlay">
+    <div class="confirm-box">
+      <p id="confirm-msg"></p>
+      <div class="confirm-btns">
+        <button class="btn btn-next" id="confirm-yes" style="flex:1"></button>
+        <button class="btn btn-prev" id="confirm-no" style="flex:1"></button>
+      </div>
     </div>
   </div>
-</div>
-
-<div class="lang-bar">
-  <span style="font-size:16px">🌐</span>
-  <button class="lang-btn active" onclick="setLang('he')">עברית</button>
-  <button class="lang-btn" onclick="setLang('en')">English</button>
-  <button class="lang-btn" onclick="setLang('ru')">Русский</button>
-</div>
-<header>
-  <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
-  <div class="header-title" id="hdr-title"></div>
-  <div class="header-sub" id="hdr-sub"></div>
-</header>
-<div class="step-indicator" id="step-indicator"></div>
-<div id="app-body"></div>
-<div class="bottom-bar" id="bottom-bar">
-  <button class="btn btn-next" id="btn-next" onclick="nextStep()"></button>
-  <div class="pager" id="pager"></div>
-  <button class="btn btn-prev" id="btn-prev" onclick="prevStep()"></button>
-</div>
+  <div class="lang-bar">
+    <span>🌐</span>
+    <button class="lang-btn active" onclick="setLang('he')">עברית</button>
+    <button class="lang-btn" onclick="setLang('en')">English</button>
+    <button class="lang-btn" onclick="setLang('ru')">Русский</button>
+  </div>
+  <header>
+    <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
+    <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
+    <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
+    <div class="version-tag">v1.8</div>
+  </header>
+  <div class="step-indicator" id="step-indicator"></div>
+  <div id="app-body"></div>
+  <div class="bottom-bar" id="bottom-bar">
+    <button class="btn btn-next" id="btn-next" onclick="nextStep()">הבא ›</button>
+    <div class="pager" id="pager"></div>
+    <button class="btn btn-prev" id="btn-prev" onclick="prevStep()" style="visibility:hidden">‹ קודם</button>
+  </div>
 </div>
 <div id="pdf-template"></div>
 
 <script>
-// ============ TRANSLATIONS ============
+// ============================================================
+// TRANSLATIONS
+// ============================================================
 const T={
 he:{
-  appTitle:'איפיון פוסט סימטרון וגיבסקאם',
-  appSub:'צוות סימטרון ישראל',
+  appTitle:'איפיון פוסט סימטרון וגיבסקאם',appSub:'צוות סימטרון ישראל',
   intro:'טופס זה מרכז את בקשות הלקוח והוא מהווה בסיס להצעת המחיר, הערכת מועד האספקה והתאמה מיטבית של תכולת הפוסט לצרכי הלקוח.\nיש למלא טופס זה לכל פוסט נדרש.',
-  next:'הבא ›', prev:'‹ קודם', finish:'סיום ›',
-  required:'שדה חובה',
-  optional:'(אופציונלי)',
-  yes:'כן', no:'לא',
-  addImage:'צרף תמונה',
-  addDesc:'הוסף תיאור',
-  step1:'פרטי לקוח',
-  step2:'פרטי תוכנה',
-  step3:'פרטי מכונה',
-  step4:'סוג מכונה',
-  step5:'הגדרת מכונה',
-  step6:'קבוצות כלים',
-  step7:'מכלולים נוספים',
-  step8:'סימולציה',
-  step9:'מידע נוסף',
-  stepSummary:'סיכום',
-  // Step 1
-  company:'שם החברה',
-  contactName:'איש קשר טכני (שם + שם משפחה)',
-  phone:'מספר טלפון',
-  email:'אימייל',
-  // Step 2
-  softwareLabel:'ציין את התוכנה שעבורה נדרש הפוסט',
-  softwareCimatron:'סימטרון',
-  softwareGibbs:'גיבסקאם',
-  // Step 3
-  machineName:'שם המכונה',
-  controllerName:'שם הבקרה',
-  onSite:'האם המכונה נמצאת במפעל?',
-  expectedDate:'מה הצפי לתאריך בדיקת הפוסט?',
+  next:'הבא ›',prev:'‹ קודם',finish:'סיום ›',yes:'כן',no:'לא',optional:'(אופציונלי)',addImage:'צרף תמונה',addDesc:'הוסף תיאור',
+  s1:'פרטי לקוח',s2:'בחירת התוכנה',s3:'פרטי מכונה',s4:'סוג מכונה',s5:'הגדרת מכונה',s6:'קבוצות כלים',s7:'מכלולים',s8:'סימולציה',s9:'מידע נוסף',ss:'סיכום',
+  machineDetailsSection:'פרטי המכונה',genderNote:'השאלון מנוסח בלשון זכר מטעמי נוחות בלבד, אך מיועד ומתייחס באופן שווה לכל המגדרים.',selectDate:'בחר תאריך',
+  company:'שם החברה',contactName:'איש קשר טכני (שם + שם משפחה)',phone:'מספר טלפון',email:'אימייל',
+  softwareLbl:'ציין את התוכנה שעבורה נדרש הפוסט',swCimatron:'סימטרון',swGibbs:'גיבסקאם',
+  machineName:'שם המכונה',controllerName:'שם הבקרה',
+  onSiteLbl:'האם המכונה נמצאת במפעל?',
+  expectedDateLbl:'מה הצפי לתאריך בדיקת הפוסט?',
   expectedDateNote:'כשהמכונה במצב עבודה + מפעיל + כלים + חומר גלם',
-  // Step 4
-  machineTypeLabel:'סוג המכונה',
-  typeLath:'מחרטה',
-  typeLathMill:'מחרטה מכרסמת (ספינדל 1)',
-  typeMTM:'MTM (שני ספינדלים ויותר או יותר מקבוצת כלים אחת)',
-  typeSwiss:'Swiss',
-  typeMill3:'כרסומת 3 צירים',
-  typeMill4:'כרסומת 4 צירים',
-  typeMill5:'כרסומת 5 צירים',
-  typeOther:'אחר',
-  // Step 5 – Lathe/LatheMill
-  turretPos:'מיקום הצריח או הראש',
-  posUpper:'עליון', posLower:'תחתון',
-  turretType:'האם צריח או ראש מחליף כלים?',
-  typeTurret:'צריח', typeHead:'ראש מחליף כלים',
-  hasAxisY:'ציר Y',
-  yesAxisY:'יש ציר Y', noAxisY:'אין ציר Y',
-  toolCount:'כמה כלים?',
-  // Step 5 – MTM
-  spindleCount:'כמה ספינדלים?',
-  sp1:'1', sp2:'2',
-  addToolGroup:'הוסף קבוצת כלים',
-  removeToolGroup:'הסר קבוצה',
-  toolGroupTitle:'קבוצת כלים',
-  mtmSpecialLabel:'האם ישנן דרישות מיוחדות החורגות מהסטנדרט?',
-  mtmStandardNote:'הפוסט הסטנדרטי תומך בפעולות הבאות:\n• כירסום, חריטה וקידוח של כל ראש/צריח על כל ספינדל בנפרד.\n• העברת חלק מספינדל ראשי למשני, כולל פעולת גידוע והמשך עיבוד.\n• משיכת מוט עם הספינדל המשני לצורך גידוע.',
-  mtmSpecialHint:'הנחיה למילוי: נא לפרט כאן כל דרישה החורגת מהסטנדרט. לדוגמה: שימוש בספינדל המשני כתומך.',
-  // Step 5 – Swiss
-  swissImagesLabel:'ניתן לצרף תמונות של תוויות המכונה המתארות את צירי המכונה והכלים',
-  swissSpecialLabel:'האם ישנן דרישות מיוחדות החורגות מהסטנדרט?',
-  swissStandardNote:'הפוסט הסטנדרטי תומך בפעולות הבאות:\n• כירסום, חריטה וקידוח של כל ראש/צריח על כל ספינדל בנפרד.\n• העברת חלק מספינדל ראשי למשני, כולל פעולת גידוע.\n• rechuck\nנא לפרט כאן כל דרישה החורגת מהסטנדרט. לדוגמה:\nשימוש בספינדל המשני כתומך\nעיבוד של יותר מקבוצת כלים אחת בו זמנית על אותו הספינדל (למשל קידוח וחריטה)\nעיבוד של קבוצת כלים על ספינדלים שונים בו זמנית (למשל קידוח כפול)\nתמיכה בהתקנים שלא צוינו עד כה (התקן המאפשר הרכבה של כלים נוספים, ראשי ברך)',
-  // Mill4/5
-  mill4RotAxis:'בחר ציר סיבוב',
-  mill5Axis1:'ציר סיבוב 1',
-  mill5Axis2:'ציר סיבוב 2',
-  axisX:'ציר סיבוב X', axisY:'ציר סיבוב Y', axisZ:'ציר סיבוב Z',
-  tableOrHead:'ציר שולחני או ציר סיבוב שמורכב על הראש',
-  tableAxis:'שולחני', headAxis:'על הראש',
-  // Tool group
-  spindleCapability:'האם יכול לעבד בספינדל ראשי או משני או בשניהם?',
-  spMain:'ספינדל ראשי', spSub:'ספינדל משני', spBoth:'שניהם',
-  staticTools:'כמה כלים לא מסתובבים?',
-  staticToolNums:'ציין את מספרי הכלים הלא מסתובבים בתוך קבוצה זו',
-  rotatingTools:'כמה כלים מסתובבים?',
-  rotatingToolNums:'ציין את מספרי הכלים המסתובבים בתוך קבוצה זו',
-  toolDirection:'האם הכלי מופנה לקוטר או למצח או 5 צירים?',
-  dirDiam:'קוטר', dirFace:'מצח', dir5ax:'5 צירים',
-  hasFixture:'האם יש אפשרות להוסיף התקן?',
-  fixtureType:'סוג ההתקן',
-  addDevice:'הוסף התקן',
-  removeDevice:'הסר התקן',
-  deviceTitle:'התקן',
-  isMilling:'האם צריח זה מכרסם?',
-  groupExtraDesc:'תיאור נוסף לקבוצת כלים זו',
-  // Step 7
-  extraAssembliesLabel:'האם יש מכלולים נוספים?',
-  extraAssembliesNote:'לכל אפשרות דרוש הוספת תיאור ואפשרות לצרף תמונה.',
-  asmNone:'לא',asmStinger:'עוקץ',asmLunette:'לונטה',asmFork:'כף',asmBarFeeder:'מזין מוטות',asmOther:'אחר',
-  asmDescLabel:'תיאור',
-  // Step 8
-  simulationLabel:'האם יש צורך בסימולציית מכונה?',
-  simulationNote:'באחריות הלקוח לדאוג למודל תלת מימדי לצורך הסימולציה. ניתן לקבל מודל זה מיבואן המכונה.',
-  // Step 9
-  extraInfoLabel:'האם יש מידע נוסף כמו צירים נוספים או כל פרט אחר שלא ציינת?',
-  extraInfoDesc:'תיאור',
-  // Summary
-  summaryTitle:'סיכום הטופס',
-  summaryEmail:'יש לשלוח את הטופס לסימטרון: shay.aziz@cimatron.com',
-  copyBtn:'העתק טקסט',
-  savePdfBtn:'שמור כ PDF',
-  editBtn:'ערוך',
-  resetPartialBtn:'איפוס (שמור פרטי לקוח)',
-  resetFullBtn:'איפוס מלא',
-  copied:'הועתק!',
-  loading:'מכין PDF...',
-  confirmResetPartial:'הטופס יאופס אך פרטי הלקוח יישמרו. האם אתה בטוח?',
-  confirmResetFull:'כל הטופס ימחק. האם אתה בטוח?',
-  confirmYes:'כן',confirmNo:'לא',
-  errRequired:'שדה חובה',
-  errSelectOne:'יש לבחור אפשרות',
-  errAddGroup:'יש להוסיף לפחות קבוצת כלים אחת',
-  dateLabel:'תאריך',
-  pdfCreatedFor:'טופס זה נוצר עבור חברת סימטרון',
+  machineTypeLbl:'סוג המכונה',
+  tLath:'מחרטה',tLathMill:'מחרטה מכרסמת (ספינדל 1)',tMTM:'MTM (שני ספינדלים ויותר או יותר מקבוצת כלים אחת)',tSwiss:'Swiss',tMill3:'כרסומת 3 צירים',tMill4:'כרסומת 4 צירים',tMill5:'כרסומת 5 צירים',tOther:'אחר',
+  turretPosLbl:'מיקום הצריח או הראש',posUp:'עליון',posDown:'תחתון',
+  turretTypeLbl:'האם צריח או ראש מחליף כלים?',ttTurret:'צריח',ttHead:'ראש מחליף כלים',
+  yAxisLbl:'ציר Y',yAxisYes:'יש ציר Y',yAxisNo:'אין ציר Y',
+  toolCountLbl:'כמה כלים?',
+  spindleCountLbl:'כמה ספינדלים?',spindlesSection:'ספינדלים',
+  addGroup:'הוסף קבוצת כלים',removeGroup:'הסר קבוצה',groupTitle:'קבוצת כלים',
+  mtmSpecialLbl:'האם ישנן דרישות מיוחדות החורגות מהסטנדרט?',
+  mtmStdNote:'הפוסט הסטנדרטי תומך בפעולות הבאות:\n• כירסום, חריטה וקידוח של כל ראש/צריח על כל ספינדל בנפרד.\n• העברת חלק מספינדל ראשי למשני, כולל פעולת גידוע והמשך עיבוד.\n• משיכת מוט עם הספינדל המשני לצורך גידוע.\n\nהנחיה: נא לפרט כל דרישה החורגת מהסטנדרט. לדוגמה: שימוש בספינדל המשני כתומך.',
+  swissImgLbl:'ניתן לצרף תמונות של תוויות המכונה המתארות את צירי המכונה והכלים',
+  swissSpecialLbl:'האם ישנן דרישות מיוחדות החורגות מהסטנדרט?',
+  swissStdNote:'הפוסט הסטנדרטי תומך בפעולות הבאות:\n• כירסום, חריטה וקידוח של כל ראש/צריח על כל ספינדל בנפרד.\n• העברת חלק מספינדל ראשי למשני, כולל פעולת גידוע.\n• rechuck\n\nנא לפרט כל דרישה החורגת מהסטנדרט. לדוגמה:\n- שימוש בספינדל המשני כתומך\n- עיבוד של יותר מקבוצת כלים אחת בו זמנית על אותו הספינדל\n- עיבוד של קבוצת כלים על ספינדלים שונים בו זמנית\n- תמיכה בהתקנים שלא צוינו עד כה',
+  mill4AxisLbl:'בחר ציר סיבוב',mill5Ax1:'ציר סיבוב 1',mill5Ax2:'ציר סיבוב 2',
+  axX:'ציר סיבוב X',axY:'ציר סיבוב Y',axZ:'ציר סיבוב Z',
+  mountLbl:'ציר שולחני או ציר סיבוב שמורכב על הראש',mountTable:'שולחני',mountHead:'על הראש',
+  spCapLbl:'האם יכול לעבד בספינדל ראשי או משני או בשניהם?',spMain:'ספינדל ראשי',spSub:'ספינדל משני',spBoth:'שניהם',
+  staticLbl:'כמה כלים לא מסתובבים?',staticNumsLbl:'ציין את מספרי הכלים הלא מסתובבים בתוך קבוצה זו',
+  rotLbl:'כמה כלים מסתובבים?',rotNumsLbl:'ציין את מספרי הכלים המסתובבים בתוך קבוצה זו',
+  dirLbl:'האם הכלי מופנה לקוטר או למצח או 5 צירים?',dirDiam:'קוטר',dirFace:'מצח',dir5ax:'5 צירים',
+  fixtureLbl:'האם יש אפשרות להוסיף התקן?',fixtureTypeLbl:'סוג ההתקן',addFixture:'הוסף התקן',removeFixture:'הסר התקן',fixTitle:'התקן',
+  isMillingLbl:'האם צריח זה מכרסם?',
+  groupExtraLbl:'תיאור נוסף לקבוצת כלים זו',
+  asmLbl:'האם יש מכלולים נוספים?',asmNote:'לכל אפשרות נדרש תיאור ואפשרות לצרף תמונה.',
+  asmNone:'לא',asmStinger:'עוקץ',asmLunette:'לונטה',asmFork:'כף',asmBar:'מזין מוטות',asmOther:'אחר',asmDesc:'תיאור',
+  simLbl:'האם יש צורך בסימולציית מכונה?',
+  simNote:'באחריות הלקוח לדאוג למודל תלת מימדי לצורך הסימולציה. ניתן לקבל מודל זה מיבואן המכונה.',
+  extraLbl:'האם יש מידע נוסף כמו צירים נוספים או כל פרט אחר שלא ציינת?',extraDesc:'תיאור',
+  sumTitle:'סיכום הטופס',sumEmail:'יש לשלוח את הטופס לסימטרון: shay.aziz@cimatron.com',
+  btnPdf:'שמור כ PDF',btnShare:'שתף PDF',btnEdit:'ערוך',btnResetPartial:'איפוס ושמור פרטי לקוח',btnResetFull:'איפוס מלא',
+  copied:'הועתק!',loading:'מכין PDF...',asmNoneLabel:'ללא מכלולים נוספים',otherDesc:'פרט כאן...',
+  otherDescLbl:'תיאור סוג המכונה',swissDevicesLbl:'התקנים (אופציונלי)',mtmStep5Note:'לאחר בחירת מספר הספינדלים בדף הבא תוכל להגדיר קבוצות כלים.',
+  fixtureStationsLbl:'ציין את מספרי התחנות שבהן ניתן להרכיב את ההתקן',fixtureStationsPlaceholder:'למשל: 3, 7, 11',
+  cfPartial:'הטופס יאופס אך פרטי הלקוח יישמרו. האם אתה בטוח?',
+  cfFull:'כל הטופס ימחק. האם אתה בטוח?',cfYes:'כן',cfNo:'לא',
+  eReq:'שדה חובה',eSel:'יש לבחור אפשרות',eGroup:'יש להוסיף לפחות קבוצת כלים אחת',eAsm:'יש לבחור אפשרות',
+  dateLabel:'תאריך',pdfFor:'טופס זה נוצר עבור חברת סימטרון',
 },
 en:{
-  appTitle:'Post Specification – Cimatron & GibbsCAM',
-  appSub:'Cimatron Israel Team',
-  intro:'This form consolidates the customer\'s requirements and serves as the basis for the price quote, delivery time estimate, and optimal customization of the post for the customer\'s needs.\nThis form must be filled out for each required post.',
-  next:'Next ›', prev:'‹ Back', finish:'Finish ›',
-  required:'Required',
-  optional:'(optional)',
-  yes:'Yes', no:'No',
-  addImage:'Attach image',
-  addDesc:'Add description',
-  step1:'Contact Info',step2:'Software',step3:'Machine Details',step4:'Machine Type',
-  step5:'Machine Config',step6:'Tool Groups',step7:'Additional Assemblies',step8:'Simulation',step9:'Additional Info',stepSummary:'Summary',
+  appTitle:'Post Specification – Cimatron & GibbsCAM',appSub:'Cimatron Israel Team',
+  intro:'This form consolidates customer requirements and serves as the basis for the price quote, delivery estimate, and post customization.\nThis form must be filled out for each required post.',
+  next:'Next ›',prev:'‹ Back',finish:'Finish ›',yes:'Yes',no:'No',optional:'(optional)',addImage:'Attach image',addDesc:'Add description',
+  s1:'Contact Info',s2:'Software Selection',s3:'Machine Info',s4:'Machine Type',s5:'Machine Config',s6:'Tool Groups',s7:'Assemblies',s8:'Simulation',s9:'Extra Info',ss:'Summary',
+  machineDetailsSection:'Machine Details',genderNote:'This questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',selectDate:'Select date',
   company:'Company Name',contactName:'Technical Contact (First + Last Name)',phone:'Phone Number',email:'Email',
-  softwareLabel:'Specify the software for which the post is required',
-  softwareCimatron:'Cimatron',softwareGibbs:'GibbsCAM',
+  softwareLbl:'Software required for the post',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
   machineName:'Machine Name',controllerName:'Controller Name',
-  onSite:'Is the machine at the factory?',expectedDate:'What is the expected date for post testing?',
-  expectedDateNote:'When the machine is operational + operator + tools + raw material',
-  machineTypeLabel:'Machine Type',
-  typeLath:'Lathe',typeLathMill:'Lathe+Mill (Spindle 1)',typeMTM:'MTM (2+ spindles or 1+ tool groups)',typeSwiss:'Swiss',
-  typeMill3:'3-Axis Mill',typeMill4:'4-Axis Mill',typeMill5:'5-Axis Mill',typeOther:'Other',
-  turretPos:'Turret or Head Position',posUpper:'Upper',posLower:'Lower',
-  turretType:'Turret or tool changer head?',typeTurret:'Turret',typeHead:'Tool Changer Head',
-  hasAxisY:'Y Axis',yesAxisY:'Has Y Axis',noAxisY:'No Y Axis',
-  toolCount:'How many tools?',
-  spindleCount:'How many spindles?',sp1:'1',sp2:'2',
-  addToolGroup:'Add Tool Group',removeToolGroup:'Remove Group',toolGroupTitle:'Tool Group',
-  mtmSpecialLabel:'Are there special requirements beyond the standard?',
-  mtmStandardNote:'The standard post supports:\n• Milling, turning and drilling of each head/turret on each spindle separately.\n• Part transfer from main to sub-spindle, including cutoff and continued machining.\n• Bar pull with sub-spindle for cutoff.',
-  mtmSpecialHint:'Guidance: Please detail any requirements beyond the standard. Example: using sub-spindle as a tailstock.',
-  swissImagesLabel:'You may attach images of machine labels describing machine axes and tools',
-  swissSpecialLabel:'Are there special requirements beyond the standard?',
-  swissStandardNote:'The standard post supports:\n• Milling, turning and drilling of each head/turret on each spindle separately.\n• Part transfer from main to sub-spindle including cutoff.\n• Rechuck\nPlease detail any requirements beyond the standard. Examples:\nUsing sub-spindle as tailstock\nProcessing more than one tool group simultaneously on the same spindle\nProcessing tool groups on different spindles simultaneously\nSupport for fixtures not mentioned above',
-  mill4RotAxis:'Select rotation axis',mill5Axis1:'Rotation Axis 1',mill5Axis2:'Rotation Axis 2',
-  axisX:'X Rotation',axisY:'Y Rotation',axisZ:'Z Rotation',
-  tableOrHead:'Table axis or head-mounted rotation axis',tableAxis:'Table',headAxis:'Head-mounted',
-  spindleCapability:'Can process on main, sub, or both spindles?',spMain:'Main Spindle',spSub:'Sub Spindle',spBoth:'Both',
-  staticTools:'How many static (non-rotating) tools?',staticToolNums:'List the static tool numbers in this group',
-  rotatingTools:'How many rotating tools?',rotatingToolNums:'List the rotating tool numbers in this group',
-  toolDirection:'Tool direction: diameter, face, or 5-axis?',dirDiam:'Diameter',dirFace:'Face',dir5ax:'5-Axis',
-  hasFixture:'Is there an option to add a fixture?',fixtureType:'Fixture Type',addDevice:'Add Fixture',removeDevice:'Remove',deviceTitle:'Fixture',
-  isMilling:'Is this turret a milling turret?',
-  groupExtraDesc:'Additional description for this tool group',
-  extraAssembliesLabel:'Are there additional assemblies?',
-  extraAssembliesNote:'Each option requires a description and optionally an image.',
-  asmNone:'None',asmStinger:'Stinger',asmLunette:'Lunette',asmFork:'Fork',asmBarFeeder:'Bar Feeder',asmOther:'Other',
-  asmDescLabel:'Description',
-  simulationLabel:'Is machine simulation required?',
-  simulationNote:'The customer is responsible for providing a 3D model for simulation. This model can be obtained from the machine importer.',
-  extraInfoLabel:'Is there any additional information such as extra axes or any other detail not mentioned?',
-  extraInfoDesc:'Description',
-  summaryTitle:'Form Summary',summaryEmail:'Please send this form to Cimatron: shay.aziz@cimatron.com',
-  copyBtn:'Copy Text',savePdfBtn:'Save as PDF',editBtn:'Edit',resetPartialBtn:'Reset (keep contact)',resetFullBtn:'Full Reset',
-  copied:'Copied!',loading:'Preparing PDF...',
-  confirmResetPartial:'The form will be reset but contact details will be kept. Are you sure?',
-  confirmResetFull:'The entire form will be deleted. Are you sure?',
-  confirmYes:'Yes',confirmNo:'No',
-  errRequired:'Required field',errSelectOne:'Please select an option',errAddGroup:'Please add at least one tool group',
-  dateLabel:'Date',pdfCreatedFor:'This form was created for Cimatron',
+  onSiteLbl:'Is the machine at the factory?',
+  expectedDateLbl:'Expected date for post testing?',
+  expectedDateNote:'When machine is operational + operator + tools + raw material',
+  machineTypeLbl:'Machine Type',
+  tLath:'Lathe',tLathMill:'Lathe+Mill (Spindle 1)',tMTM:'MTM (2+ spindles or 1+ tool groups)',tSwiss:'Swiss',tMill3:'3-Axis Mill',tMill4:'4-Axis Mill',tMill5:'5-Axis Mill',tOther:'Other',
+  turretPosLbl:'Turret / Head Position',posUp:'Upper',posDown:'Lower',
+  turretTypeLbl:'Turret or tool changer head?',ttTurret:'Turret',ttHead:'Tool Changer Head',
+  yAxisLbl:'Y Axis',yAxisYes:'Has Y Axis',yAxisNo:'No Y Axis',
+  toolCountLbl:'Number of tools?',
+  spindleCountLbl:'Number of spindles?',spindlesSection:'Spindles',
+  addGroup:'Add Tool Group',removeGroup:'Remove Group',groupTitle:'Tool Group',
+  mtmSpecialLbl:'Special requirements beyond standard?',
+  mtmStdNote:'Standard post supports:\n• Milling, turning and drilling of each head/turret on each spindle separately.\n• Part transfer from main to sub-spindle including cutoff and continued machining.\n• Bar pull with sub-spindle for cutoff.\n\nGuidance: Please detail any requirements beyond the standard.',
+  swissImgLbl:'You may attach images of machine labels describing axes and tools',
+  swissSpecialLbl:'Special requirements beyond standard?',
+  swissStdNote:'Standard post supports:\n• Milling, turning and drilling of each head/turret on each spindle separately.\n• Part transfer from main to sub-spindle including cutoff.\n• Rechuck\n\nPlease detail any requirements beyond standard. Examples:\n- Sub-spindle as tailstock\n- Multiple tool groups simultaneously on same spindle\n- Tool groups on different spindles simultaneously\n- Support for fixtures not mentioned',
+  mill4AxisLbl:'Select rotation axis',mill5Ax1:'Rotation Axis 1',mill5Ax2:'Rotation Axis 2',
+  axX:'X Rotation',axY:'Y Rotation',axZ:'Z Rotation',
+  mountLbl:'Table axis or head-mounted rotation axis',mountTable:'Table',mountHead:'Head-mounted',
+  spCapLbl:'Can process on main, sub, or both spindles?',spMain:'Main Spindle',spSub:'Sub Spindle',spBoth:'Both',
+  staticLbl:'Static (non-rotating) tools?',staticNumsLbl:'List static tool numbers in this group',
+  rotLbl:'Rotating tools?',rotNumsLbl:'List rotating tool numbers in this group',
+  dirLbl:'Tool direction: diameter, face, or 5-axis?',dirDiam:'Diameter',dirFace:'Face',dir5ax:'5-Axis',
+  fixtureLbl:'Option to add a fixture?',fixtureTypeLbl:'Fixture Type',addFixture:'Add Fixture',removeFixture:'Remove',fixTitle:'Fixture',
+  isMillingLbl:'Is this a milling turret?',
+  groupExtraLbl:'Additional description for this tool group',
+  asmLbl:'Additional assemblies?',asmNote:'Each option requires a description and optionally an image.',
+  asmNone:'None',asmStinger:'Stinger',asmLunette:'Lunette',asmFork:'Fork',asmBar:'Bar Feeder',asmOther:'Other',asmDesc:'Description',
+  simLbl:'Machine simulation required?',
+  simNote:'Customer is responsible for providing a 3D model for simulation. This can be obtained from the machine importer.',
+  extraLbl:'Any additional information such as extra axes or any detail not mentioned?',extraDesc:'Description',
+  sumTitle:'Form Summary',sumEmail:'Send this form to Cimatron: shay.aziz@cimatron.com',
+  btnPdf:'Save as PDF',btnShare:'Share PDF',btnEdit:'Edit',btnResetPartial:'Reset (keep contact)',btnResetFull:'Full Reset',
+  copied:'Copied!',loading:'Preparing PDF...',asmNoneLabel:'No additional assemblies',otherDesc:'Describe here...',
+  otherDescLbl:'Machine type description',swissDevicesLbl:'Fixtures (optional)',mtmStep5Note:'After selecting the number of spindles on the next page, you can define tool groups.',
+  fixtureStationsLbl:'Specify the station numbers where this fixture can be mounted',fixtureStationsPlaceholder:'e.g. 3, 7, 11',
+  cfPartial:'Form will be reset but contact details kept. Are you sure?',
+  cfFull:'Entire form will be deleted. Are you sure?',cfYes:'Yes',cfNo:'No',
+  eReq:'Required field',eSel:'Please select an option',eGroup:'Please add at least one tool group',eAsm:'Please select an option',
+  dateLabel:'Date',pdfFor:'This form was created for Cimatron',
 },
 ru:{
-  appTitle:'Спецификация поста – Cimatron и GibbsCAM',
-  appSub:'Команда Cimatron Израиль',
-  intro:'Эта форма собирает требования клиента и служит основой для коммерческого предложения, оценки сроков и оптимальной настройки поста под нужды клиента.\nЭту форму необходимо заполнять для каждого требуемого поста.',
-  next:'Далее ›',prev:'‹ Назад',finish:'Завершить ›',
-  required:'Обязательно',optional:'(необязательно)',yes:'Да',no:'Нет',addImage:'Прикрепить фото',addDesc:'Добавить описание',
-  step1:'Данные клиента',step2:'Программное обеспечение',step3:'Данные станка',step4:'Тип станка',step5:'Конфигурация',step6:'Группы инструментов',step7:'Доп. узлы',step8:'Симуляция',step9:'Доп. информация',stepSummary:'Итог',
+  appTitle:'Спецификация поста – Cimatron и GibbsCAM',appSub:'Команда Cimatron Израиль',
+  intro:'Эта форма собирает требования клиента и служит основой для коммерческого предложения и настройки поста.\nЭту форму необходимо заполнять для каждого требуемого поста.',
+  next:'Далее ›',prev:'‹ Назад',finish:'Завершить ›',yes:'Да',no:'Нет',optional:'(необязательно)',addImage:'Прикрепить фото',addDesc:'Добавить описание',
+  s1:'Данные клиента',s2:'Выбор ПО',s3:'Данные станка',s4:'Тип станка',s5:'Конфигурация',s6:'Группы инструментов',s7:'Доп. узлы',s8:'Симуляция',s9:'Доп. информация',ss:'Итог',
+  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',
   company:'Название компании',contactName:'Технический контакт (Имя + Фамилия)',phone:'Номер телефона',email:'Email',
-  softwareLabel:'Укажите ПО, для которого требуется пост',softwareCimatron:'Cimatron',softwareGibbs:'GibbsCAM',
-  machineName:'Название станка',controllerName:'Название системы ЧПУ',
-  onSite:'Станок находится на заводе?',expectedDate:'Ожидаемая дата тестирования поста?',
+  softwareLbl:'ПО, для которого требуется пост',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
+  machineName:'Название станка',controllerName:'Система ЧПУ',
+  onSiteLbl:'Станок на заводе?',
+  expectedDateLbl:'Ожидаемая дата тестирования поста?',
   expectedDateNote:'Когда станок в рабочем состоянии + оператор + инструменты + заготовка',
-  machineTypeLabel:'Тип станка',
-  typeLath:'Токарный',typeLathMill:'Токарно-фрезерный (шпиндель 1)',typeMTM:'MTM (2+ шпинделя или 1+ группа инструментов)',typeSwiss:'Swiss',
-  typeMill3:'3-осевой фрезерный',typeMill4:'4-осевой фрезерный',typeMill5:'5-осевой фрезерный',typeOther:'Другое',
-  turretPos:'Положение револьвера или головки',posUpper:'Верхнее',posLower:'Нижнее',
-  turretType:'Револьвер или головка смены инструмента?',typeTurret:'Револьвер',typeHead:'Головка смены инструмента',
-  hasAxisY:'Ось Y',yesAxisY:'Есть ось Y',noAxisY:'Нет оси Y',
-  toolCount:'Количество инструментов?',
-  spindleCount:'Количество шпинделей?',sp1:'1',sp2:'2',
-  addToolGroup:'Добавить группу',removeToolGroup:'Удалить группу',toolGroupTitle:'Группа инструментов',
-  mtmSpecialLabel:'Есть ли особые требования сверх стандарта?',
-  mtmStandardNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление каждой головки/револьвера на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку и продолжение обработки.\n• Вытягивание прутка субшпинделем для отрезки.',
-  mtmSpecialHint:'Руководство: пожалуйста, опишите все требования сверх стандарта. Например: использование субшпинделя как упора.',
-  swissImagesLabel:'Можно прикрепить фотографии этикеток станка с описанием осей и инструментов',
-  swissSpecialLabel:'Есть ли особые требования сверх стандарта?',
-  swissStandardNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление каждой головки/револьвера на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку.\n• Rechuck\nОпишите все требования сверх стандарта. Примеры:\nИспользование субшпинделя как упора\nОбработка более одной группы инструментов одновременно на одном шпинделе\nОдновременная обработка на разных шпинделях\nПоддержка приспособлений, не упомянутых выше',
-  mill4RotAxis:'Выберите ось вращения',mill5Axis1:'Ось вращения 1',mill5Axis2:'Ось вращения 2',
-  axisX:'Вращение X',axisY:'Вращение Y',axisZ:'Вращение Z',
-  tableOrHead:'Стол или голова',tableAxis:'Стол',headAxis:'На голове',
-  spindleCapability:'Можно обрабатывать на главном, вспомогательном или обоих шпинделях?',spMain:'Главный шпиндель',spSub:'Вспомогательный',spBoth:'Оба',
-  staticTools:'Сколько невращающихся инструментов?',staticToolNums:'Укажите номера невращающихся инструментов в этой группе',
-  rotatingTools:'Сколько вращающихся инструментов?',rotatingToolNums:'Укажите номера вращающихся инструментов в этой группе',
-  toolDirection:'Направление инструмента: диаметр, торец или 5 осей?',dirDiam:'Диаметр',dirFace:'Торец',dir5ax:'5 осей',
-  hasFixture:'Есть ли возможность добавить приспособление?',fixtureType:'Тип приспособления',addDevice:'Добавить приспособление',removeDevice:'Удалить',deviceTitle:'Приспособление',
-  isMilling:'Является ли этот револьвер фрезерным?',
-  groupExtraDesc:'Дополнительное описание для этой группы инструментов',
-  extraAssembliesLabel:'Есть ли дополнительные узлы?',
-  extraAssembliesNote:'Для каждого варианта требуется описание и опционально фото.',
-  asmNone:'Нет',asmStinger:'Поджим',asmLunette:'Люнет',asmFork:'Вилка',asmBarFeeder:'Прутковый питатель',asmOther:'Другое',
-  asmDescLabel:'Описание',
-  simulationLabel:'Требуется ли симуляция станка?',
-  simulationNote:'Клиент несёт ответственность за предоставление 3D-модели для симуляции. Эту модель можно получить у импортёра станка.',
-  extraInfoLabel:'Есть ли дополнительная информация, например дополнительные оси или любые другие детали?',
-  extraInfoDesc:'Описание',
-  summaryTitle:'Итоговая форма',summaryEmail:'Отправьте эту форму в Cimatron: shay.aziz@cimatron.com',
-  copyBtn:'Копировать текст',savePdfBtn:'Сохранить PDF',editBtn:'Редактировать',resetPartialBtn:'Сброс (оставить контакт)',resetFullBtn:'Полный сброс',
-  copied:'Скопировано!',loading:'Подготовка PDF...',
-  confirmResetPartial:'Форма будет сброшена, но данные клиента останутся. Вы уверены?',
-  confirmResetFull:'Вся форма будет удалена. Вы уверены?',
-  confirmYes:'Да',confirmNo:'Нет',
-  errRequired:'Обязательное поле',errSelectOne:'Выберите вариант',errAddGroup:'Добавьте хотя бы одну группу инструментов',
-  dateLabel:'Дата',pdfCreatedFor:'Эта форма создана для компании Cimatron',
+  machineTypeLbl:'Тип станка',
+  tLath:'Токарный',tLathMill:'Токарно-фрезерный (шпиндель 1)',tMTM:'MTM (2+ шпинделя или 1+ группа)',tSwiss:'Swiss',tMill3:'3-осевой фрезерный',tMill4:'4-осевой фрезерный',tMill5:'5-осевой фрезерный',tOther:'Другое',
+  turretPosLbl:'Положение револьвера/головки',posUp:'Верхнее',posDown:'Нижнее',
+  turretTypeLbl:'Револьвер или головка смены?',ttTurret:'Револьвер',ttHead:'Головка смены инструмента',
+  yAxisLbl:'Ось Y',yAxisYes:'Есть ось Y',yAxisNo:'Нет оси Y',
+  toolCountLbl:'Количество инструментов?',
+  spindleCountLbl:'Количество шпинделей?',spindlesSection:'Шпиндели',
+  addGroup:'Добавить группу',removeGroup:'Удалить группу',groupTitle:'Группа инструментов',
+  mtmSpecialLbl:'Особые требования сверх стандарта?',
+  mtmStdNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление каждой головки/револьвера на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку и продолжение обработки.\n• Вытягивание прутка субшпинделем.\n\nРуководство: опишите все требования сверх стандарта.',
+  swissImgLbl:'Можно прикрепить фото этикеток станка с описанием осей и инструментов',
+  swissSpecialLbl:'Особые требования сверх стандарта?',
+  swissStdNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку.\n• Rechuck\n\nОпишите все требования сверх стандарта.',
+  mill4AxisLbl:'Выберите ось вращения',mill5Ax1:'Ось вращения 1',mill5Ax2:'Ось вращения 2',
+  axX:'Вращение X',axY:'Вращение Y',axZ:'Вращение Z',
+  mountLbl:'Стол или голова',mountTable:'Стол',mountHead:'На голове',
+  spCapLbl:'Обработка на главном, вспомогательном или обоих шпинделях?',spMain:'Главный',spSub:'Вспомогательный',spBoth:'Оба',
+  staticLbl:'Невращающихся инструментов?',staticNumsLbl:'Укажите номера невращающихся инструментов',
+  rotLbl:'Вращающихся инструментов?',rotNumsLbl:'Укажите номера вращающихся инструментов',
+  dirLbl:'Направление инструмента: диаметр, торец или 5 осей?',dirDiam:'Диаметр',dirFace:'Торец',dir5ax:'5 осей',
+  fixtureLbl:'Возможность добавить приспособление?',fixtureTypeLbl:'Тип приспособления',addFixture:'Добавить приспособление',removeFixture:'Удалить',fixTitle:'Приспособление',
+  isMillingLbl:'Этот револьвер фрезерный?',
+  groupExtraLbl:'Дополнительное описание группы',
+  asmLbl:'Дополнительные узлы?',asmNote:'Для каждого варианта требуется описание.',
+  asmNone:'Нет',asmStinger:'Поджим',asmLunette:'Люнет',asmFork:'Вилка',asmBar:'Прутковый питатель',asmOther:'Другое',asmDesc:'Описание',
+  simLbl:'Симуляция станка требуется?',
+  simNote:'Клиент несёт ответственность за предоставление 3D-модели для симуляции.',
+  extraLbl:'Дополнительная информация (оси, прочие детали)?',extraDesc:'Описание',
+  sumTitle:'Итоговая форма',sumEmail:'Отправьте форму в Cimatron: shay.aziz@cimatron.com',
+  btnPdf:'Сохранить PDF',btnShare:'Поделиться PDF',btnEdit:'Редактировать',btnResetPartial:'Сброс (оставить контакт)',btnResetFull:'Полный сброс',
+  copied:'Скопировано!',loading:'Подготовка PDF...',asmNoneLabel:'Без дополнительных узлов',otherDesc:'Опишите здесь...',
+  otherDescLbl:'Описание типа станка',swissDevicesLbl:'Приспособления (необязательно)',mtmStep5Note:'После выбора количества шпинделей на следующей странице можно определить группы инструментов.',
+  fixtureStationsLbl:'Укажите номера позиций для монтажа приспособления',fixtureStationsPlaceholder:'напр. 3, 7, 11',
+  cfPartial:'Форма будет сброшена, данные клиента останутся. Вы уверены?',
+  cfFull:'Вся форма будет удалена. Вы уверены?',cfYes:'Да',cfNo:'Нет',
+  eReq:'Обязательное поле',eSel:'Выберите вариант',eGroup:'Добавьте хотя бы одну группу',eAsm:'Выберите вариант',
+  dateLabel:'Дата',pdfFor:'Форма создана для компании Cimatron',
 }};
 
-// ============ STATE ============
-let lang='he';
-let currentStep=1;
-let logoBase64='';
+// ============================================================
+// STATE
+// ============================================================
+let lang='he', currentStep=1, logoBase64='';
 
-const state={
+function mkGroup(){
+  return{pos:'',turretType:'',yAxis:'',toolCount:'',isMilling:'',
+    spCap:'',spCapDesc:'',spCapImages:[],
+    staticCount:'',staticNums:'',staticDir:'',staticFixture:'',staticFixtures:[],
+    rotCount:'',rotNums:'',rotDir:'',rotFixture:'',rotFixtures:[],
+    extraDesc:'',extraDescYN:'',extraImages:[]};
+}
+
+const S={
   company:'',contactName:'',phone:'',email:'',
-  software:'', // 'cimatron'|'gibbs'
-  machineName:'',machineNameImages:[],
-  controllerName:'',controllerImages:[],
-  onSite:'', // 'yes'|'no'
-  expectedDate:'',
-  machineType:'', // 'lathe'|'latheMill'|'mtm'|'swiss'|'mill3'|'mill4'|'mill5'|'other'
-  // Lathe/LatheMill
-  turretPos:'',turretType:'',hasAxisY:'',toolCount:'',
-  // MTM
-  spindleCount:'',
-  toolGroups:[], // [{pos,turretType,hasAxisY,toolCount,spindleCapability,spCapImages,spCapDesc,staticTools,staticToolNums,rotatingTools,rotatingToolNums,toolDir,hasFixture,fixtures:[{type,desc,images}],isMilling,extraDesc,extraImages}]
-  mtmSpecial:'',mtmSpecialDesc:'',
-  // Swiss
-  swissImages:[],
-  swissToolGroups:[],
-  swissSpecial:'',swissSpecialDesc:'',
-  // Mill4
-  mill4RotAxis:'',
-  // Mill5
-  mill5Axis1Type:'',mill5Axis1Mount:'',
-  mill5Axis2Type:'',mill5Axis2Mount:'',
-  // Assemblies
-  assemblies:{stinger:{sel:false,desc:'',images:[]},lunette:{sel:false,desc:'',images:[]},fork:{sel:false,desc:'',images:[]},barFeeder:{sel:false,desc:'',images:[]},other:{sel:false,desc:'',images:[]}},
-  noAssemblies:false,
-  // Simulation
+  software:'',
+  machineName:'',machineNameImg:[],controllerName:'',controllerImg:[],
+  onSite:'',expectedDate:'',dateDay:'',dateMonth:'',dateYear:'',
+  machineType:'',machineTypeOther:'',
+  turretPos:'',turretType:'',yAxis:'',toolCount:'',
+  spindleCount:'',mtmSpecial:'',mtmSpecialDesc:'',
+  swissImg:[],swissSpecial:'',swissSpecialDesc:'',swissDevices:[],
+  mill4Axis:'',
+  ax1Type:'',ax1Mount:'',ax2Type:'',ax2Mount:'',
+  toolGroups:[mkGroup()],
+  swissGroups:[mkGroup()],
+  asmStinger:false,asmStingerDesc:'',asmStingerImg:[],
+  asmLunette:false,asmLunetteDesc:'',asmLunetteImg:[],
+  asmFork:false,asmForkDesc:'',asmForkImg:[],
+  asmBar:false,asmBarDesc:'',asmBarImg:[],
+  asmOther:false,asmOtherDesc:'',asmOtherImg:[],
+  asmNone:false,
   simulation:'',
-  // Extra
-  extraInfo:'',extraInfoDesc:'',extraInfoImages:[],
+  extraInfo:'',extraInfoDesc:'',extraInfoImg:[],
 };
 
-function t(k){return T[lang][k]||k}
+function t(k){return (T[lang]||T.he)[k]||k}
 
-function setLang(l){
-  lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
-  document.documentElement.lang=l;
-  document.documentElement.dir=l==='he'?'rtl':'ltr';
-  renderAll();
-}
-
-// ============ STEP LOGIC ============
+// ============================================================
+// STEP FLOW
+// ============================================================
 function getSteps(){
-  const mt=state.machineType;
-  const steps=[1,2,3,4];
-  // Step 5: machine config (not for mill3/other)
-  if(mt&&mt!=='mill3'&&mt!=='other') steps.push(5);
-  // Step 6: tool groups (mtm, swiss, latheMill, lathe)
-  if(mt==='mtm'||mt==='swiss'||mt==='latheMill'||mt==='lathe') steps.push(6);
-  // Step 7: assemblies (not swiss, not mill types)
+  const mt=S.machineType;
+  const steps=[1,3,4];
+  if(mt && mt!=='mill3' && mt!=='other' && mt!=='mtm') steps.push(5);
+  if(mt==='mtm') steps.push(6);
   if(mt!=='swiss'&&mt!=='mill3'&&mt!=='mill4'&&mt!=='mill5'&&mt!=='other') steps.push(7);
-  // Step 8: simulation (not mill3, not other)
   if(mt!=='other') steps.push(8);
-  // Step 9: extra info
-  steps.push(9);
-  // Summary
-  steps.push('s');
+  steps.push(9,'s');
   return steps;
 }
+function stepId(){return getSteps()[currentStep-1];}
+function totalCount(){return getSteps().length;}
 
-function getStepIndex(s){return getSteps().indexOf(s);}
-function totalSteps(){return getSteps().length;}
-function currentStepId(){return getSteps()[currentStep-1];}
+// ============================================================
+// RENDER ENGINE
+// ============================================================
+function setLang(l){
+  lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===({he:'עברית',en:'English',ru:'Русский'}[l])));
+  document.documentElement.lang=l;
+  document.documentElement.dir=l==='he'?'rtl':'ltr';
+  paint();
+}
 
-// ============ RENDER ============
-function renderAll(){
+function paint(){
   document.getElementById('hdr-title').textContent=t('appTitle');
   document.getElementById('hdr-sub').textContent=t('appSub');
-  renderStepIndicator();
-  renderStep();
-  renderNav();
+  paintIndicator();
+  const body=document.getElementById('app-body');
+  const sid=stepId();
+  if(sid==='s'){paintSummary(body);paintNav(true);return;}
+  const builders={1:step1,3:step3,4:step4,5:step5,6:step6,7:step7,8:step8,9:step9};
+  const introHtml=sid===1?`<div class="intro-box">${t('intro')}</div>`:'';
+  body.innerHTML=`<div class="step-content">${introHtml}${builders[sid]()}</div>`;
+  paintNav(false);
+  attachTextListeners();
 }
 
-function renderStepIndicator(){
+function paintIndicator(){
   const steps=getSteps();
-  const names={1:t('step1'),2:t('step2'),3:t('step3'),4:t('step4'),5:t('step5'),6:t('step6'),7:t('step7'),8:t('step8'),9:t('step9'),s:t('stepSummary')};
-  let html='';
+  const names={1:t('s1'),3:t('s3'),4:t('s4'),5:t('s5'),6:t('s6'),7:t('s7'),8:t('s8'),9:t('s9'),s:t('ss')};
+  let h='';
   steps.forEach((s,i)=>{
-    const done=i<currentStep-1;
-    const active=i===currentStep-1;
-    html+=`<div class="step-dot ${done?'done':''} ${active?'active':''}" onclick="goToStep(${i+1})" title="${names[s]}">${done?'✓':i+1}</div>`;
-    if(i<steps.length-1) html+=`<div class="step-line ${done?'done':''}"></div>`;
+    const done=i<currentStep-1, active=i===currentStep-1;
+    h+=`<div class="step-dot${done?' done':''}${active?' active':''}" onclick="jumpTo(${i+1})" title="${names[s]}">${done?'✓':i+1}</div>`;
+    if(i<steps.length-1) h+=`<div class="step-line${done?' done':''}"></div>`;
   });
-  document.getElementById('step-indicator').innerHTML=html;
+  document.getElementById('step-indicator').innerHTML=h;
 }
 
-function goToStep(n){
-  if(n<currentStep){currentStep=n;renderAll();}
-}
-
-function renderNav(){
-  const sid=currentStepId();
-  const isSummary=sid==='s';
+function paintNav(isSummary){
   document.getElementById('bottom-bar').style.display=isSummary?'none':'flex';
-  const isLast=currentStep===totalSteps()-1;
-  const btn=document.getElementById('btn-next');
-  btn.textContent=isLast?t('finish'):t('next');
+  if(isSummary) return;
+  const isLast=currentStep===totalCount()-1;
+  document.getElementById('btn-next').textContent=isLast?t('finish'):t('next');
   document.getElementById('btn-prev').textContent=t('prev');
   document.getElementById('btn-prev').style.visibility=currentStep>1?'visible':'hidden';
-  document.getElementById('pager').textContent=`${totalSteps()-1} / ${Math.min(currentStep,totalSteps()-1)}`;
+  const total=totalCount()-1;
+  document.getElementById('pager').textContent=`${Math.min(currentStep,total)} / ${total}`;
 }
 
-function renderStep(){
-  const sid=currentStepId();
-  const body=document.getElementById('app-body');
-  if(sid==='s'){renderSummary(body);return;}
-  let html='';
-  if(sid===1) html=renderStep1();
-  else if(sid===2) html=renderStep2();
-  else if(sid===3) html=renderStep3();
-  else if(sid===4) html=renderStep4();
-  else if(sid===5) html=renderStep5();
-  else if(sid===6) html=renderStep6();
-  else if(sid===7) html=renderStep7();
-  else if(sid===8) html=renderStep8();
-  else if(sid===9) html=renderStep9();
-  body.innerHTML=`<div class="step-content"><div class="intro-box" style="white-space:pre-line">${t('intro')}</div>${html}</div>`;
-  bindEvents();
+function jumpTo(n){if(n<currentStep){currentStep=n;paint();}}
+
+// ============================================================
+// STEP BUILDERS
+// ============================================================
+function step1(){
+  return `<p class="step-title">${t('s1')}</p>
+  <div style="background:#f8f4f0;border:1px solid #e8d8c8;border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:#777;text-align:center">${t('genderNote')}</div>
+  ${fText('company',S.company,true)}
+  ${fText('contactName',S.contactName,true)}
+  ${fText('phone',S.phone,true,'tel')}
+  ${fText('email',S.email,false,'email')}`;
 }
 
-// ======= STEP 1 =======
-function renderStep1(){
-  return `<p class="step-title">${t('step1')}</p>
-  ${fText('company',state.company,true)}
-  ${fText('contactName',state.contactName,true)}
-  ${fText('phone',state.phone,true,'tel')}
-  ${fText('email',state.email,false,'email')}`;
-}
+function step2(){return '';}// לא בשימוש – אוחד לתוך step3
 
-// ======= STEP 2 =======
-function renderStep2(){
-  return `<p class="step-title">${t('step2')}</p>
+function step3(){
+  return `<p class="step-title">${t('s2')}</p>
   <div class="field-group">
-    <div class="field-label">${t('softwareLabel')}<span class="required">*</span></div>
+    <div class="field-label">${t('softwareLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      <label class="radio-option ${state.software==='cimatron'?'selected':''}" onclick="setState('software','cimatron');rerender()">
-        <input type="radio" name="software" value="cimatron" ${state.software==='cimatron'?'checked':''}> ${t('softwareCimatron')}
-      </label>
-      <label class="radio-option ${state.software==='gibbs'?'selected':''}" onclick="setState('software','gibbs');rerender()">
-        <input type="radio" name="software" value="gibbs" ${state.software==='gibbs'?'checked':''}> ${t('softwareGibbs')}
-      </label>
+      ${radio2('software','cimatron',t('swCimatron'),S.software==='cimatron')}
+      ${radio2('software','gibbs',t('swGibbs'),S.software==='gibbs')}
     </div>
     <div class="error-msg" id="err-software"></div>
-  </div>`;
-}
-
-// ======= STEP 3 =======
-function renderStep3(){
-  return `<p class="step-title">${t('step3')}</p>
-  ${fTextWithImage('machineName',state.machineName,true,'machineNameImages')}
-  ${fTextWithImage('controllerName',state.controllerName,true,'controllerImages')}
+  </div>
+  <p style="font-size:16px;font-weight:700;color:#E8611A;margin:18px 0 10px;border-bottom:2px solid #f5c0a0;padding-bottom:6px">${t('machineDetailsSection')}</p>
+  ${fTextImg('machineName',S.machineName,true,'machineNameImg')}
+  ${fTextImg('controllerName',S.controllerName,true,'controllerImg')}
   <div class="field-group">
-    <div class="field-label">${t('onSite')}<span class="required">*</span></div>
+    <div class="field-label">${t('onSiteLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      ${radioOpt('onSite','yes',t('yes'),state.onSite==='yes')}
-      ${radioOpt('onSite','no',t('no'),state.onSite==='no')}
+      ${radio2('onSite','yes',t('yes'),S.onSite==='yes')}
+      ${radio2('onSite','no',t('no'),S.onSite==='no')}
     </div>
     <div class="error-msg" id="err-onSite"></div>
   </div>
-  ${state.onSite==='no'?`
-  <div class="field-group">
-    <div class="field-label">${t('expectedDate')}<span class="required">*</span></div>
+  ${S.onSite==='no'?`<div class="field-group">
+    <div class="field-label">${t('expectedDateLbl')} <span class="required">*</span></div>
     <div class="notice-box">${t('expectedDateNote')}</div>
-    <input class="field-input" type="date" id="f-expectedDate" value="${state.expectedDate}" style="margin-top:6px">
+    <div style="margin-top:6px;display:flex;align-items:center;gap:12px">
+      <span style="font-size:15px;font-weight:700;color:#E8611A;min-width:100px">${S.expectedDate?formatDate(S.expectedDate):t('selectDate')}</span>
+      <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();" class="date-orange" style="border:none;background:none;width:40px;padding:0;cursor:pointer">
+    </div>
     <div class="error-msg" id="err-expectedDate"></div>
   </div>`:''}`;
 }
 
-// ======= STEP 4 =======
-function renderStep4(){
-  const types=['lathe','latheMill','mtm','swiss','mill3','mill4','mill5','other'];
-  const keys=['typeLath','typeLathMill','typeMTM','typeSwiss','typeMill3','typeMill4','typeMill5','typeOther'];
-  let cards='';
-  types.forEach((tp,i)=>{
-    cards+=`<div class="type-card ${state.machineType===tp?'selected':''}" onclick="setState('machineType','${tp}');rerender()">${t(keys[i])}</div>`;
-  });
-  return `<p class="step-title">${t('step4')}</p>
+function step4(){
+  // סדר לפי בקשה: מחרטה, מחרטה מכרסמת, MTM, Swiss, כרסומת 3/4/5, אחר
+  const types=[
+    ['lathe','tLath'],
+    ['latheMill','tLathMill'],
+    ['mtm','tMTM'],
+    ['swiss','tSwiss'],
+    ['mill3','tMill3'],
+    ['mill4','tMill4'],
+    ['mill5','tMill5'],
+    ['other','tOther']
+  ];
+  const cards=types.map(([v,k])=>`<div class="type-card${S.machineType===v?' selected':''}" onclick="pick('machineType','${v}')" style="text-align:right;padding:12px 16px">${t(k)}</div>`).join('');
+  return `<p class="step-title">${t('s4')}</p>
   <div class="field-group">
-    <div class="field-label">${t('machineTypeLabel')}<span class="required">*</span></div>
-    <div class="card-group">${cards}</div>
+    <div class="field-label">${t('machineTypeLbl')} <span class="required">*</span></div>
+    <div style="display:flex;flex-direction:column;gap:6px;margin-top:4px">${cards}</div>
+    ${S.machineType==='other'?`<div style="margin-top:8px">
+      <div class="field-label">${t('otherDescLbl')} <span class="required">*</span></div>
+      <textarea class="textarea-field" id="f-machineTypeOther" placeholder="${t('otherDesc')}">${esc(S.machineTypeOther||'')}</textarea>
+      <div class="error-msg" id="err-machineTypeOther"></div>
+    </div>`:''}
     <div class="error-msg" id="err-machineType"></div>
   </div>`;
 }
 
-// ======= STEP 5 =======
-function renderStep5(){
-  const mt=state.machineType;
-  let html=`<p class="step-title">${t('step5')}</p>`;
-  if(mt==='lathe'||mt==='latheMill'){
-    html+=`
-    <div class="field-group">
-      <div class="field-label">${t('turretPos')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt('turretPos','upper',t('posUpper'),state.turretPos==='upper')}
-        ${radioOpt('turretPos','lower',t('posLower'),state.turretPos==='lower')}
-      </div>
-      <div class="error-msg" id="err-turretPos"></div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">${t('turretType')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt('turretType','turret',t('typeTurret'),state.turretType==='turret')}
-        ${radioOpt('turretType','head',t('typeHead'),state.turretType==='head')}
-      </div>
-      <div class="error-msg" id="err-turretType"></div>
-    </div>
-    ${state.turretType==='turret'?`
-    <div class="field-group">
-      <div class="field-label">${t('hasAxisY')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt('hasAxisY','yes',t('yesAxisY'),state.hasAxisY==='yes')}
-        ${radioOpt('hasAxisY','no',t('noAxisY'),state.hasAxisY==='no')}
-      </div>
-      <div class="error-msg" id="err-hasAxisY"></div>
-    </div>
-    <div class="field-group">
-      <div class="field-label">${t('toolCount')}<span class="required">*</span></div>
-      <input class="field-input" type="number" min="1" id="f-toolCount" value="${state.toolCount}" style="max-width:120px">
-      <div class="error-msg" id="err-toolCount"></div>
-    </div>`:''}`;
-  }
-  else if(mt==='mtm'){
-    html+=`
-    <div class="field-group">
-      <div class="field-label">${t('spindleCount')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt('spindleCount','1',t('sp1'),state.spindleCount==='1')}
-        ${radioOpt('spindleCount','2',t('sp2'),state.spindleCount==='2')}
-      </div>
-      <div class="error-msg" id="err-spindleCount"></div>
-    </div>
-    ${parseInt(state.spindleCount)>1?`
-    <div class="field-group">
-      <div class="notice-box"><strong>${t('mtmSpecialLabel')}</strong><div style="white-space:pre-line;font-size:12px;margin-bottom:8px">${t('mtmStandardNote')}</div>
-        <div style="font-size:12px;color:#888;margin-bottom:8px">${t('mtmSpecialHint')}</div>
-        <div class="radio-group">
-          ${radioOpt('mtmSpecial','yes',t('yes'),state.mtmSpecial==='yes')}
-          ${radioOpt('mtmSpecial','no',t('no'),state.mtmSpecial==='no')}
+function step5(){
+  const mt=S.machineType;
+  let h=`<p class="step-title">${t('s5')}</p>`;
+
+  if(mt==='lathe'){
+    h+=fieldRadio('turretPosLbl','turretPos',[['upper',t('posUp')],['lower',t('posDown')]],S.turretPos,true);
+    h+=fieldRadio('turretTypeLbl','turretType',[['turret',t('ttTurret')],['head',t('ttHead')]],S.turretType,true);
+    if(S.turretType==='turret'){
+      h+=`<div class="field-group"><div class="field-label">${t('toolCountLbl')} <span class="required">*</span></div>
+        <input class="field-input" type="number" min="1" id="f-toolCount" value="${S.toolCount}" style="max-width:120px">
+        <div class="error-msg" id="err-toolCount"></div></div>`;
+    }
+  } else if(mt==='latheMill'){
+    h+=fieldRadio('turretPosLbl','turretPos',[['upper',t('posUp')],['lower',t('posDown')]],S.turretPos,true);
+    h+=fieldRadio('turretTypeLbl','turretType',[['turret',t('ttTurret')],['head',t('ttHead')]],S.turretType,true);
+    if(S.turretType==='turret'){
+      h+=fieldRadio('yAxisLbl','yAxis',[['yes',t('yAxisYes')],['no',t('yAxisNo')]],S.yAxis,true);
+      h+=`<div class="field-group"><div class="field-label">${t('toolCountLbl')} <span class="required">*</span></div>
+        <input class="field-input" type="number" min="1" id="f-toolCount" value="${S.toolCount}" style="max-width:120px">
+        <div class="error-msg" id="err-toolCount"></div></div>`;
+    }
+  } else if(mt==='mtm'){
+    // MTM: כל השאלות בדף 6 - דף 5 מדולג אוטומטית
+    // (getSteps לא כולל step5 עבור MTM)
+  } else if(mt==='swiss'){
+    // Swiss: תמונות תוויות + התקנים + שאלת דרישות מיוחדות
+    h+=`<div class="field-group">
+      <div class="field-label">${t('swissImgLbl')} <span style="color:#aaa;font-size:12px">${t('optional')}</span></div>
+      ${fImg('swissImg')}
+    </div>`;
+    // התקנים
+    h+=`<div class="field-group">
+      <div class="field-label" style="font-weight:700;margin-bottom:8px">${t('swissDevicesLbl')}</div>
+      ${S.swissDevices.map((d,di)=>`
+        <div class="section-card" style="margin-bottom:8px">
+          <div class="section-card-title">${t('fixTitle')} ${di+1}
+            <button class="btn-remove" onclick="removeSwissDevice(${di})">${t('removeFixture')}</button>
+          </div>
+          <div class="field-label" style="margin-bottom:4px">${t('fixtureTypeLbl')} <span class="required">*</span></div>
+          <input class="field-input" placeholder="${t('fixtureTypeLbl')}" value="${esc(d.type||'')}" oninput="updateSwissDevice(${di},'type',this.value)" style="margin-bottom:6px">
+          <div class="field-label" style="margin-bottom:4px">${t('fixtureStationsLbl')} <span class="required">*</span></div>
+          <input class="field-input" placeholder="${t('fixtureStationsPlaceholder')}" value="${esc(d.stations||'')}" oninput="updateSwissDevice(${di},'stations',this.value)" style="margin-bottom:6px">
+          <textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateSwissDevice(${di},'desc',this.value)">${d.desc||''}</textarea>
+          ${fImgCb(`updateSwissDeviceImg(${di},this.files)`,d.images||[])}
         </div>
-        ${state.mtmSpecial==='yes'?`<textarea class="textarea-field" id="f-mtmSpecialDesc" placeholder="${t('addDesc')}" style="margin-top:8px">${state.mtmSpecialDesc}</textarea>`:''}
-      </div>
-      <div class="error-msg" id="err-mtmSpecial"></div>
-    </div>`:''}`;
-  }
-  else if(mt==='swiss'){
-    html+=`
-    <div class="field-group">
-      <div class="field-label">${t('swissImagesLabel')}</div>
-      ${fImages('swissImages')}
-    </div>
-    <div class="field-group">
-      <div class="notice-box" style="white-space:pre-line;font-size:12px;margin-bottom:8px">${t('swissStandardNote')}</div>
-      <div class="field-label">${t('swissSpecialLabel')}<span class="required">*</span></div>
+      `).join('')}
+      <button class="btn-add" style="font-size:13px;padding:8px 16px;margin-top:4px" onclick="addSwissDevice()">+ ${t('addFixture')}</button>
+    </div>`;
+    // דרישות מיוחדות
+    h+=`<div class="field-group">
+      <div class="notice-box">${t('swissStdNote')}</div>
+      <div class="field-label" style="margin-top:8px">${t('swissSpecialLbl')} <span class="required">*</span></div>
       <div class="radio-group">
-        ${radioOpt('swissSpecial','yes',t('yes'),state.swissSpecial==='yes')}
-        ${radioOpt('swissSpecial','no',t('no'),state.swissSpecial==='no')}
+        ${radio2('swissSpecial','yes',t('yes'),S.swissSpecial==='yes')}
+        ${radio2('swissSpecial','no',t('no'),S.swissSpecial==='no')}
       </div>
-      ${state.swissSpecial==='yes'?`<textarea class="textarea-field" id="f-swissSpecialDesc" placeholder="${t('addDesc')}" style="margin-top:8px">${state.swissSpecialDesc}</textarea>`:''}
+      ${S.swissSpecial==='yes'?`<textarea class="textarea-field" id="f-swissSpecialDesc" style="margin-top:8px" placeholder="${t('addDesc')}">${S.swissSpecialDesc}</textarea>`:''}
       <div class="error-msg" id="err-swissSpecial"></div>
     </div>`;
-  }
-  else if(mt==='mill4'){
-    html+=`
-    <div class="field-group">
-      <div class="field-label">${t('mill4RotAxis')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt('mill4RotAxis','X',t('axisX'),state.mill4RotAxis==='X')}
-        ${radioOpt('mill4RotAxis','Y',t('axisY'),state.mill4RotAxis==='Y')}
-        ${radioOpt('mill4RotAxis','Z',t('axisZ'),state.mill4RotAxis==='Z')}
-      </div>
-      <div class="error-msg" id="err-mill4RotAxis"></div>
-    </div>`;
-  }
-  else if(mt==='mill5'){
-    [1,2].forEach(n=>{
-      const key=`mill5Axis${n}`;
-      html+=`
-      <div class="field-group">
-        <div class="field-label">${t(`mill5Axis${n}`)}<span class="required">*</span></div>
-        <div class="radio-group">
-          ${radioOpt(`${key}Type`,'X',t('axisX'),state[`${key}Type`]==='X')}
-          ${radioOpt(`${key}Type`,'Y',t('axisY'),state[`${key}Type`]==='Y')}
-          ${radioOpt(`${key}Type`,'Z',t('axisZ'),state[`${key}Type`]==='Z')}
-        </div>
-        <div class="field-label" style="margin-top:8px">${t('tableOrHead')}<span class="required">*</span></div>
-        <div class="radio-group">
-          ${radioOpt(`${key}Mount`,'table',t('tableAxis'),state[`${key}Mount`]==='table')}
-          ${radioOpt(`${key}Mount`,'head',t('headAxis'),state[`${key}Mount`]==='head')}
-        </div>
-        <div class="error-msg" id="err-${key}Type"></div>
+  } else if(mt==='mill4'){
+    h+=fieldRadio('mill4AxisLbl','mill4Axis',[['X',t('axX')],['Y',t('axY')],['Z',t('axZ')]],S.mill4Axis,true);
+  } else if(mt==='mill5'){
+    [['ax1','mill5Ax1'],['ax2','mill5Ax2']].forEach(([pfx,lbl])=>{
+      h+=`<div class="field-group"><div class="field-label" style="font-weight:700;margin-bottom:8px">${t(lbl)}</div>
+        ${fieldRadio('',pfx+'Type',[['X',t('axX')],['Y',t('axY')],['Z',t('axZ')]],S[pfx+'Type'],true,'','err-'+pfx+'Type')}
+        ${fieldRadio('mountLbl',pfx+'Mount',[['table',t('mountTable')],['head',t('mountHead')]],S[pfx+'Mount'],true,'','err-'+pfx+'Mount')}
       </div>`;
     });
   }
-  return html;
+  return h;
 }
 
-// ======= STEP 6: TOOL GROUPS =======
-function renderStep6(){
-  const mt=state.machineType;
-  const isSwiss=mt==='swiss';
-  const groups=isSwiss?state.swissToolGroups:state.toolGroups;
-  let html=`<p class="step-title">${t('step6')}</p>`;
-  groups.forEach((g,gi)=>{
-    html+=renderToolGroup(g,gi,isSwiss);
-  });
-  html+=`<div class="btn-add-group-wrap">
-    <button class="btn-add-group" onclick="addToolGroup(${isSwiss})">+ ${t('addToolGroup')}</button>
-    ${groups.length>1?`<button class="btn" style="background:#fff;border:1px solid #e74c3c;color:#e74c3c" onclick="removeLastToolGroup(${isSwiss})">${t('removeToolGroup')}</button>`:''}
+function step6(){
+  const groups=S.toolGroups;
+  let h=`<p class="step-title">${t('s6')}</p>`;
+  // כותרת "ספינדלים"
+  h+=`<p style="font-size:16px;font-weight:700;color:#E8611A;margin:14px 0 10px;border-bottom:2px solid #f5c0a0;padding-bottom:6px">${t('spindlesSection')}</p>`;
+  h+=`<div class="field-group">
+    <div class="field-label">${t('spindleCountLbl')} <span class="required">*</span></div>
+    <div class="radio-group">
+      ${radio2('spindleCount','1','1',S.spindleCount==='1')}
+      ${radio2('spindleCount','2','2',S.spindleCount==='2')}
+    </div>
+    <div class="error-msg" id="err-spindleCount"></div>
+  </div>`;
+  if(parseInt(S.spindleCount)>1){
+    h+=`<div class="field-group">
+      <div class="notice-box">${t('mtmStdNote')}</div>
+      <div class="field-label" style="margin-top:8px">${t('mtmSpecialLbl')} <span class="required">*</span></div>
+      <div class="radio-group">
+        ${radio2('mtmSpecial','yes',t('yes'),S.mtmSpecial==='yes')}
+        ${radio2('mtmSpecial','no',t('no'),S.mtmSpecial==='no')}
+      </div>
+      ${S.mtmSpecial==='yes'?`<textarea class="textarea-field" id="f-mtmSpecialDesc" style="margin-top:8px" placeholder="${t('addDesc')}">${S.mtmSpecialDesc}</textarea>`:''}
+      <div class="error-msg" id="err-mtmSpecial"></div>
+    </div>`;
+  }
+  // כותרת "קבוצות כלים"
+  h+=`<p style="font-size:16px;font-weight:700;color:#E8611A;margin:18px 0 10px;border-bottom:2px solid #f5c0a0;padding-bottom:6px">${t('s6')}</p>`;
+  groups.forEach((g,gi)=>{h+=buildGroup(g,gi,'mtm');});
+  h+=`<div class="btn-group-row">
+    <button class="btn-add" onclick="addGroup()">+ ${t('addGroup')}</button>
+    ${groups.length>1?`<button class="btn" style="background:#fff;border:1px solid #e74c3c;color:#e74c3c;padding:10px 16px" onclick="removeLastGroup()">${t('removeGroup')}</button>`:''}
   </div>
   <div class="error-msg" id="err-toolGroups" style="margin-top:8px"></div>`;
-  return html;
+  return h;
 }
 
-function renderToolGroup(g,gi,isSwiss){
-  const key=isSwiss?'swissToolGroups':'toolGroups';
-  let html=`<div class="section-card" id="tg-${gi}">
-    <div class="section-card-title">${t('toolGroupTitle')} ${gi+1}
-      ${gi>0?`<button class="btn-remove-group" onclick="removeToolGroup(${gi},${isSwiss})">${t('removeToolGroup')}</button>`:''}
+function buildGroup(g,gi,mt){
+  const updInp=(k)=>`updateGVal(${gi},false,'${k}',this.value)`;
+  const isMTM=mt==='mtm';
+  let h=`<div class="section-card">
+    <div class="section-card-title">${t('groupTitle')} ${gi+1}
+      ${gi>0?`<button class="btn-remove" onclick="removeGroup(${gi},false)">${t('removeGroup')}</button>`:''}
     </div>`;
-  // Turret position
-  html+=`<div class="field-group">
-    <div class="field-label">${t('turretPos')}<span class="required">*</span></div>
-    <div class="radio-group">
-      ${radioOpt(`tg${gi}_pos`,'upper',t('posUpper'),g.pos==='upper',`updateTG(${gi},'pos','upper',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_pos`,'lower',t('posLower'),g.pos==='lower',`updateTG(${gi},'pos','lower',${isSwiss})`)}
+
+  // a. עליון / תחתון
+  h+=`<div class="field-group"><div class="field-label">${t('turretPosLbl')} <span class="required">*</span></div><div class="radio-group">
+    ${radio3(`g${gi}pos`,'upper',t('posUp'),g.pos==='upper',`updateG(${gi},false,'pos','upper')`)}
+    ${radio3(`g${gi}pos`,'lower',t('posDown'),g.pos==='lower',`updateG(${gi},false,'pos','lower')`)}
+  </div></div>`;
+
+  // b. ספינדל (MTM עם יותר מ-1)
+  if(isMTM && parseInt(S.spindleCount)>1){
+    h+=`<div class="field-group"><div class="field-label">${t('spCapLbl')} <span class="required">*</span></div><div class="radio-group" style="flex-wrap:wrap">
+      ${radio3(`g${gi}sp`,'main',t('spMain'),g.spCap==='main',`updateG(${gi},false,'spCap','main')`)}
+      ${radio3(`g${gi}sp`,'sub',t('spSub'),g.spCap==='sub',`updateG(${gi},false,'spCap','sub')`)}
+      ${radio3(`g${gi}sp`,'both',t('spBoth'),g.spCap==='both',`updateG(${gi},false,'spCap','both')`)}
     </div></div>`;
-  // Turret or head
-  html+=`<div class="field-group">
-    <div class="field-label">${t('turretType')}<span class="required">*</span></div>
-    <div class="radio-group">
-      ${radioOpt(`tg${gi}_ttype`,'turret',t('typeTurret'),g.turretType==='turret',`updateTG(${gi},'turretType','turret',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_ttype`,'head',t('typeHead'),g.turretType==='head',`updateTG(${gi},'turretType','head',${isSwiss})`)}
-    </div></div>`;
-  // If turret
+  }
+
+  // c. צריח או ראש
+  h+=`<div class="field-group"><div class="field-label">${t('turretTypeLbl')} <span class="required">*</span></div><div class="radio-group">
+    ${radio3(`g${gi}tt`,'turret',t('ttTurret'),g.turretType==='turret',`updateG(${gi},false,'turretType','turret')`)}
+    ${radio3(`g${gi}tt`,'head',t('ttHead'),g.turretType==='head',`updateG(${gi},false,'turretType','head')`)}
+  </div></div>`;
+
+  // c.i – אם צריח: Y axis + כמה כלים
   if(g.turretType==='turret'){
-    html+=`<div class="field-group">
-      <div class="field-label">${t('hasAxisY')}<span class="required">*</span></div>
-      <div class="radio-group">
-        ${radioOpt(`tg${gi}_yax`,'yes',t('yesAxisY'),g.hasAxisY==='yes',`updateTG(${gi},'hasAxisY','yes',${isSwiss})`)}
-        ${radioOpt(`tg${gi}_yax`,'no',t('noAxisY'),g.hasAxisY==='no',`updateTG(${gi},'hasAxisY','no',${isSwiss})`)}
-      </div></div>
-    <div class="field-group">
-      <div class="field-label">${t('toolCount')}<span class="required">*</span></div>
-      <input class="field-input" type="number" min="1" id="tg${gi}_toolCount" value="${g.toolCount||''}" oninput="updateTG(${gi},'toolCount',this.value,${isSwiss})" style="max-width:120px">
+    h+=`<div class="field-group"><div class="field-label">${t('yAxisLbl')} <span class="required">*</span></div><div class="radio-group">
+      ${radio3(`g${gi}yax`,'yes',t('yAxisYes'),g.yAxis==='yes',`updateG(${gi},false,'yAxis','yes')`)}
+      ${radio3(`g${gi}yax`,'no',t('yAxisNo'),g.yAxis==='no',`updateG(${gi},false,'yAxis','no')`)}
+    </div></div>`;
+    h+=`<div class="field-group"><div class="field-label">${t('toolCountLbl')} <span class="required">*</span></div>
+      <input class="field-input" type="number" min="1" value="${g.toolCount||''}" oninput="${updInp('toolCount')}" style="max-width:120px">
     </div>`;
-    // MTM only: isMilling
-    if(!isSwiss){
-      html+=`<div class="field-group">
-        <div class="field-label">${t('isMilling')}<span class="required">*</span></div>
-        <div class="radio-group">
-          ${radioOpt(`tg${gi}_mill`,'yes',t('yes'),g.isMilling==='yes',`updateTG(${gi},'isMilling','yes',${isSwiss})`)}
-          ${radioOpt(`tg${gi}_mill`,'no',t('no'),g.isMilling==='no',`updateTG(${gi},'isMilling','no',${isSwiss})`)}
-        </div></div>`;
+    // MTM: is milling?
+    if(isMTM){
+      h+=`<div class="field-group"><div class="field-label">${t('isMillingLbl')} <span class="required">*</span></div><div class="radio-group">
+        ${radio3(`g${gi}mill`,'yes',t('yes'),g.isMilling==='yes',`updateG(${gi},false,'isMilling','yes')`)}
+        ${radio3(`g${gi}mill`,'no',t('no'),g.isMilling==='no',`updateG(${gi},false,'isMilling','no')`)}
+      </div></div>`;
     }
   }
-  // Spindle capability (if MTM spindleCount>1)
-  const showSpCap=!isSwiss&&parseInt(state.spindleCount)>1;
-  if(showSpCap){
-    html+=`<div class="field-group">
-      <div class="field-label">${t('spindleCapability')}<span class="required">*</span></div>
-      <div class="radio-group" style="flex-wrap:wrap">
-        ${radioOpt(`tg${gi}_spcap`,'main',t('spMain'),g.spindleCapability==='main',`updateTG(${gi},'spindleCapability','main',${isSwiss})`)}
-        ${radioOpt(`tg${gi}_spcap`,'sub',t('spSub'),g.spindleCapability==='sub',`updateTG(${gi},'spindleCapability','sub',${isSwiss})`)}
-        ${radioOpt(`tg${gi}_spcap`,'both',t('spBoth'),g.spindleCapability==='both',`updateTG(${gi},'spindleCapability','both',${isSwiss})`)}
-      </div>
-      ${g.spindleCapability==='both'?`<textarea class="textarea-field" id="tg${gi}_spcapDesc" placeholder="${t('addDesc')}" oninput="updateTG(${gi},'spCapDesc',this.value,${isSwiss})">${g.spCapDesc||''}</textarea>
-        ${fImagesGroup(`tg${gi}_spcapImages`,g.spCapImages||[],`updateTGImages(${gi},'spCapImages',this.files,${isSwiss})`)}`:''}
-    </div>`;
+
+  // For lathe/latheMill: static/rotating tools, fixtures, extra desc
+  if(!isMTM){
+    h+=buildFullToolGroupFields(g,gi,false);
   }
-  // Swiss spindle capability always
-  if(isSwiss){
-    html+=`<div class="field-group">
-      <div class="field-label">${t('spindleCapability')}<span class="required">*</span></div>
-      <div class="radio-group" style="flex-wrap:wrap">
-        ${radioOpt(`tg${gi}_spcap`,'main',t('spMain'),g.spindleCapability==='main',`updateTG(${gi},'spindleCapability','main',${isSwiss})`)}
-        ${radioOpt(`tg${gi}_spcap`,'sub',t('spSub'),g.spindleCapability==='sub',`updateTG(${gi},'spindleCapability','sub',${isSwiss})`)}
-        ${radioOpt(`tg${gi}_spcap`,'both',t('spBoth'),g.spindleCapability==='both',`updateTG(${gi},'spindleCapability','both',${isSwiss})`)}
-      </div>
-      ${g.spindleCapability==='both'?`<textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateTG(${gi},'spCapDesc',this.value,${isSwiss})">${g.spCapDesc||''}</textarea>`:''}
-    </div>`;
-  }
+
+  h+='</div>';
+  return h;
+}
+
+function buildFullToolGroupFields(g,gi,isSwiss){
+  const updInp=(k)=>`updateGVal(${gi},${isSwiss},'${k}',this.value)`;
+  let h='';
   // Static tools
-  html+=`<div class="field-group">
-    <div class="field-label">${t('staticTools')}<span class="required">*</span></div>
-    <input class="field-input" type="number" min="0" id="tg${gi}_static" value="${g.staticTools!==undefined?g.staticTools:''}" oninput="updateTG(${gi},'staticTools',this.value,${isSwiss})" style="max-width:120px">
-    ${parseInt(g.staticTools)>0?`
-    <div style="margin-top:8px">
-      <div class="field-label">${t('staticToolNums')}</div>
-      <input class="field-input" id="tg${gi}_staticNums" value="${g.staticToolNums||''}" oninput="updateTG(${gi},'staticToolNums',this.value,${isSwiss})">
-    </div>
-    ${renderToolDetails(g,'static',gi,isSwiss)}`:''}
+  h+=`<div class="field-group"><div class="field-label">${t('staticLbl')} <span class="required">*</span></div>
+    <input class="field-input" type="number" min="0" value="${g.staticCount!==''?g.staticCount:''}" oninput="${updInp('staticCount')}" style="max-width:120px">
+    ${parseInt(g.staticCount)>0?`
+    <div style="margin-top:8px"><div class="field-label">${t('staticNumsLbl')}</div>
+    <input class="field-input" value="${g.staticNums||''}" oninput="${updInp('staticNums')}"></div>
+    ${toolDetails(g,gi,isSwiss,'static')}`:''}
   </div>`;
   // Rotating tools
-  html+=`<div class="field-group">
-    <div class="field-label">${t('rotatingTools')}<span class="required">*</span></div>
-    <input class="field-input" type="number" min="0" id="tg${gi}_rot" value="${g.rotatingTools!==undefined?g.rotatingTools:''}" oninput="updateTG(${gi},'rotatingTools',this.value,${isSwiss})" style="max-width:120px">
-    ${parseInt(g.rotatingTools)>0?`
-    <div style="margin-top:8px">
-      <div class="field-label">${t('rotatingToolNums')}</div>
-      <input class="field-input" id="tg${gi}_rotNums" value="${g.rotatingToolNums||''}" oninput="updateTG(${gi},'rotatingToolNums',this.value,${isSwiss})">
-    </div>
-    ${renderToolDetails(g,'rotating',gi,isSwiss)}`:''}
+  h+=`<div class="field-group"><div class="field-label">${t('rotLbl')} <span class="required">*</span></div>
+    <input class="field-input" type="number" min="0" value="${g.rotCount!==''?g.rotCount:''}" oninput="${updInp('rotCount')}" style="max-width:120px">
+    ${parseInt(g.rotCount)>0?`
+    <div style="margin-top:8px"><div class="field-label">${t('rotNumsLbl')}</div>
+    <input class="field-input" value="${g.rotNums||''}" oninput="${updInp('rotNums')}"></div>
+    ${toolDetails(g,gi,isSwiss,'rot')}`:''}
   </div>`;
-  // Extra description
-  html+=`<div class="field-group">
-    <div class="field-label">${t('groupExtraDesc')}<span class="required">*</span></div>
+  // Extra desc
+  h+=`<div class="field-group"><div class="field-label">${t('groupExtraLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      ${radioOpt(`tg${gi}_extdesc`,'yes',t('yes'),g.hasExtraDesc==='yes',`updateTG(${gi},'hasExtraDesc','yes',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_extdesc`,'no',t('no'),g.hasExtraDesc==='no',`updateTG(${gi},'hasExtraDesc','no',${isSwiss})`)}
+      ${radio3(`g${gi}ext`,'yes',t('yes'),g.extraDescYN==='yes',`updateG(${gi},${isSwiss},'extraDescYN','yes')`)}
+      ${radio3(`g${gi}ext`,'no',t('no'),g.extraDescYN==='no',`updateG(${gi},${isSwiss},'extraDescYN','no')`)}
     </div>
-    ${g.hasExtraDesc==='yes'?`
-    <textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateTG(${gi},'extraDesc',this.value,${isSwiss})" style="margin-top:8px">${g.extraDesc||''}</textarea>
-    ${fImagesGroup(`tg${gi}_extraImages`,g.extraImages||[],`updateTGImages(${gi},'extraImages',this.files,${isSwiss})`)}`:''}
+    ${g.extraDescYN==='yes'?`<textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="${updInp('extraDesc')}" style="margin-top:6px">${g.extraDesc||''}</textarea>
+      ${fImgCb(`updateGImgArr(${gi},${isSwiss},'extraImages',this.files)`,g.extraImages)}`:''}
   </div>`;
-  html+='</div>';
-  return html;
+  return h;
 }
 
-function renderToolDetails(g,type,gi,isSwiss){
-  const prefix=type==='static'?'st':'rt';
-  const dirKey=type==='static'?'staticToolDir':'rotatingToolDir';
-  const fixKey=type==='static'?'staticHasFixture':'rotatingHasFixture';
-  const fixturesKey=type==='static'?'staticFixtures':'rotatingFixtures';
-  if(!g[fixturesKey]) g[fixturesKey]=[];
-  let html=`
-  <div class="field-group" style="margin-top:8px">
-    <div class="field-label">${t('toolDirection')}<span class="required">*</span></div>
+function toolDetails(g,gi,isSwiss,pfx){
+  const dirKey=pfx+'Dir', fixKey=pfx+'Fixture', fixArr=pfx+'Fixtures';
+  if(!g[fixArr]) g[fixArr]=[];
+  const updInp=(k)=>`updateGVal(${gi},${isSwiss},'${k}',this.value)`;
+  let h=`<div class="field-group" style="margin-top:8px">
+    <div class="field-label">${t('dirLbl')} <span class="required">*</span></div>
     <div class="radio-group" style="flex-wrap:wrap">
-      ${radioOpt(`tg${gi}_${prefix}dir`,'diam',t('dirDiam'),g[dirKey]==='diam',`updateTG(${gi},'${dirKey}','diam',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_${prefix}dir`,'face',t('dirFace'),g[dirKey]==='face',`updateTG(${gi},'${dirKey}','face',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_${prefix}dir`,'5ax',t('dir5ax'),g[dirKey]==='5ax',`updateTG(${gi},'${dirKey}','5ax',${isSwiss})`)}
-    </div>
-  </div>
+      ${radio3(`tgd_${gi}_${pfx}`,'diam',t('dirDiam'),g[dirKey]==='diam',`updateG(${gi},${isSwiss},'${dirKey}','diam')`)}
+      ${radio3(`tgd_${gi}_${pfx}`,'face',t('dirFace'),g[dirKey]==='face',`updateG(${gi},${isSwiss},'${dirKey}','face')`)}
+      ${radio3(`tgd_${gi}_${pfx}`,'5ax',t('dir5ax'),g[dirKey]==='5ax',`updateG(${gi},${isSwiss},'${dirKey}','5ax')`)}
+    </div></div>
   <div class="field-group">
-    <div class="field-label">${t('hasFixture')}<span class="required">*</span></div>
+    <div class="field-label">${t('fixtureLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      ${radioOpt(`tg${gi}_${prefix}fix`,'yes',t('yes'),g[fixKey]==='yes',`updateTG(${gi},'${fixKey}','yes',${isSwiss})`)}
-      ${radioOpt(`tg${gi}_${prefix}fix`,'no',t('no'),g[fixKey]==='no',`updateTG(${gi},'${fixKey}','no',${isSwiss})`)}
+      ${radio3(`tgf_${gi}_${pfx}`,'yes',t('yes'),g[fixKey]==='yes',`updateG(${gi},${isSwiss},'${fixKey}','yes')`)}
+      ${radio3(`tgf_${gi}_${pfx}`,'no',t('no'),g[fixKey]==='no',`updateG(${gi},${isSwiss},'${fixKey}','no')`)}
     </div>
-    ${g[fixKey]==='yes'?`
-    <div style="margin-top:8px">
-      ${g[fixturesKey].map((fx,fxi)=>`
-      <div class="section-card" style="margin-bottom:8px">
-        <div class="section-card-title">${t('deviceTitle')} ${fxi+1} <button class="btn-remove-group" onclick="removeFixture(${gi},'${fixturesKey}',${fxi},${isSwiss})">${t('removeDevice')}</button></div>
-        <input class="field-input" placeholder="${t('fixtureType')}" value="${fx.type||''}" oninput="updateFixture(${gi},'${fixturesKey}',${fxi},'type',this.value,${isSwiss})" style="margin-bottom:6px">
-        <textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateFixture(${gi},'${fixturesKey}',${fxi},'desc',this.value,${isSwiss})">${fx.desc||''}</textarea>
-        ${fImagesGroup(`tg${gi}_${prefix}fx${fxi}_img`,fx.images||[],`updateFixtureImages(${gi},'${fixturesKey}',${fxi},this.files,${isSwiss})`)}
+    ${g[fixKey]==='yes'?`<div style="margin-top:8px">
+      ${g[fixArr].map((fx,fi)=>`<div class="section-card" style="margin-bottom:8px">
+        <div class="section-card-title">${t('fixTitle')} ${fi+1}
+          <button class="btn-remove" onclick="removeFix(${gi},${isSwiss},'${fixArr}',${fi})">${t('removeFixture')}</button>
+        </div>
+        <div class="field-label" style="margin-bottom:4px">${t('fixtureTypeLbl')} <span class="required">*</span></div>
+        <input class="field-input" placeholder="${t('fixtureTypeLbl')}" value="${fx.type||''}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'type',this.value)" style="margin-bottom:6px">
+        <div class="field-label" style="margin-bottom:4px">${t('fixtureStationsLbl')} <span class="required">*</span></div>
+        <input class="field-input" placeholder="${t('fixtureStationsPlaceholder')}" value="${fx.stations||''}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'stations',this.value)" style="margin-bottom:6px">
+        <textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'desc',this.value)">${fx.desc||''}</textarea>
+        ${fImgCb(`updateFixImg(${gi},${isSwiss},'${fixArr}',${fi},this.files)`,fx.images)}
       </div>`).join('')}
-      <button class="btn-add-group" style="font-size:13px;padding:7px 14px" onclick="addFixture(${gi},'${fixturesKey}',${isSwiss})">+ ${t('addDevice')}</button>
+      <button class="btn-add" style="font-size:13px;padding:7px 14px;margin-top:4px" onclick="addFix(${gi},${isSwiss},'${fixArr}')">+ ${t('addFixture')}</button>
     </div>`:''}
   </div>`;
-  return html;
+  return h;
 }
 
-// ======= STEP 7 =======
-function renderStep7(){
-  const asm=state.assemblies;
-  const keys=['stinger','lunette','fork','barFeeder','other'];
-  const labels=['asmStinger','asmLunette','asmFork','asmBarFeeder','asmOther'];
-  let html=`<p class="step-title">${t('step7')}</p>
+function step7(){
+  const asms=[['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']];
+  // Default: if nothing selected yet, set asmNone=true
+  const anySelected=S.asmNone||asms.some(([sfx])=>S['asm'+sfx]);
+  if(!anySelected) S.asmNone=true;
+  let h=`<p class="step-title">${t('s7')}</p>
   <div class="field-group">
-    <div class="field-label">${t('extraAssembliesLabel')}<span class="required">*</span></div>
-    <div class="notice-box" style="margin-bottom:8px">${t('extraAssembliesNote')}</div>
-    <label class="checkbox-item" onclick="toggleAsm('none',event)">
-      <span>${t('asmNone')}</span>
-      <input type="checkbox" id="asm-none" ${state.noAssemblies?'checked':''}>
+    <div class="field-label">${t('asmLbl')} <span class="required">*</span></div>
+    <div class="notice-box" style="margin-bottom:8px">${t('asmNote')}</div>
+    <label class="checkbox-item">
+      <span>${t('asmNoneLabel')}</span>
+      <input type="checkbox" ${S.asmNone?'checked':''} onchange="toggleAsm('None',this.checked)">
     </label>
-    ${keys.map((k,i)=>`
-    <label class="checkbox-item" onclick="toggleAsm('${k}',event)">
-      <span>${t(labels[i])}</span>
-      <input type="checkbox" id="asm-${k}" ${asm[k].sel?'checked':''}>
+    ${asms.map(([sfx,lk])=>`
+    <label class="checkbox-item">
+      <span>${t(lk)}</span>
+      <input type="checkbox" ${S['asm'+sfx]?'checked':''} onchange="toggleAsm('${sfx}',this.checked)">
     </label>
-    ${asm[k].sel?`
-    <div style="margin:0 0 10px 16px">
-      <textarea class="textarea-field" placeholder="${t('asmDescLabel')}" oninput="updateAsm('${k}','desc',this.value)">${asm[k].desc||''}</textarea>
-      ${fImagesGroup(`asm_${k}_img`,asm[k].images||[],`updateAsmImages('${k}',this.files)`)}
+    ${S['asm'+sfx]?`<div style="margin:0 0 10px 16px">
+      <textarea class="textarea-field" placeholder="${t('asmDesc')}" oninput="S['asm${sfx}Desc']=this.value">${S['asm'+sfx+'Desc']||''}</textarea>
+      ${fImgCb(`addAsmImg('${sfx}',this.files)`,S['asm'+sfx+'Img'])}
     </div>`:''}
     `).join('')}
-    <div class="error-msg" id="err-assemblies"></div>
+    <div class="error-msg" id="err-asm"></div>
   </div>`;
-  return html;
+  return h;
 }
 
-// ======= STEP 8 =======
-function renderStep8(){
-  return `<p class="step-title">${t('step8')}</p>
+function step8(){
+  return `<p class="step-title">${t('s8')}</p>
   <div class="field-group">
-    <div class="field-label">${t('simulationLabel')}<span class="required">*</span></div>
+    <div class="field-label">${t('simLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      ${radioOpt('simulation','yes',t('yes'),state.simulation==='yes')}
-      ${radioOpt('simulation','no',t('no'),state.simulation==='no')}
+      ${radio2('simulation','yes',t('yes'),S.simulation==='yes')}
+      ${radio2('simulation','no',t('no'),S.simulation==='no')}
     </div>
-    ${state.simulation==='yes'?`<div class="notice-box" style="margin-top:8px">${t('simulationNote')}</div>`:''}
+    ${S.simulation==='yes'?`<div class="notice-box" style="margin-top:8px">${t('simNote')}</div>`:''}
     <div class="error-msg" id="err-simulation"></div>
   </div>`;
 }
 
-// ======= STEP 9 =======
-function renderStep9(){
-  return `<p class="step-title">${t('step9')}</p>
+function step9(){
+  return `<p class="step-title">${t('s9')}</p>
   <div class="field-group">
-    <div class="field-label">${t('extraInfoLabel')}<span class="required">*</span></div>
+    <div class="field-label">${t('extraLbl')} <span class="required">*</span></div>
     <div class="radio-group">
-      ${radioOpt('extraInfo','yes',t('yes'),state.extraInfo==='yes')}
-      ${radioOpt('extraInfo','no',t('no'),state.extraInfo==='no')}
+      ${radio2('extraInfo','yes',t('yes'),S.extraInfo==='yes')}
+      ${radio2('extraInfo','no',t('no'),S.extraInfo==='no')}
     </div>
-    ${state.extraInfo==='yes'?`
-    <textarea class="textarea-field" id="f-extraInfoDesc" placeholder="${t('extraInfoDesc')}" style="margin-top:8px">${state.extraInfoDesc}</textarea>
-    ${fImages('extraInfoImages')}`:''}
+    ${S.extraInfo==='yes'?`
+    <textarea class="textarea-field" id="f-extraInfoDesc" placeholder="${t('extraDesc')}" style="margin-top:8px">${S.extraInfoDesc}</textarea>
+    ${fImg('extraInfoImg')}`:''}
     <div class="error-msg" id="err-extraInfo"></div>
   </div>`;
 }
 
-// ============ SUMMARY ============
-function renderSummary(body){
-  const s=state;
-  let sections=[];
-  // Section 1
-  let s1=`${sr(t('company'),s.company)}${sr(t('contactName'),s.contactName)}${sr(t('phone'),s.phone)}${sr(t('email'),s.email||'–')}`;
-  sections.push({title:t('step1'),body:s1});
-  // Section 2
-  sections.push({title:t('step2'),body:sr(t('softwareLabel'),s.software==='cimatron'?t('softwareCimatron'):t('softwareGibbs'))});
-  // Section 3
-  let s3=sr(t('machineName'),s.machineName)+imgRow(s.machineNameImages);
-  s3+=sr(t('controllerName'),s.controllerName)+imgRow(s.controllerImages);
-  s3+=sr(t('onSite'),s.onSite==='yes'?t('yes'):t('no'));
-  if(s.onSite==='no') s3+=sr(t('expectedDate'),s.expectedDate);
-  sections.push({title:t('step3'),body:s3});
-  // Section 4
-  const mtMap={lathe:t('typeLath'),latheMill:t('typeLathMill'),mtm:t('typeMTM'),swiss:t('typeSwiss'),mill3:t('typeMill3'),mill4:t('typeMill4'),mill5:t('typeMill5'),other:t('typeOther')};
-  sections.push({title:t('step4'),body:sr(t('machineTypeLabel'),mtMap[s.machineType]||'')});
-  // Section 5
-  const mt=s.machineType;
-  let s5='';
-  if(mt==='lathe'||mt==='latheMill'){
-    s5+=sr(t('turretPos'),s.turretPos==='upper'?t('posUpper'):t('posLower'));
-    s5+=sr(t('turretType'),s.turretType==='turret'?t('typeTurret'):t('typeHead'));
-    if(s.turretType==='turret'){s5+=sr(t('hasAxisY'),s.hasAxisY==='yes'?t('yesAxisY'):t('noAxisY'));s5+=sr(t('toolCount'),s.toolCount);}
-  } else if(mt==='mtm'){
-    s5+=sr(t('spindleCount'),s.spindleCount);
-    if(parseInt(s.spindleCount)>1) s5+=sr(t('mtmSpecialLabel'),s.mtmSpecial==='yes'?t('yes')+': '+s.mtmSpecialDesc:t('no'));
-  } else if(mt==='swiss'){
-    s5+=sr(t('swissSpecialLabel'),s.swissSpecial==='yes'?t('yes')+': '+s.swissSpecialDesc:t('no'));
-    s5+=imgRow(s.swissImages);
-  } else if(mt==='mill4'){
-    s5+=sr(t('mill4RotAxis'),s.mill4RotAxis);
-  } else if(mt==='mill5'){
-    s5+=sr(t('mill5Axis1'),`${s.mill5Axis1Type||''} – ${s.mill5Axis1Mount==='table'?t('tableAxis'):t('headAxis')}`);
-    s5+=sr(t('mill5Axis2'),`${s.mill5Axis2Type||''} – ${s.mill5Axis2Mount==='table'?t('tableAxis'):t('headAxis')}`);
-  }
-  if(s5) sections.push({title:t('step5'),body:s5});
-  // Section 6
-  const groups=mt==='swiss'?s.swissToolGroups:s.toolGroups;
-  if(groups.length){
-    let s6='';
+// ============================================================
+// SUMMARY
+// ============================================================
+function paintSummary(body){
+  const mt=S.machineType;
+  const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
+  const r=(l,v)=>v||v===0?`<div class="summary-row"><span class="summary-label">${l}</span><span class="summary-val">${v}</span></div>`:'';
+  const imgs=(arr)=>arr&&arr.length?`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:4px">${arr.map(i=>`<img src="${i.data}" style="width:60px;height:60px;object-fit:cover;border-radius:6px;border:1px solid #ddd">`).join('')}</div>`:'';
+  let secs=[];
+  secs.push({t:t('s1'),b:r(t('company'),S.company)+r(t('contactName'),S.contactName)+r(t('phone'),S.phone)+r(t('email'),S.email||'—')});
+  secs.push({t:t('s2'),b:r(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs'))});
+  let b3=r(t('machineName'),S.machineName)+imgs(S.machineNameImg)+r(t('controllerName'),S.controllerName)+imgs(S.controllerImg)+r(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
+  if(S.onSite==='no') b3+=r(t('expectedDateLbl'),formatDate(S.expectedDate));
+  secs.push({t:t('s3'),b:b3});
+  secs.push({t:t('s4'),b:r(t('machineTypeLbl'),mtMap[mt]||'')});
+  let b5='';
+  if(mt==='lathe'||mt==='latheMill'){b5+=r(t('turretPosLbl'),S.turretPos)+r(t('turretTypeLbl'),S.turretType)+r(t('yAxisLbl'),S.yAxis)+r(t('toolCountLbl'),S.toolCount);}
+  else if(mt==='mtm'){b5+=r(t('spindleCountLbl'),S.spindleCount);if(parseInt(S.spindleCount)>1)b5+=r(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes')+': '+S.mtmSpecialDesc:t('no'));}
+  else if(mt==='swiss'){b5+=r(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes')+': '+S.swissSpecialDesc:t('no'))+imgs(S.swissImg);}
+  else if(mt==='mill4'){b5+=r(t('mill4AxisLbl'),S.mill4Axis);}
+  else if(mt==='mill5'){b5+=r(t('mill5Ax1'),`${S.ax1Type} – ${S.ax1Mount}`)+r(t('mill5Ax2'),`${S.ax2Type} – ${S.ax2Mount}`);}
+  if(b5) secs.push({t:t('s5'),b:b5});
+  const groups=mt==='swiss'?S.swissGroups:S.toolGroups;
+  if(groups.length&&getSteps().includes(6)){
+    let b6='';
     groups.forEach((g,gi)=>{
-      s6+=`<div style="font-weight:700;color:#E8611A;margin:8px 0 4px">${t('toolGroupTitle')} ${gi+1}</div>`;
-      s6+=sr(t('turretPos'),g.pos==='upper'?t('posUpper'):t('posLower'));
-      s6+=sr(t('turretType'),g.turretType==='turret'?t('typeTurret'):t('typeHead'));
-      if(g.turretType==='turret'){s6+=sr(t('hasAxisY'),g.hasAxisY==='yes'?t('yesAxisY'):t('noAxisY'));s6+=sr(t('toolCount'),g.toolCount);}
-      if(!mt==='swiss') s6+=sr(t('isMilling'),g.isMilling==='yes'?t('yes'):t('no'));
-      if(g.spindleCapability) s6+=sr(t('spindleCapability'),{main:t('spMain'),sub:t('spSub'),both:t('spBoth')}[g.spindleCapability]);
-      s6+=sr(t('staticTools'),g.staticTools);
-      if(parseInt(g.staticTools)>0) s6+=sr(t('staticToolNums'),g.staticToolNums);
-      s6+=sr(t('rotatingTools'),g.rotatingTools);
-      if(parseInt(g.rotatingTools)>0) s6+=sr(t('rotatingToolNums'),g.rotatingToolNums);
-      if(g.hasExtraDesc==='yes'){s6+=sr(t('groupExtraDesc'),g.extraDesc);s6+=imgRow(g.extraImages);}
+      b6+=`<div style="font-weight:700;color:#E8611A;margin:8px 0 4px">${t('groupTitle')} ${gi+1}</div>`;
+      b6+=r(t('turretPosLbl'),g.pos)+r(t('turretTypeLbl'),g.turretType)+r(t('yAxisLbl'),g.yAxis)+r(t('toolCountLbl'),g.toolCount);
+      if(g.spCap) b6+=r(t('spCapLbl'),{main:t('spMain'),sub:t('spSub'),both:t('spBoth')}[g.spCap]);
+      b6+=r(t('staticLbl'),g.staticCount);if(parseInt(g.staticCount)>0)b6+=r(t('staticNumsLbl'),g.staticNums);
+      b6+=r(t('rotLbl'),g.rotCount);if(parseInt(g.rotCount)>0)b6+=r(t('rotNumsLbl'),g.rotNums);
+      if(g.extraDescYN==='yes')b6+=r(t('groupExtraLbl'),g.extraDesc)+imgs(g.extraImages);
     });
-    sections.push({title:t('step6'),body:s6});
+    secs.push({t:t('s6'),b:b6});
   }
-  // Section 7
-  if(mt!=='swiss'&&mt!=='mill3'&&mt!=='mill4'&&mt!=='mill5'&&mt!=='other'){
-    let s7='';
-    if(s.noAssemblies) s7+=sr(t('extraAssembliesLabel'),t('asmNone'));
-    else {
-      const asmLabels={stinger:t('asmStinger'),lunette:t('asmLunette'),fork:t('asmFork'),barFeeder:t('asmBarFeeder'),other:t('asmOther')};
-      Object.entries(s.assemblies).forEach(([k,v])=>{if(v.sel){s7+=sr(asmLabels[k],v.desc);s7+=imgRow(v.images);}});
+  if(getSteps().includes(7)){
+    let b7='';
+    if(S.asmNone) b7+=r(t('asmLbl'),t('asmNone'));
+    else{
+      [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{
+        if(S['asm'+sfx]) b7+=r(t(lk),S['asm'+sfx+'Desc']||'✓')+imgs(S['asm'+sfx+'Img']);
+      });
     }
-    if(s7) sections.push({title:t('step7'),body:s7});
+    if(b7) secs.push({t:t('s7'),b:b7});
   }
-  // Section 8
-  if(mt!=='other'){
-    let s8=sr(t('simulationLabel'),s.simulation==='yes'?t('yes'):t('no'));
-    if(s.simulation==='yes') s8+=`<div class="notice-box" style="font-size:12px;margin-top:4px">${t('simulationNote')}</div>`;
-    sections.push({title:t('step8'),body:s8});
-  }
-  // Section 9
-  let s9=sr(t('extraInfoLabel'),s.extraInfo==='yes'?t('yes'):t('no'));
-  if(s.extraInfo==='yes'){s9+=sr(t('extraInfoDesc'),s.extraInfoDesc);s9+=imgRow(s.extraInfoImages);}
-  sections.push({title:t('step9'),body:s9});
+  if(getSteps().includes(8)) secs.push({t:t('s8'),b:r(t('simLbl'),S.simulation==='yes'?t('yes'):t('no'))+(S.simulation==='yes'?`<div class="notice-box" style="font-size:12px;margin-top:4px">${t('simNote')}</div>`:'')});
+  let b9=r(t('extraLbl'),S.extraInfo==='yes'?t('yes'):t('no'));
+  if(S.extraInfo==='yes') b9+=r(t('extraDesc'),S.extraInfoDesc)+imgs(S.extraInfoImg);
+  secs.push({t:t('s9'),b:b9});
 
-  let html=`<div class="summary-wrap">
-  <p class="step-title">${t('summaryTitle')}</p>
-  ${sections.map(sec=>`<div class="summary-section"><div class="summary-section-title">${sec.title}</div>${sec.body}</div>`).join('')}
-  <div class="email-note">✉ ${t('summaryEmail')}</div>
-  <div class="action-bar">
-    <button class="btn-action btn-pdf" onclick="doSavePDF()"><span>📄</span>${t('savePdfBtn')}</button>
-    <button class="btn-action btn-copy" onclick="doCopyText()"><span>📋</span>${t('copyBtn')}</button>
-    <button class="btn-action btn-edit" onclick="doEdit()"><span>✏️</span>${t('editBtn')}</button>
-    <button class="btn-action btn-reset-partial" onclick="doResetPartial()"><span>↺</span>${t('resetPartialBtn')}</button>
-    <button class="btn-action btn-reset-full" onclick="doResetFull()"><span>🗑</span>${t('resetFullBtn')}</button>
-  </div>
+  let h=`<div class="summary-wrap">
+    <p class="step-title">${t('sumTitle')}</p>
+    ${secs.map(s=>`<div class="summary-section"><div class="summary-section-title">${s.t}</div>${s.b}</div>`).join('')}
+    <div class="email-note">✉ ${t('sumEmail')}</div>
+    <div class="action-bar">
+      <button class="btn-action btn-pdf" onclick="doPDF()">📄 ${t('btnPdf')}</button>
+      <button class="btn-action btn-share" onclick="doSharePDF()">↗ ${t('btnShare')}</button>
+      <button class="btn-action btn-edit" onclick="prevStep()">‹ ${t('prev')}</button>
+      <button class="btn-action btn-reset-full" onclick="doResetFull()">🗑 ${t('btnResetFull')}</button>
+      <button class="btn-action btn-reset-partial" onclick="doResetPartial()">↺ ${t('btnResetPartial')}</button>
+    </div>
   </div>`;
-  body.innerHTML=html;
+  body.innerHTML=h;
 }
 
-function sr(label,val){
-  if(!val&&val!==0) return '';
-  return `<div class="summary-row"><span class="summary-label">${label}</span><span class="summary-val">${val}</span></div>`;
-}
-function imgRow(imgs){
-  if(!imgs||!imgs.length) return '';
-  return `<div class="summary-img-row">${imgs.map(i=>`<img src="${i.data}" title="${i.name}">`).join('')}</div>`;
-}
-
-// ============ FIELD HELPERS ============
+// ============================================================
+// FIELD HELPERS
+// ============================================================
 function fText(key,val,req,type='text'){
+  const lbl=t(key);
   return `<div class="field-group">
-    <div class="field-label">${t(key)}${req?'<span class="required">*</span>':` <span style="color:#aaa;font-size:12px">${t('optional')}</span>`}</div>
-    <input class="field-input" type="${type}" id="f-${key}" value="${val||''}" ${req?'required':''}>
+    <div class="field-label">${lbl} ${req?'<span class="required">*</span>':`<span style="color:#aaa;font-size:12px">${t('optional')}</span>`}</div>
+    <input class="field-input" type="${type}" id="f-${key}" value="${esc(val||'')}">
     <div class="error-msg" id="err-${key}"></div>
   </div>`;
 }
-function fTextWithImage(key,val,req,imgKey){
+function fTextImg(key,val,req,imgKey){
   return `<div class="field-group">
-    <div class="field-label">${t(key)}${req?'<span class="required">*</span>':''}</div>
-    <input class="field-input" type="text" id="f-${key}" value="${val||''}">
-    ${fImages(imgKey)}
+    <div class="field-label">${t(key)} ${req?'<span class="required">*</span>':''}</div>
+    <input class="field-input" type="text" id="f-${key}" value="${esc(val||'')}">
+    ${fImg(imgKey)}
     <div class="error-msg" id="err-${key}"></div>
   </div>`;
 }
-function fImages(stateKey){
-  const imgs=state[stateKey]||[];
-  return `<label class="file-label">
-    📷 ${t('addImage')}
-    <input type="file" accept="image/*" capture="environment" multiple onchange="handleImages('${stateKey}',this.files)">
-  </label>
-  <div class="file-preview" id="fp-${stateKey}">${imgs.map(i=>`<div><img src="${i.data}"><div class="fp-name">${i.name}</div></div>`).join('')}</div>`;
+function fImg(stateKey){
+  const imgs=S[stateKey]||[];
+  return `<label class="file-label">📷 ${t('addImage')}<input type="file" accept="image/*" capture="environment" multiple onchange="handleImg('${stateKey}',this.files)"></label>
+  <div class="file-preview">${imgs.map(i=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span></div>`).join('')}</div>`;
 }
-function fImagesGroup(id,imgs,onchange){
-  return `<label class="file-label">
-    📷 ${t('addImage')}
-    <input type="file" accept="image/*" capture="environment" multiple onchange="${onchange}">
-  </label>
-  <div class="file-preview">${(imgs||[]).map(i=>`<div><img src="${i.data}"><div class="fp-name">${i.name}</div></div>`).join('')}</div>`;
+function fImgCb(onchangeCode,imgs){
+  return `<label class="file-label">📷 ${t('addImage')}<input type="file" accept="image/*" capture="environment" multiple onchange="${onchangeCode}"></label>
+  <div class="file-preview">${(imgs||[]).map(i=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span></div>`).join('')}</div>`;
 }
-function radioOpt(name,val,label,checked,onclick=''){
-  const oc=onclick?`onclick="${onclick}"`:onclick===''?`onclick="setState('${name}','${val}');rerender()"`:'' ;
-  return `<label class="radio-option ${checked?'selected':''}" ${oc}><input type="radio" name="${name}" value="${val}" ${checked?'checked':''}> ${label}</label>`;
+// radio2: binds to S[name] directly
+function radio2(name,val,label,checked){
+  return `<label class="radio-option${checked?' selected':''}" onclick="pick('${name}','${val}')">
+    <input type="radio" name="${name}" value="${val}"${checked?' checked':''}> ${label}
+  </label>`;
 }
+// radio3: custom onclick
+function radio3(name,val,label,checked,onclickFn){
+  return `<label class="radio-option${checked?' selected':''}" onclick="${onclickFn}">
+    <input type="radio" name="${name}" value="${val}"${checked?' checked':''}> ${label}
+  </label>`;
+}
+function fieldRadio(lblKey,stateKey,opts,val,req,extraClass='',errId=''){
+  const eid=errId||`err-${stateKey}`;
+  const lbl=lblKey?`<div class="field-label">${t(lblKey)} ${req?'<span class="required">*</span>':''}</div>`:'';
+  return `<div class="field-group ${extraClass}">${lbl}
+    <div class="radio-group">${opts.map(([v,l])=>radio2(stateKey,v,l,val===v)).join('')}</div>
+    <div class="error-msg" id="${eid}"></div>
+  </div>`;
+}
+function esc(s){return String(s).replace(/"/g,'&quot;').replace(/</g,'&lt;');}
 
-// ============ BIND EVENTS ============
-function bindEvents(){
-  // Text inputs
-  ['company','contactName','phone','email','machineName','controllerName','toolCount','expectedDate','extraInfoDesc','mtmSpecialDesc','swissSpecialDesc'].forEach(k=>{
-    const el=document.getElementById(`f-${k}`);
-    if(el) el.addEventListener('input',()=>{state[k]=el.value;});
-  });
-  // Enter key
-  document.addEventListener('keydown',function onEnter(e){
-    if(e.key==='Enter'&&e.target.tagName!=='TEXTAREA'){e.preventDefault();nextStep();}
-  },{once:true});
-}
+// ============================================================
+// STATE MUTATIONS
+// ============================================================
+function pick(key,val){S[key]=val;paint();}
 
-// ============ STATE UPDATES ============
-function setState(key,val){state[key]=val;}
-function rerender(){renderAll();}
-
-function updateTG(gi,key,val,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  if(arr[gi]) arr[gi][key]=val;
-  rerender();
-}
-function updateTGImages(gi,key,files,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  if(!arr[gi]) return;
-  readImages(files,imgs=>{arr[gi][key]=(arr[gi][key]||[]).concat(imgs);rerender();});
-}
-function updateAsm(key,field,val){state.assemblies[key][field]=val;}
-function updateAsmImages(key,files){
-  readImages(files,imgs=>{state.assemblies[key].images=(state.assemblies[key].images||[]).concat(imgs);rerender();});
-}
-function addFixture(gi,fixturesKey,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  if(!arr[gi][fixturesKey]) arr[gi][fixturesKey]=[];
-  arr[gi][fixturesKey].push({type:'',desc:'',images:[]});
-  rerender();
-}
-function removeFixture(gi,fixturesKey,fxi,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  arr[gi][fixturesKey].splice(fxi,1);
-  rerender();
-}
-function updateFixture(gi,fixturesKey,fxi,field,val,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  arr[gi][fixturesKey][fxi][field]=val;
-}
-function updateFixtureImages(gi,fixturesKey,fxi,files,isSwiss){
-  const arr=isSwiss?state.swissToolGroups:state.toolGroups;
-  readImages(files,imgs=>{arr[gi][fixturesKey][fxi].images=(arr[gi][fixturesKey][fxi].images||[]).concat(imgs);rerender();});
-}
-function addToolGroup(isSwiss){
-  const g={pos:'',turretType:'',hasAxisY:'',toolCount:'',spindleCapability:'',spCapDesc:'',spCapImages:[],staticTools:'',staticToolNums:'',rotatingTools:'',rotatingToolNums:'',staticToolDir:'',rotatingToolDir:'',staticHasFixture:'',rotatingHasFixture:'',staticFixtures:[],rotatingFixtures:[],isMilling:'',hasExtraDesc:'',extraDesc:'',extraImages:[]};
-  if(isSwiss) state.swissToolGroups.push(g); else state.toolGroups.push(g);
-  rerender();
-}
-function removeLastToolGroup(isSwiss){
-  if(isSwiss){if(state.swissToolGroups.length>1) state.swissToolGroups.pop();}
-  else{if(state.toolGroups.length>1) state.toolGroups.pop();}
-  rerender();
-}
-function removeToolGroup(gi,isSwiss){
-  if(isSwiss) state.swissToolGroups.splice(gi,1); else state.toolGroups.splice(gi,1);
-  rerender();
-}
-function toggleAsm(key,event){
-  if(event&&event.target&&event.target.tagName==='INPUT') {
-    if(key==='none'){
-      state.noAssemblies=event.target.checked;
-      if(state.noAssemblies) Object.keys(state.assemblies).forEach(k=>state.assemblies[k].sel=false);
-    } else {
-      state.assemblies[key].sel=event.target.checked;
-      if(state.assemblies[key].sel) state.noAssemblies=false;
-    }
+function updateDatePart(part,val){
+  if(part==='day') S.dateDay=val;
+  else if(part==='month') S.dateMonth=val;
+  else if(part==='year') S.dateYear=val;
+  if(S.dateDay&&S.dateMonth&&S.dateYear){
+    S.expectedDate=`${String(S.dateDay).padStart(2,'0')}/${String(S.dateMonth).padStart(2,'0')}/${S.dateYear}`;
   } else {
-    if(key==='none'){
-      state.noAssemblies=!state.noAssemblies;
-      if(state.noAssemblies) Object.keys(state.assemblies).forEach(k=>state.assemblies[k].sel=false);
-    } else {
-      state.assemblies[key].sel=!state.assemblies[key].sel;
-      if(state.assemblies[key].sel) state.noAssemblies=false;
-    }
+    S.expectedDate='';
   }
-  rerender();
 }
 
-function handleImages(stateKey,files){
-  readImages(files,imgs=>{state[stateKey]=(state[stateKey]||[]).concat(imgs);rerender();});
+function updateG(gi,isSwiss,key,val){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  if(arr[gi]) arr[gi][key]=val;
+  paint();
 }
-function readImages(files,cb){
-  const arr=[];
-  let done=0;
+function updateGVal(gi,isSwiss,key,val){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  if(arr[gi]) arr[gi][key]=val;
+  // no repaint needed, user is typing
+}
+function updateGImgArr(gi,isSwiss,key,files){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  readImgs(files,imgs=>{arr[gi][key]=(arr[gi][key]||[]).concat(imgs);paint();});
+}
+function addSwissDevice(){S.swissDevices.push({type:'',desc:'',images:[]});paint();}
+function removeSwissDevice(di){S.swissDevices.splice(di,1);paint();}
+function updateSwissDevice(di,key,val){S.swissDevices[di][key]=val;}
+function updateSwissDeviceImg(di,files){readImgs(files,imgs=>{S.swissDevices[di].images=(S.swissDevices[di].images||[]).concat(imgs);paint();});}
+
+function addGroup(){
+  S.toolGroups.push(mkGroup());
+  paint();
+}
+function removeLastGroup(){
+  if(S.toolGroups.length>1){S.toolGroups.pop();paint();}
+}
+function removeGroup(gi,isSwiss){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  arr.splice(gi,1);
+  paint();
+}
+function addFix(gi,isSwiss,fixArr){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  if(!arr[gi][fixArr]) arr[gi][fixArr]=[];
+  arr[gi][fixArr].push({type:'',desc:'',images:[]});
+  paint();
+}
+function removeFix(gi,isSwiss,fixArr,fi){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  arr[gi][fixArr].splice(fi,1);
+  paint();
+}
+function updateFix(gi,isSwiss,fixArr,fi,key,val){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  arr[gi][fixArr][fi][key]=val;
+}
+function updateFixImg(gi,isSwiss,fixArr,fi,files){
+  const arr=isSwiss?S.swissGroups:S.toolGroups;
+  readImgs(files,imgs=>{arr[gi][fixArr][fi].images=(arr[gi][fixArr][fi].images||[]).concat(imgs);paint();});
+}
+function toggleAsm(sfx,checked){
+  if(sfx==='None'){S.asmNone=checked;if(checked){['Stinger','Lunette','Fork','Bar','Other'].forEach(k=>S['asm'+k]=false);}}
+  else{S['asm'+sfx]=checked;if(checked)S.asmNone=false;}
+  paint();
+}
+function addAsmImg(sfx,files){readImgs(files,imgs=>{S['asm'+sfx+'Img']=(S['asm'+sfx+'Img']||[]).concat(imgs);paint();});}
+function handleImg(key,files){readImgs(files,imgs=>{S[key]=(S[key]||[]).concat(imgs);paint();});}
+function readImgs(files,cb){
   if(!files||!files.length){cb([]);return;}
+  const out=[],total=files.length;let done=0;
   Array.from(files).forEach(f=>{
     const fr=new FileReader();
-    fr.onloadend=()=>{arr.push({name:f.name,data:fr.result});done++;if(done===files.length)cb(arr);};
+    fr.onloadend=()=>{out.push({name:f.name,data:fr.result});if(++done===total)cb(out);};
     fr.readAsDataURL(f);
   });
 }
 
-// ============ VALIDATION ============
-function validateStep(){
-  let ok=true;
-  const sid=currentStepId();
-  const showErr=(id,msg)=>{const e=document.getElementById(id);if(e){e.textContent=msg;e.style.display='block';}ok=false;};
-  const hideErr=(id)=>{const e=document.getElementById(id);if(e)e.style.display='none';};
+// ============================================================
+// TEXT INPUT LISTENERS (save before repaint)
+// ============================================================
+function attachTextListeners(){
+  const map={
+    'f-company':'company','f-contactName':'contactName','f-phone':'phone','f-email':'email',
+    'f-machineName':'machineName','f-controllerName':'controllerName',
+    'f-expectedDate':'expectedDate','f-toolCount':'toolCount',
+    'f-mtmSpecialDesc':'mtmSpecialDesc','f-swissSpecialDesc':'swissSpecialDesc',
+    'f-extraInfoDesc':'extraInfoDesc','f-machineTypeOther':'machineTypeOther'
+  };
+  Object.entries(map).forEach(([id,key])=>{
+    const el=document.getElementById(id);
+    if(el) el.addEventListener('input',()=>{S[key]=el.value;});
+  });
+}
 
+// ============================================================
+// VALIDATION
+// ============================================================
+function validate(){
+  let ok=true;
+  const sid=stepId();
+  const E=(id,msg)=>{const e=document.getElementById(id);if(e){e.textContent=msg;e.style.display='block';}ok=false;};
+  const H=(id)=>{const e=document.getElementById(id);if(e)e.style.display='none';};
+  // Save typed values first
+  attachTextListeners();
+  ['company','contactName','phone','email','machineName','controllerName','expectedDate','toolCount','mtmSpecialDesc','swissSpecialDesc','extraInfoDesc','machineTypeOther'].forEach(k=>{
+    const el=document.getElementById('f-'+k);if(el)S[k]=el.value;
+  });
   if(sid===1){
-    ['company','contactName','phone'].forEach(k=>{
-      const el=document.getElementById(`f-${k}`);
-      if(!el||!el.value.trim()) showErr(`err-${k}`,t('errRequired')); else hideErr(`err-${k}`);
-    });
+    ['company','contactName','phone'].forEach(k=>{S[k].trim()?H('err-'+k):E('err-'+k,t('eReq'));});
   }
-  if(sid===2){
-    if(!state.software) showErr('err-software',t('errSelectOne')); else hideErr('err-software');
-  }
+  if(sid===2){S.software?H('err-software'):E('err-software',t('eSel'));}// לא בשימוש
   if(sid===3){
-    ['machineName','controllerName'].forEach(k=>{
-      const el=document.getElementById(`f-${k}`);
-      if(!el||!el.value.trim()) showErr(`err-${k}`,t('errRequired')); else hideErr(`err-${k}`);
-      else state[k]=el.value.trim();
-    });
-    if(!state.onSite) showErr('err-onSite',t('errSelectOne')); else hideErr('err-onSite');
-    if(state.onSite==='no'){
-      const el=document.getElementById('f-expectedDate');
-      if(!el||!el.value) showErr('err-expectedDate',t('errRequired')); else{hideErr('err-expectedDate');state.expectedDate=el.value;}
-    }
+    S.software?H('err-software'):E('err-software',t('eSel'));
+    ['machineName','controllerName'].forEach(k=>{S[k].trim()?H('err-'+k):E('err-'+k,t('eReq'));});
+    S.onSite?H('err-onSite'):E('err-onSite',t('eSel'));
+    if(S.onSite==='no'){S.expectedDate?H('err-expectedDate'):E('err-expectedDate',t('eReq'));}
   }
   if(sid===4){
-    if(!state.machineType) showErr('err-machineType',t('errSelectOne')); else hideErr('err-machineType');
+    S.machineType?H('err-machineType'):E('err-machineType',t('eSel'));
+    if(S.machineType==='other'){(S.machineTypeOther||'').trim()?H('err-machineTypeOther'):E('err-machineTypeOther',t('eReq'));}
   }
   if(sid===5){
-    const mt=state.machineType;
-    if(mt==='lathe'||mt==='latheMill'){
-      if(!state.turretPos) showErr('err-turretPos',t('errSelectOne')); else hideErr('err-turretPos');
-      if(!state.turretType) showErr('err-turretType',t('errSelectOne')); else hideErr('err-turretType');
-      if(state.turretType==='turret'){
-        if(!state.hasAxisY) showErr('err-hasAxisY',t('errSelectOne')); else hideErr('err-hasAxisY');
-        const tc=document.getElementById('f-toolCount');
-        if(!tc||!tc.value) showErr('err-toolCount',t('errRequired')); else{hideErr('err-toolCount');state.toolCount=tc.value;}
+    const mt=S.machineType;
+    if(mt==='lathe'){
+      S.turretPos?H('err-turretPos'):E('err-turretPos',t('eSel'));
+      S.turretType?H('err-turretType'):E('err-turretType',t('eSel'));
+      if(S.turretType==='turret'){S.toolCount?H('err-toolCount'):E('err-toolCount',t('eReq'));}
+    } else if(mt==='latheMill'){
+      S.turretPos?H('err-turretPos'):E('err-turretPos',t('eSel'));
+      S.turretType?H('err-turretType'):E('err-turretType',t('eSel'));
+      if(S.turretType==='turret'){
+        S.yAxis?H('err-yAxis'):E('err-yAxis',t('eSel'));
+        S.toolCount?H('err-toolCount'):E('err-toolCount',t('eReq'));
       }
     } else if(mt==='mtm'){
-      if(!state.spindleCount) showErr('err-spindleCount',t('errSelectOne')); else hideErr('err-spindleCount');
-      if(parseInt(state.spindleCount)>1&&!state.mtmSpecial) showErr('err-mtmSpecial',t('errSelectOne')); else hideErr('err-mtmSpecial');
-    } else if(mt==='swiss'){
-      if(!state.swissSpecial) showErr('err-swissSpecial',t('errSelectOne')); else hideErr('err-swissSpecial');
-    } else if(mt==='mill4'){
-      if(!state.mill4RotAxis) showErr('err-mill4RotAxis',t('errSelectOne')); else hideErr('err-mill4RotAxis');
-    } else if(mt==='mill5'){
-      if(!state.mill5Axis1Type) showErr('err-mill5Axis1Type',t('errSelectOne')); else hideErr('err-mill5Axis1Type');
-      if(!state.mill5Axis2Type) showErr('err-mill5Axis2Type',t('errSelectOne'));
+      // spindleCount validation moved to step6
+    } else if(mt==='swiss'){S.swissSpecial?H('err-swissSpecial'):E('err-swissSpecial',t('eSel'));}
+    else if(mt==='mill4'){S.mill4Axis?H('err-mill4Axis'):E('err-mill4Axis',t('eSel'));}
+    else if(mt==='mill5'){
+      S.ax1Type?H('err-ax1Type'):E('err-ax1Type',t('eSel'));
+      S.ax2Type?H('err-ax2Type'):E('err-ax2Type',t('eSel'));
     }
   }
   if(sid===6){
-    const isSwiss=state.machineType==='swiss';
-    const groups=isSwiss?state.swissToolGroups:state.toolGroups;
-    if(!groups.length){showErr('err-toolGroups',t('errAddGroup'));ok=false;}
-    else hideErr('err-toolGroups');
+    S.spindleCount?H('err-spindleCount'):E('err-spindleCount',t('eSel'));
+    if(parseInt(S.spindleCount)>1){S.mtmSpecial?H('err-mtmSpecial'):E('err-mtmSpecial',t('eSel'));}
+    S.toolGroups.length?H('err-toolGroups'):E('err-toolGroups',t('eGroup'));
   }
   if(sid===7){
-    const anySelected=state.noAssemblies||Object.values(state.assemblies).some(a=>a.sel);
-    if(!anySelected) showErr('err-assemblies',t('errSelectOne')); else hideErr('err-assemblies');
+    const any=S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]);
+    any?H('err-asm'):E('err-asm',t('eAsm'));
   }
-  if(sid===8){
-    if(!state.simulation) showErr('err-simulation',t('errSelectOne')); else hideErr('err-simulation');
-  }
-  if(sid===9){
-    if(!state.extraInfo) showErr('err-extraInfo',t('errSelectOne')); else hideErr('err-extraInfo');
-  }
+  if(sid===8){S.simulation?H('err-simulation'):E('err-simulation',t('eSel'));}
+  if(sid===9){S.extraInfo?H('err-extraInfo'):E('err-extraInfo',t('eSel'));}
   return ok;
 }
 
-// ============ NAVIGATION ============
+// ============================================================
+// NAVIGATION
+// ============================================================
 function nextStep(){
-  // Save text inputs before validation
-  saveCurrent();
-  if(!validateStep()) return;
+  if(!validate()) return;
   currentStep++;
-  renderAll();
+  paint();
   window.scrollTo(0,0);
 }
-function prevStep(){
-  if(currentStep>1){currentStep--;renderAll();window.scrollTo(0,0);}
-}
-function saveCurrent(){
-  const sid=currentStepId();
-  if(sid===1){
-    ['company','contactName','phone','email'].forEach(k=>{const el=document.getElementById(`f-${k}`);if(el)state[k]=el.value;});
-  }
-  if(sid===3){
-    ['machineName','controllerName','expectedDate'].forEach(k=>{const el=document.getElementById(`f-${k}`);if(el)state[k]=el.value;});
-  }
-  if(sid===5){
-    const el=document.getElementById('f-toolCount');if(el)state.toolCount=el.value;
-    const el2=document.getElementById('f-mtmSpecialDesc');if(el2)state.mtmSpecialDesc=el2.value;
-    const el3=document.getElementById('f-swissSpecialDesc');if(el3)state.swissSpecialDesc=el3.value;
-  }
-  if(sid===9){
-    const el=document.getElementById('f-extraInfoDesc');if(el)state.extraInfoDesc=el.value;
-  }
-}
+function prevStep(){if(currentStep>1){currentStep--;paint();window.scrollTo(0,0);}}
 
-// ============ ACTIONS ============
-function doEdit(){currentStep=1;renderAll();}
+// ============================================================
+// ACTIONS
+// ============================================================
+function doEdit(){currentStep=1;paint();}
 
 function doResetPartial(){
-  showConfirm(t('confirmResetPartial'),()=>{
-    const saved={company:state.company,contactName:state.contactName,phone:state.phone,email:state.email};
-    Object.assign(state,getEmptyState());
-    Object.assign(state,saved);
-    currentStep=2;renderAll();
+  confirm2(t('cfPartial'),()=>{
+    const saved={company:S.company,contactName:S.contactName,phone:S.phone,email:S.email};
+    resetState();Object.assign(S,saved);currentStep=2;paint();
   });
 }
-function doResetFull(){
-  showConfirm(t('confirmResetFull'),()=>{
-    Object.assign(state,getEmptyState());
-    currentStep=1;renderAll();
-  });
-}
-function getEmptyState(){
-  return{company:'',contactName:'',phone:'',email:'',software:'',machineName:'',machineNameImages:[],controllerName:'',controllerImages:[],onSite:'',expectedDate:'',machineType:'',turretPos:'',turretType:'',hasAxisY:'',toolCount:'',spindleCount:'',toolGroups:[],mtmSpecial:'',mtmSpecialDesc:'',swissImages:[],swissToolGroups:[],swissSpecial:'',swissSpecialDesc:'',mill4RotAxis:'',mill5Axis1Type:'',mill5Axis1Mount:'',mill5Axis2Type:'',mill5Axis2Mount:'',assemblies:{stinger:{sel:false,desc:'',images:[]},lunette:{sel:false,desc:'',images:[]},fork:{sel:false,desc:'',images:[]},barFeeder:{sel:false,desc:'',images:[]},other:{sel:false,desc:'',images:[]}},noAssemblies:false,simulation:'',extraInfo:'',extraInfoDesc:'',extraInfoImages:[]};
+function doResetFull(){confirm2(t('cfFull'),()=>{resetState();currentStep=1;paint();});}
+function resetState(){
+  Object.assign(S,{software:'',machineName:'',machineNameImg:[],controllerName:'',controllerImg:[],onSite:'',expectedDate:'',dateDay:'',dateMonth:'',dateYear:'',machineType:'',machineTypeOther:'',turretPos:'',turretType:'',yAxis:'',toolCount:'',spindleCount:'',mtmSpecial:'',mtmSpecialDesc:'',swissImg:[],swissSpecial:'',swissSpecialDesc:'',swissDevices:[],mill4Axis:'',ax1Type:'',ax1Mount:'',ax2Type:'',ax2Mount:'',toolGroups:[mkGroup()],swissGroups:[mkGroup()],asmStinger:false,asmStingerDesc:'',asmStingerImg:[],asmLunette:false,asmLunetteDesc:'',asmLunetteImg:[],asmFork:false,asmForkDesc:'',asmForkImg:[],asmBar:false,asmBarDesc:'',asmBarImg:[],asmOther:false,asmOtherDesc:'',asmOtherImg:[],asmNone:false,simulation:'',extraInfo:'',extraInfoDesc:'',extraInfoImg:[]});
 }
 
-function showConfirm(msg,onYes){
+function confirm2(msg,cb){
   document.getElementById('confirm-msg').textContent=msg;
-  document.getElementById('confirm-yes').textContent=t('confirmYes');
-  document.getElementById('confirm-no').textContent=t('confirmNo');
+  document.getElementById('confirm-yes').textContent=t('cfYes');
+  document.getElementById('confirm-no').textContent=t('cfNo');
   document.getElementById('confirm-overlay').classList.add('show');
-  document.getElementById('confirm-yes').onclick=()=>{document.getElementById('confirm-overlay').classList.remove('show');onYes();};
-  document.getElementById('confirm-no').onclick=()=>document.getElementById('confirm-overlay').classList.remove('show');
+  const yes=document.getElementById('confirm-yes'), no=document.getElementById('confirm-no');
+  yes.onclick=()=>{document.getElementById('confirm-overlay').classList.remove('show');cb();};
+  no.onclick=()=>document.getElementById('confirm-overlay').classList.remove('show');
 }
 
-function doCopyText(){
-  const s=state;
-  const mt=s.machineType;
-  const mtMap={lathe:t('typeLath'),latheMill:t('typeLathMill'),mtm:t('typeMTM'),swiss:t('typeSwiss'),mill3:t('typeMill3'),mill4:t('typeMill4'),mill5:t('typeMill5'),other:t('typeOther')};
-  let txt=`=== ${t('summaryTitle')} ===\n\n`;
-  txt+=`${t('company')}: ${s.company}\n${t('contactName')}: ${s.contactName}\n${t('phone')}: ${s.phone}\n${t('email')}: ${s.email||'–'}\n\n`;
-  txt+=`${t('softwareLabel')}: ${s.software==='cimatron'?t('softwareCimatron'):t('softwareGibbs')}\n\n`;
-  txt+=`${t('machineName')}: ${s.machineName}\n${t('controllerName')}: ${s.controllerName}\n${t('onSite')}: ${s.onSite==='yes'?t('yes'):t('no')}\n`;
-  if(s.onSite==='no') txt+=`${t('expectedDate')}: ${s.expectedDate}\n`;
-  txt+=`\n${t('machineTypeLabel')}: ${mtMap[mt]||''}\n`;
-  if(mt==='lathe'||mt==='latheMill'){txt+=`${t('turretPos')}: ${s.turretPos}\n${t('turretType')}: ${s.turretType}\n`;}
-  if(s.simulation) txt+=`\n${t('simulationLabel')}: ${s.simulation==='yes'?t('yes'):t('no')}\n`;
-  txt+=`\n${t('summaryEmail')}`;
+function doCopy(){
+  let txt=`=== ${t('sumTitle')} ===\n${t('company')}: ${S.company}\n${t('contactName')}: ${S.contactName}\n${t('phone')}: ${S.phone}\n${t('email')}: ${S.email||'—'}\n${t('softwareLbl')}: ${S.software}\n${t('machineName')}: ${S.machineName}\n${t('controllerName')}: ${S.controllerName}\n${t('onSiteLbl')}: ${S.onSite}\n${t('machineTypeLbl')}: ${S.machineType}\n${t('simLbl')}: ${S.simulation}\n${t('extraLbl')}: ${S.extraInfo}\n\n${t('sumEmail')}`;
   navigator.clipboard.writeText(txt).then(()=>{
     const btn=document.querySelector('.btn-copy');
-    if(btn){const orig=btn.innerHTML;btn.innerHTML=`✓ ${t('copied')}`;setTimeout(()=>btn.innerHTML=orig,2000);}
+    if(btn){const o=btn.innerHTML;btn.innerHTML='✓ '+t('copied');setTimeout(()=>btn.innerHTML=o,2000);}
   });
 }
 
-// ============ PDF ============
-let savedPdfBlob=null,savedFilename='';
-
-function buildPdfHTML(){
-  const s=state;
+// ============================================================
+// PDF
+// ============================================================
+function buildPdfHtml(){
+  const mt=S.machineType;
   const dir=lang==='he'?'rtl':'ltr';
-  const orange='#E8611A';
-  const logo=logoBase64?`<img src="${logoBase64}" style="height:36px" alt="Cimatron">`:'<span style="color:#fff;font-weight:700">cimatron</span>';
-  const mt=s.machineType;
-  const mtMap={lathe:t('typeLath'),latheMill:t('typeLathMill'),mtm:t('typeMTM'),swiss:t('typeSwiss'),mill3:t('typeMill3'),mill4:t('typeMill4'),mill5:t('typeMill5'),other:t('typeOther')};
-  const hdr=`<div style="background:${orange};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:13px;margin-top:2px">${t('appSub')}</div></div>${logo}</div>`;
-  const sec=(txt)=>`<div style="background:${orange};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin:14px 0 10px">${txt}</div>`;
-  const row=(l,v)=>v?`<div style="display:flex;gap:10px;margin-bottom:6px;font-size:13px"><span style="color:#999;min-width:150px;flex-shrink:0;font-size:12px">${l}</span><span style="color:#222;flex:1">${v}</span></div>`:'';
-  const ftr=`<div style="border-top:1px solid #eee;padding:10px 32px;margin-top:20px;font-size:11px;color:#bbb;display:flex;justify-content:space-between"><span>${t('pdfCreatedFor')}</span><span>${t('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>`;
-
-  let content='';
-  content+=sec(t('step1'));
-  content+=row(t('company'),s.company)+row(t('contactName'),s.contactName)+row(t('phone'),s.phone)+row(t('email'),s.email);
-  content+=sec(t('step2'));
-  content+=row(t('softwareLabel'),s.software==='cimatron'?t('softwareCimatron'):t('softwareGibbs'));
-  content+=sec(t('step3'));
-  content+=row(t('machineName'),s.machineName)+row(t('controllerName'),s.controllerName)+row(t('onSite'),s.onSite==='yes'?t('yes'):t('no'));
-  if(s.onSite==='no') content+=row(t('expectedDate'),s.expectedDate);
-  content+=sec(t('step4'));
-  content+=row(t('machineTypeLabel'),mtMap[mt]||'');
-  if(mt==='lathe'||mt==='latheMill'){
-    content+=sec(t('step5'));
-    content+=row(t('turretPos'),s.turretPos)+row(t('turretType'),s.turretType)+row(t('hasAxisY'),s.hasAxisY)+row(t('toolCount'),s.toolCount);
-  } else if(mt==='mtm'){
-    content+=sec(t('step5'));
-    content+=row(t('spindleCount'),s.spindleCount);
-    if(parseInt(s.spindleCount)>1) content+=row(t('mtmSpecialLabel'),s.mtmSpecial==='yes'?`${t('yes')}: ${s.mtmSpecialDesc}`:t('no'));
-  }
-  const groups=mt==='swiss'?s.swissToolGroups:s.toolGroups;
-  if(groups.length){
-    content+=sec(t('step6'));
+  const or='#E8611A';
+  const logo=logoBase64?`<img src="${logoBase64}" style="height:36px">`:'';
+  const hdr=`<div style="background:${or};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:13px">${t('appSub')}</div></div>${logo}</div>`;
+  const sec=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin:14px 0 8px">${txt}</div>`;
+  const row=(l,v)=>v?`<div style="display:flex;gap:10px;margin-bottom:6px;font-size:13px"><span style="color:#999;min-width:150px;flex-shrink:0;font-size:12px">${l}</span><span style="color:#222">${v}</span></div>`:'';
+  const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
+  let c='';
+  c+=sec(t('s1'))+row(t('company'),S.company)+row(t('contactName'),S.contactName)+row(t('phone'),S.phone)+row(t('email'),S.email);
+  c+=sec(t('s2'))+row(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs'));
+  c+=sec(t('s3'))+row(t('machineName'),S.machineName)+row(t('controllerName'),S.controllerName)+row(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
+  if(S.onSite==='no')c+=row(t('expectedDateLbl'),formatDate(S.expectedDate));
+  c+=sec(t('s4'))+row(t('machineTypeLbl'),mtMap[mt]||'');
+  if(mt==='lathe'||mt==='latheMill')c+=sec(t('s5'))+row(t('turretPosLbl'),S.turretPos)+row(t('turretTypeLbl'),S.turretType)+row(t('yAxisLbl'),S.yAxis)+row(t('toolCountLbl'),S.toolCount);
+  else if(mt==='mtm'){c+=sec(t('s5'))+row(t('spindleCountLbl'),S.spindleCount);if(parseInt(S.spindleCount)>1)c+=row(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes')+': '+S.mtmSpecialDesc:t('no'));}
+  else if(mt==='swiss')c+=sec(t('s5'))+row(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes')+': '+S.swissSpecialDesc:t('no'));
+  else if(mt==='mill4')c+=sec(t('s5'))+row(t('mill4AxisLbl'),S.mill4Axis);
+  else if(mt==='mill5')c+=sec(t('s5'))+row(t('mill5Ax1'),S.ax1Type+' – '+S.ax1Mount)+row(t('mill5Ax2'),S.ax2Type+' – '+S.ax2Mount);
+  const groups=mt==='swiss'?S.swissGroups:S.toolGroups;
+  if(groups.length&&getSteps().includes(6)){
+    c+=sec(t('s6'));
     groups.forEach((g,gi)=>{
-      content+=`<div style="font-weight:700;color:${orange};margin:8px 0 4px">${t('toolGroupTitle')} ${gi+1}</div>`;
-      content+=row(t('turretPos'),g.pos)+row(t('turretType'),g.turretType)+row(t('toolCount'),g.toolCount)+row(t('staticTools'),g.staticTools)+row(t('rotatingTools'),g.rotatingTools);
-      if(g.hasExtraDesc==='yes') content+=row(t('groupExtraDesc'),g.extraDesc);
+      c+=`<div style="font-weight:700;color:${or};margin:6px 0 3px">${t('groupTitle')} ${gi+1}</div>`;
+      c+=row(t('turretPosLbl'),g.pos)+row(t('turretTypeLbl'),g.turretType)+row(t('toolCountLbl'),g.toolCount)+row(t('staticLbl'),g.staticCount)+row(t('rotLbl'),g.rotCount);
+      if(g.extraDescYN==='yes')c+=row(t('groupExtraLbl'),g.extraDesc);
     });
   }
-  if(mt!=='swiss'&&mt!=='mill3'&&mt!=='mill4'&&mt!=='mill5'&&mt!=='other'){
-    content+=sec(t('step7'));
-    if(s.noAssemblies) content+=row(t('extraAssembliesLabel'),t('asmNone'));
-    else {
-      const asmLabels={stinger:t('asmStinger'),lunette:t('asmLunette'),fork:t('asmFork'),barFeeder:t('asmBarFeeder'),other:t('asmOther')};
-      Object.entries(s.assemblies).forEach(([k,v])=>{if(v.sel)content+=row(asmLabels[k],v.desc||'✓');});
-    }
+  if(getSteps().includes(7)&&(S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]))){
+    c+=sec(t('s7'));
+    if(S.asmNone)c+=row(t('asmLbl'),t('asmNone'));
+    else[['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{if(S['asm'+sfx])c+=row(t(lk),S['asm'+sfx+'Desc']||'✓');});
   }
-  if(mt!=='other'){content+=sec(t('step8'));content+=row(t('simulationLabel'),s.simulation==='yes'?t('yes'):t('no'));}
-  content+=sec(t('step9'));
-  content+=row(t('extraInfoLabel'),s.extraInfo==='yes'?t('yes'):t('no'));
-  if(s.extraInfo==='yes') content+=row(t('extraInfoDesc'),s.extraInfoDesc);
-  content+=`<div style="margin-top:16px;background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:10px;font-size:12px;color:#1a5f7a">✉ ${t('summaryEmail')}</div>`;
-
-  return `<div style="width:900px;background:#fff;font-family:Arial,sans-serif;direction:${dir};padding:0 32px 32px">${hdr}${content}${ftr}</div>`;
+  if(getSteps().includes(8))c+=sec(t('s8'))+row(t('simLbl'),S.simulation==='yes'?t('yes'):t('no'));
+  c+=sec(t('s9'))+row(t('extraLbl'),S.extraInfo==='yes'?t('yes'):t('no'));
+  if(S.extraInfo==='yes')c+=row(t('extraDesc'),S.extraInfoDesc);
+  c+=`<div style="margin-top:14px;background:#e8f4f8;padding:10px;border-radius:6px;font-size:12px;color:#1a5f7a">✉ ${t('sumEmail')}</div>`;
+  const ftr=`<div style="border-top:1px solid #eee;margin-top:20px;padding:10px 0;font-size:11px;color:#bbb;display:flex;justify-content:space-between"><span>${t('pdfFor')}</span><span>${t('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>`;
+  return `<div style="width:900px;background:#fff;font-family:Arial,sans-serif;direction:${dir};padding:0 32px 32px">${hdr}${c}${ftr}</div>`;
 }
 
-async function doSavePDF(){
-  const overlay=document.getElementById('loading-overlay');
+function formatDate(d){
+  if(!d) return '';
+  const parts=d.split('-');
+  if(parts.length===3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+  return d;
+}
+
+async function doSharePDF(){
+  await doPDF(true);
+}
+
+async function doPDF(share=false){
+  const ov=document.getElementById('loading-overlay');
   document.getElementById('loading-text').textContent=t('loading');
-  overlay.classList.add('show');
+  ov.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
-  tmpl.innerHTML=buildPdfHTML();
+  tmpl.innerHTML=buildPdfHtml();
   tmpl.style.display='block';
-  tmpl.style.top='-99999px';
-  await new Promise(r=>setTimeout(r,500));
+  await new Promise(r=>setTimeout(r,600));
   try{
     const {jsPDF}=window.jspdf;
-    const SCALE=2.5,A4W=210,A4H=297,PX_MM=900/A4W;
-    const pageH=A4H*PX_MM;
-    const canvas=await html2canvas(tmpl.children[0],{scale:SCALE,useCORS:true,backgroundColor:'#ffffff',logging:false,width:900});
-    const totalH=canvas.height/SCALE;
-    const pages=Math.ceil(totalH/pageH);
+    const SCALE=2.5,W=210,H=297,PPM=900/W,PH=H*PPM;
+    const cv=await html2canvas(tmpl.children[0],{scale:SCALE,useCORS:true,backgroundColor:'#fff',logging:false,width:900});
+    const pages=Math.ceil(cv.height/SCALE/PH);
     const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
     for(let i=0;i<pages;i++){
       if(i>0)pdf.addPage();
-      const sy=i*pageH*SCALE,sh=Math.min(pageH*SCALE,canvas.height-sy);
-      const pc=document.createElement('canvas');pc.width=canvas.width;pc.height=pageH*SCALE;
+      const sy=i*PH*SCALE,sh=Math.min(PH*SCALE,cv.height-sy);
+      const pc=document.createElement('canvas');pc.width=cv.width;pc.height=PH*SCALE;
       const ctx=pc.getContext('2d');ctx.fillStyle='#fff';ctx.fillRect(0,0,pc.width,pc.height);
-      ctx.drawImage(canvas,0,sy,canvas.width,sh,0,0,canvas.width,sh);
-      pdf.addImage(pc.toDataURL('image/jpeg',0.85),'JPEG',0,0,A4W,A4H);
+      ctx.drawImage(cv,0,sy,cv.width,sh,0,0,cv.width,sh);
+      pdf.addImage(pc.toDataURL('image/jpeg',0.85),'JPEG',0,0,W,H);
     }
     const blob=pdf.output('blob');
-    const name=`איפיון-פוסט-${state.company||'cimatron'}.pdf`.replace(/\s+/g,'-');
+    const name=`איפיון-פוסט-${(S.company||'cimatron').replace(/\s+/g,'-')}.pdf`;
+    if(share && navigator.share){
+      const file=new File([blob],name,{type:'application/pdf'});
+      if(navigator.canShare&&navigator.canShare({files:[file]})){
+        try{await navigator.share({title:t('appTitle'),files:[file]});return;}
+        catch(e){if(e.name==='AbortError')return;}
+      }
+    }
+    // Fallback: download
     const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=name;a.click();
-    setTimeout(()=>URL.revokeObjectURL(url),2000);
+    const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
   }catch(e){console.error(e);alert('שגיאה ביצירת PDF');}
-  finally{tmpl.style.display='none';overlay.classList.remove('show');}
+  finally{tmpl.style.display='none';ov.classList.remove('show');}
 }
 
-// ============ LOGO ============
+// ============================================================
+// LOGO + INIT
+// ============================================================
 fetch('logo.png').then(r=>r.blob()).then(blob=>{
   const fr=new FileReader();
-  fr.onloadend=()=>{logoBase64=fr.result;document.getElementById('logo-img').src=logoBase64;};
+  fr.onloadend=()=>{logoBase64=fr.result;const img=document.getElementById('logo-img');if(img)img.src=logoBase64;};
   fr.readAsDataURL(blob);
-}).catch(()=>{document.getElementById('logo-img').style.display='none';});
+}).catch(()=>{const img=document.getElementById('logo-img');if(img)img.style.display='none';});
 
-// Initialize
-if(!state.toolGroups.length) addToolGroup(false);
-renderAll();
+document.addEventListener('DOMContentLoaded',()=>paint());
 </script>
 </body>
 </html>
