@@ -121,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v2.1</div>
+    <div class="version-tag">v2.3</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -1096,80 +1096,165 @@ function buildPdfHtml(){
   const or='#E8611A';
   const logo=logoBase64?`<img src="${logoBase64}" style="height:36px">`:'';
   const base=`font-family:Arial,sans-serif;direction:${dir};width:900px;background:#fff;`;
-  const secStyle=`${base}padding:8px 32px;`;
-  const hdr=`<div class="pdf-section" style="${base}background:${or};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:4px"><div><div style="color:#fff;font-size:26px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:16px">${t('appSub')}</div></div>${logo}</div>`;
+  const secStyle=`${base}padding:10px 32px;`;
 
-  const sec=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:8px 20px;border-radius:5px;font-size:22px;font-weight:700;margin-bottom:8px">${txt}</div>`;
-  const row=(l,v)=>v?`<div style="display:flex;gap:12px;margin-bottom:10px;font-size:22px"><span style="color:#888;min-width:220px;flex-shrink:0;font-size:20px">${l}</span><span style="color:#222">${v}</span></div>`:'';
+  const hdr=`<div class="pdf-section" style="${base}background:${or};padding:16px 28px;display:flex;align-items:center;justify-content:space-between">
+    <div><div style="color:#fff;font-size:26px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:16px">${t('appSub')}</div></div>${logo}
+  </div>`;
 
-  // כל section עטוף ב-div.pdf-section, כל תמונה בנפרד
-  const wrap=(title,content)=>content?`<div class="pdf-section" style="${secStyle}">${sec(title)}${content}</div>`:'';
-  const pdfImg=(i)=>`<div class="pdf-section" style="${base}padding:4px 32px;text-align:center"><img src="${i.data}" style="width:80%;display:block;margin:0 auto;border-radius:6px;max-height:600px;object-fit:contain"></div>`;
-  const pdfImgs=(imgs)=>(imgs||[]).map(i=>pdfImg(i)).join('');
+  const secTitle=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:8px 20px;border-radius:5px;font-size:22px;font-weight:700;margin-bottom:10px">${txt}</div>`;
+  const row=(l,v)=>(!v&&v!==0)?'':`<div style="display:flex;gap:12px;margin-bottom:10px;font-size:22px;line-height:1.5"><span style="color:#888;min-width:220px;flex-shrink:0;font-size:20px">${l}</span><span style="color:#222;flex:1">${v}</span></div>`;
+  const note=(txt)=>txt?`<div style="background:#fff3e0;border:1px solid #ffe0b2;border-radius:6px;padding:10px 14px;font-size:18px;color:#555;margin:8px 0;white-space:pre-line;line-height:1.6">${txt}</div>`:'';
+  const subsec=(txt)=>`<div style="font-weight:700;color:${or};font-size:20px;margin:10px 0 6px">${txt}</div>`;
+  // תמונות — מוצגות בתוך ה-section
+  const imgBlock=(imgs)=>{
+    if(!imgs||!imgs.length) return '';
+    return `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;justify-content:center">${imgs.map(i=>`<img src="${i.data}" style="width:80%;display:block;margin:0 auto 8px;border-radius:6px;object-fit:contain">`).join('')}</div>`;
+  };
+  // section שלם — מוצג בבלוק אחד ללא חיתוך
+  const section=(title,content)=>{
+    if(!content) return '';
+    return `<div class="pdf-section" style="${secStyle}">${secTitle(title)}${content}</div>`;
+  };
 
   const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
-  let parts='';
-  parts+=hdr;
-  parts+=wrap(t('s1'), row(t('company'),S.company)+row(t('contactName'),S.contactName)+row(t('phone'),S.phone)+row(t('email'),S.email));
-  parts+=wrap(t('s2'), row(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs')));
 
-  let s3=row(t('machineName'),S.machineName)+row(t('controllerName'),S.controllerName)+row(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
-  if(S.onSite==='no') s3+=row(t('expectedDateLbl'),formatDate(S.expectedDate));
-  parts+=wrap(t('s3'),s3);
-  parts+=pdfImgs(S.machineNameImg)+pdfImgs(S.controllerImg);
+  let parts=hdr;
 
-  parts+=wrap(t('s4'), row(t('machineTypeLbl'),mtMap[mt]||'')+(mt==='other'?row(t('otherDescLbl'),S.machineTypeOther):''));
+  // פרטי לקוח
+  parts+=section(t('s1'),
+    row(t('company'),S.company)+
+    row(t('contactName'),S.contactName)+
+    row(t('phone'),S.phone)+
+    row(t('email'),S.email)
+  );
 
-  if(mt==='lathe'||mt==='latheMill'){
-    parts+=wrap(t('s5'), row(t('turretPosLbl'),S.turretPos)+row(t('turretTypeLbl'),S.turretType)+row(t('yAxisLbl'),S.yAxis)+row(t('toolCountLbl'),S.toolCount));
+  // תוכנה
+  parts+=section(t('s2'), row(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs')));
+
+  // פרטי מכונה — כולל תמונות מיד אחרי כל שדה
+  let s3='';
+  s3+=row(t('machineName'),S.machineName);
+  s3+=imgBlock(S.machineNameImg);
+  s3+=row(t('controllerName'),S.controllerName);
+  s3+=imgBlock(S.controllerImg);
+  s3+=row(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
+  if(S.onSite==='no'){
+    s3+=note(t('expectedDateNote'));
+    s3+=row(t('expectedDateLbl'),formatDate(S.expectedDate));
+  }
+  parts+=section(t('s3'),s3);
+
+  // סוג מכונה
+  let s4=row(t('machineTypeLbl'),mtMap[mt]||'');
+  if(mt==='other') s4+=row(t('otherDescLbl'),S.machineTypeOther);
+  parts+=section(t('s4'),s4);
+
+  // הגדרת מכונה
+  if(mt==='lathe'){
+    parts+=section(t('s5'),
+      row(t('turretPosLbl'),S.turretPos)+
+      row(t('turretTypeLbl'),S.turretType)+
+      row(t('toolCountLbl'),S.toolCount)
+    );
+  } else if(mt==='latheMill'){
+    parts+=section(t('s5'),
+      row(t('turretPosLbl'),S.turretPos)+
+      row(t('turretTypeLbl'),S.turretType)+
+      row(t('yAxisLbl'),S.yAxis)+
+      row(t('toolCountLbl'),S.toolCount)
+    );
   } else if(mt==='mtm'){
     let s5=row(t('spindleCountLbl'),S.spindleCount);
-    if(parseInt(S.spindleCount)>1) s5+=row(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes')+': '+S.mtmSpecialDesc:t('no'));
-    parts+=wrap(t('s5'),s5);
+    if(parseInt(S.spindleCount)>1){
+      s5+=note(t('mtmStdNote'));
+      s5+=row(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes'):t('no'));
+      if(S.mtmSpecial==='yes') s5+=row('',S.mtmSpecialDesc);
+    }
+    parts+=section(t('s5'),s5);
   } else if(mt==='swiss'){
-    parts+=wrap(t('s5'), row(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes')+': '+S.swissSpecialDesc:t('no')));
-    parts+=pdfImgs(S.swissImg);
-    S.swissDevices.forEach((d,di)=>{
-      parts+=wrap(`${t('fixTitle')} ${di+1}`, row(t('fixtureTypeLbl'),d.type)+row(t('fixtureStationsLbl'),d.stations)+row(t('addDesc'),d.desc));
-      parts+=pdfImgs(d.images);
-    });
+    let s5=imgBlock(S.swissImg);
+    s5+=note(t('swissStdNote'));
+    s5+=row(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes'):t('no'));
+    if(S.swissSpecial==='yes') s5+=row('',S.swissSpecialDesc);
+    if(S.swissDevices.length){
+      S.swissDevices.forEach((d,di)=>{
+        s5+=subsec(`${t('fixTitle')} ${di+1}`);
+        s5+=row(t('fixtureTypeLbl'),d.type);
+        s5+=row(t('fixtureStationsLbl'),d.stations);
+        if(d.desc) s5+=row(t('addDesc'),d.desc);
+        s5+=imgBlock(d.images);
+      });
+    }
+    parts+=section(t('s5'),s5);
   } else if(mt==='mill4'){
-    parts+=wrap(t('s5'), row(t('mill4AxisLbl'),S.mill4Axis));
+    parts+=section(t('s5'), row(t('mill4AxisLbl'),S.mill4Axis));
   } else if(mt==='mill5'){
-    parts+=wrap(t('s5'), row(t('mill5Ax1'),S.ax1Type+' – '+S.ax1Mount)+row(t('mill5Ax2'),S.ax2Type+' – '+S.ax2Mount));
+    parts+=section(t('s5'),
+      row(t('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?t('mountTable'):t('mountHead')))+
+      row(t('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?t('mountTable'):t('mountHead')))
+    );
   }
 
+  // קבוצות כלים (MTM)
   if(getSteps().includes(6)){
     S.toolGroups.forEach((g,gi)=>{
-      let gc=`<div style="font-weight:700;color:${or};font-size:22px;margin-bottom:8px">${t('groupTitle')} ${gi+1}</div>`;
-      gc+=row(t('turretPosLbl'),g.pos)+row(t('turretTypeLbl'),g.turretType)+row(t('toolCountLbl'),g.toolCount)+row(t('staticLbl'),g.staticCount)+row(t('rotLbl'),g.rotCount);
-      if(g.extraDescYN==='yes') gc+=row(t('groupExtraLbl'),g.extraDesc);
-      parts+=wrap(gi===0?t('s6'):'',gc);
-      parts+=pdfImgs(g.extraImages);
+      let gc='';
+      gc+=row(t('turretPosLbl'),g.pos);
+      gc+=row(t('turretTypeLbl'),g.turretType);
+      if(g.turretType==='turret'){
+        gc+=row(t('yAxisLbl'),g.yAxis);
+        gc+=row(t('toolCountLbl'),g.toolCount);
+        if(S.machineType==='mtm') gc+=row(t('isMillingLbl'),g.isMilling==='yes'?t('yes'):t('no'));
+      }
+      if(g.spCap) gc+=row(t('spCapLbl'),{main:t('spMain'),sub:t('spSub'),both:t('spBoth')}[g.spCap]);
+      if(parseInt(g.staticCount)>0){gc+=row(t('staticLbl'),g.staticCount);gc+=row(t('staticNumsLbl'),g.staticNums);}
+      if(parseInt(g.rotCount)>0){gc+=row(t('rotLbl'),g.rotCount);gc+=row(t('rotNumsLbl'),g.rotNums);}
+      if(g.extraDescYN==='yes'){gc+=row(t('groupExtraLbl'),g.extraDesc);gc+=imgBlock(g.extraImages);}
+      parts+=section(`${t('s6')} – ${t('groupTitle')} ${gi+1}`,gc);
     });
   }
 
+  // מכלולים
   if(getSteps().includes(7)){
     const anyAsm=S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]);
     if(anyAsm){
       let a7='';
-      if(S.asmNone) a7+=row(t('asmLbl'),t('asmNoneLabel'));
-      else [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{
-        if(S['asm'+sfx]){a7+=row(t(lk),S['asm'+sfx+'Desc']||'✓');parts+=pdfImgs(S['asm'+sfx+'Img']);}
-      });
-      parts+=wrap(t('s7'),a7);
+      if(S.asmNone){
+        a7+=row(t('asmLbl'),t('asmNoneLabel'));
+      } else {
+        [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{
+          if(S['asm'+sfx]){
+            a7+=subsec(t(lk));
+            if(S['asm'+sfx+'Desc']) a7+=row(t('asmDesc'),S['asm'+sfx+'Desc']);
+            a7+=imgBlock(S['asm'+sfx+'Img']);
+          }
+        });
+      }
+      parts+=section(t('s7'),a7);
     }
   }
 
-  if(getSteps().includes(8)) parts+=wrap(t('s8'), row(t('simLbl'),S.simulation==='yes'?t('yes'):t('no')));
+  // סימולציה
+  if(getSteps().includes(8)){
+    let s8=row(t('simLbl'),S.simulation==='yes'?t('yes'):t('no'));
+    if(S.simulation==='yes') s8+=note(t('simNote'));
+    parts+=section(t('s8'),s8);
+  }
 
+  // מידע נוסף
   let s9=row(t('extraLbl'),S.extraInfo==='yes'?t('yes'):t('no'));
-  if(S.extraInfo==='yes') s9+=row(t('extraDesc'),S.extraInfoDesc);
-  parts+=wrap(t('s9'),s9);
-  parts+=pdfImgs(S.extraInfoImg);
+  if(S.extraInfo==='yes'){
+    if(S.extraInfoDesc) s9+=row(t('extraDesc'),S.extraInfoDesc);
+    s9+=imgBlock(S.extraInfoImg);
+  }
+  parts+=section(t('s9'),s9);
 
-  const ftr=`<div class="pdf-section" style="${secStyle}border-top:1px solid #eee;padding-top:10px;font-size:18px;color:#bbb;display:flex;justify-content:space-between"><span>${t('pdfFor')}</span><span>${t('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>`;
-  parts+=ftr;
+  // footer
+  parts+=`<div class="pdf-section" style="${secStyle}border-top:2px solid #eee;margin-top:4px">
+    <div style="background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:12px;font-size:20px;color:#1a5f7a;text-align:center;margin-bottom:10px">✉ ${t('sumEmail')}</div>
+    <div style="font-size:16px;color:#bbb;display:flex;justify-content:space-between"><span>${t('pdfFor')}</span><span>${t('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>
+  </div>`;
 
   return `<div style="${base}">${parts}</div>`;
 }
