@@ -121,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v2.3</div>
+    <div class="version-tag">v2.4</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -432,12 +432,12 @@ function step3(){
   </div>
   ${S.onSite==='no'?`<div class="field-group">
     <div class="field-label">${t('expectedDateLbl')} <span class="required">*</span></div>
-    <div style="margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div class="notice-box" style="margin:8px 0">${t('expectedDateNote')}</div>
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="font-size:15px;font-weight:700;color:#E8611A">${S.expectedDate?formatDate(S.expectedDate):''}</span>
       <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();" class="date-orange"
         style="background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:10px 16px;font-size:15px;font-weight:700;color:#E8611A;cursor:pointer;outline:none;font-family:Arial;width:60px">
     </div>
-    <div class="notice-box" style="margin-top:8px">${t('expectedDateNote')}</div>
     <div class="error-msg" id="err-expectedDate"></div>
   </div>`:''}`;
 }
@@ -1090,172 +1090,78 @@ function doCopy(){
 // ============================================================
 // PDF
 // ============================================================
-function buildPdfHtml(){
+function buildPdfHtml(forceLang){
+  const useLang=forceLang||lang;
+  const tl=(k)=>(T[useLang]||T.he)[k]||k;
   const mt=S.machineType;
-  const dir=lang==='he'?'rtl':'ltr';
+  const dir=useLang==='he'?'rtl':'ltr';
   const or='#E8611A';
   const logo=logoBase64?`<img src="${logoBase64}" style="height:36px">`:'';
   const base=`font-family:Arial,sans-serif;direction:${dir};width:900px;background:#fff;`;
   const secStyle=`${base}padding:10px 32px;`;
-
   const hdr=`<div class="pdf-section" style="${base}background:${or};padding:16px 28px;display:flex;align-items:center;justify-content:space-between">
-    <div><div style="color:#fff;font-size:26px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:16px">${t('appSub')}</div></div>${logo}
+    <div><div style="color:#fff;font-size:26px;font-weight:700">${tl('appTitle')}</div><div style="color:#ffe0cc;font-size:16px">${tl('appSub')}</div></div>${logo}
   </div>`;
-
   const secTitle=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:8px 20px;border-radius:5px;font-size:22px;font-weight:700;margin-bottom:10px">${txt}</div>`;
   const row=(l,v)=>(!v&&v!==0)?'':`<div style="display:flex;gap:12px;margin-bottom:10px;font-size:22px;line-height:1.5"><span style="color:#888;min-width:220px;flex-shrink:0;font-size:20px">${l}</span><span style="color:#222;flex:1">${v}</span></div>`;
   const note=(txt)=>txt?`<div style="background:#fff3e0;border:1px solid #ffe0b2;border-radius:6px;padding:10px 14px;font-size:18px;color:#555;margin:8px 0;white-space:pre-line;line-height:1.6">${txt}</div>`:'';
   const subsec=(txt)=>`<div style="font-weight:700;color:${or};font-size:20px;margin:10px 0 6px">${txt}</div>`;
-  // תמונות — מוצגות בתוך ה-section
   const imgBlock=(imgs)=>{
     if(!imgs||!imgs.length) return '';
-    return `<div style="display:flex;flex-wrap:wrap;gap:10px;margin:10px 0;justify-content:center">${imgs.map(i=>`<img src="${i.data}" style="width:80%;display:block;margin:0 auto 8px;border-radius:6px;object-fit:contain">`).join('')}</div>`;
+    return `<div style="margin:10px 0;text-align:center">${imgs.map(i=>`<img src="${i.data}" style="width:80%;display:block;margin:0 auto 8px;border-radius:6px;object-fit:contain">`).join('')}</div>`;
   };
-  // section שלם — מוצג בבלוק אחד ללא חיתוך
   const section=(title,content)=>{
     if(!content) return '';
-    return `<div class="pdf-section" style="${secStyle}">${secTitle(title)}${content}</div>`;
+    return `<div class="pdf-section" style="${secStyle}">${title?secTitle(title):''}${content}</div>`;
   };
-
-  const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
-
+  const mtMap={lathe:tl('tLath'),latheMill:tl('tLathMill'),mtm:tl('tMTM'),swiss:tl('tSwiss'),mill3:tl('tMill3'),mill4:tl('tMill4'),mill5:tl('tMill5'),other:tl('tOther')};
   let parts=hdr;
-
-  // פרטי לקוח
-  parts+=section(t('s1'),
-    row(t('company'),S.company)+
-    row(t('contactName'),S.contactName)+
-    row(t('phone'),S.phone)+
-    row(t('email'),S.email)
-  );
-
-  // תוכנה
-  parts+=section(t('s2'), row(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs')));
-
-  // פרטי מכונה — כולל תמונות מיד אחרי כל שדה
-  let s3='';
-  s3+=row(t('machineName'),S.machineName);
-  s3+=imgBlock(S.machineNameImg);
-  s3+=row(t('controllerName'),S.controllerName);
-  s3+=imgBlock(S.controllerImg);
-  s3+=row(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
-  if(S.onSite==='no'){
-    s3+=note(t('expectedDateNote'));
-    s3+=row(t('expectedDateLbl'),formatDate(S.expectedDate));
-  }
-  parts+=section(t('s3'),s3);
-
-  // סוג מכונה
-  let s4=row(t('machineTypeLbl'),mtMap[mt]||'');
-  if(mt==='other') s4+=row(t('otherDescLbl'),S.machineTypeOther);
-  parts+=section(t('s4'),s4);
-
-  // הגדרת מכונה
-  if(mt==='lathe'){
-    parts+=section(t('s5'),
-      row(t('turretPosLbl'),S.turretPos)+
-      row(t('turretTypeLbl'),S.turretType)+
-      row(t('toolCountLbl'),S.toolCount)
-    );
-  } else if(mt==='latheMill'){
-    parts+=section(t('s5'),
-      row(t('turretPosLbl'),S.turretPos)+
-      row(t('turretTypeLbl'),S.turretType)+
-      row(t('yAxisLbl'),S.yAxis)+
-      row(t('toolCountLbl'),S.toolCount)
-    );
-  } else if(mt==='mtm'){
-    let s5=row(t('spindleCountLbl'),S.spindleCount);
-    if(parseInt(S.spindleCount)>1){
-      s5+=note(t('mtmStdNote'));
-      s5+=row(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes'):t('no'));
-      if(S.mtmSpecial==='yes') s5+=row('',S.mtmSpecialDesc);
-    }
-    parts+=section(t('s5'),s5);
+  parts+=section(tl('s1'),row(tl('company'),S.company)+row(tl('contactName'),S.contactName)+row(tl('phone'),S.phone)+row(tl('email'),S.email));
+  parts+=section(tl('s2'),row(tl('softwareLbl'),S.software==='cimatron'?tl('swCimatron'):tl('swGibbs')));
+  let s3=row(tl('machineName'),S.machineName)+imgBlock(S.machineNameImg)+row(tl('controllerName'),S.controllerName)+imgBlock(S.controllerImg)+row(tl('onSiteLbl'),S.onSite==='yes'?tl('yes'):tl('no'));
+  if(S.onSite==='no'){s3+=note(tl('expectedDateNote'));s3+=row(tl('expectedDateLbl'),formatDate(S.expectedDate));}
+  parts+=section(tl('s3'),s3);
+  let s4=row(tl('machineTypeLbl'),mtMap[mt]||'');
+  if(mt==='other') s4+=row(tl('otherDescLbl'),S.machineTypeOther);
+  parts+=section(tl('s4'),s4);
+  if(mt==='lathe'){parts+=section(tl('s5'),row(tl('turretPosLbl'),S.turretPos)+row(tl('turretTypeLbl'),S.turretType)+row(tl('toolCountLbl'),S.toolCount));}
+  else if(mt==='latheMill'){parts+=section(tl('s5'),row(tl('turretPosLbl'),S.turretPos)+row(tl('turretTypeLbl'),S.turretType)+row(tl('yAxisLbl'),S.yAxis)+row(tl('toolCountLbl'),S.toolCount));}
+  else if(mt==='mtm'){
+    let s5=row(tl('spindleCountLbl'),S.spindleCount);
+    if(parseInt(S.spindleCount)>1){s5+=note(tl('mtmStdNote'));s5+=row(tl('mtmSpecialLbl'),S.mtmSpecial==='yes'?tl('yes'):tl('no'));if(S.mtmSpecial==='yes')s5+=row('',S.mtmSpecialDesc);}
+    parts+=section(tl('s5'),s5);
   } else if(mt==='swiss'){
-    let s5=imgBlock(S.swissImg);
-    s5+=note(t('swissStdNote'));
-    s5+=row(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes'):t('no'));
+    let s5=imgBlock(S.swissImg)+note(tl('swissStdNote'))+row(tl('swissSpecialLbl'),S.swissSpecial==='yes'?tl('yes'):tl('no'));
     if(S.swissSpecial==='yes') s5+=row('',S.swissSpecialDesc);
-    if(S.swissDevices.length){
-      S.swissDevices.forEach((d,di)=>{
-        s5+=subsec(`${t('fixTitle')} ${di+1}`);
-        s5+=row(t('fixtureTypeLbl'),d.type);
-        s5+=row(t('fixtureStationsLbl'),d.stations);
-        if(d.desc) s5+=row(t('addDesc'),d.desc);
-        s5+=imgBlock(d.images);
-      });
-    }
-    parts+=section(t('s5'),s5);
-  } else if(mt==='mill4'){
-    parts+=section(t('s5'), row(t('mill4AxisLbl'),S.mill4Axis));
-  } else if(mt==='mill5'){
-    parts+=section(t('s5'),
-      row(t('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?t('mountTable'):t('mountHead')))+
-      row(t('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?t('mountTable'):t('mountHead')))
-    );
-  }
-
-  // קבוצות כלים (MTM)
+    S.swissDevices.forEach((d,di)=>{s5+=subsec(`${tl('fixTitle')} ${di+1}`)+row(tl('fixtureTypeLbl'),d.type)+row(tl('fixtureStationsLbl'),d.stations)+(d.desc?row(tl('addDesc'),d.desc):'')+imgBlock(d.images);});
+    parts+=section(tl('s5'),s5);
+  } else if(mt==='mill4'){parts+=section(tl('s5'),row(tl('mill4AxisLbl'),S.mill4Axis));}
+  else if(mt==='mill5'){parts+=section(tl('s5'),row(tl('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?tl('mountTable'):tl('mountHead')))+row(tl('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?tl('mountTable'):tl('mountHead'))));}
   if(getSteps().includes(6)){
     S.toolGroups.forEach((g,gi)=>{
-      let gc='';
-      gc+=row(t('turretPosLbl'),g.pos);
-      gc+=row(t('turretTypeLbl'),g.turretType);
-      if(g.turretType==='turret'){
-        gc+=row(t('yAxisLbl'),g.yAxis);
-        gc+=row(t('toolCountLbl'),g.toolCount);
-        if(S.machineType==='mtm') gc+=row(t('isMillingLbl'),g.isMilling==='yes'?t('yes'):t('no'));
-      }
-      if(g.spCap) gc+=row(t('spCapLbl'),{main:t('spMain'),sub:t('spSub'),both:t('spBoth')}[g.spCap]);
-      if(parseInt(g.staticCount)>0){gc+=row(t('staticLbl'),g.staticCount);gc+=row(t('staticNumsLbl'),g.staticNums);}
-      if(parseInt(g.rotCount)>0){gc+=row(t('rotLbl'),g.rotCount);gc+=row(t('rotNumsLbl'),g.rotNums);}
-      if(g.extraDescYN==='yes'){gc+=row(t('groupExtraLbl'),g.extraDesc);gc+=imgBlock(g.extraImages);}
-      parts+=section(`${t('s6')} – ${t('groupTitle')} ${gi+1}`,gc);
+      let gc=row(tl('turretPosLbl'),g.pos)+row(tl('turretTypeLbl'),g.turretType);
+      if(g.turretType==='turret'){gc+=row(tl('yAxisLbl'),g.yAxis)+row(tl('toolCountLbl'),g.toolCount);if(mt==='mtm')gc+=row(tl('isMillingLbl'),g.isMilling==='yes'?tl('yes'):tl('no'));}
+      if(g.spCap)gc+=row(tl('spCapLbl'),{main:tl('spMain'),sub:tl('spSub'),both:tl('spBoth')}[g.spCap]);
+      if(parseInt(g.staticCount)>0){gc+=row(tl('staticLbl'),g.staticCount)+row(tl('staticNumsLbl'),g.staticNums);}
+      if(parseInt(g.rotCount)>0){gc+=row(tl('rotLbl'),g.rotCount)+row(tl('rotNumsLbl'),g.rotNums);}
+      if(g.extraDescYN==='yes'){gc+=row(tl('groupExtraLbl'),g.extraDesc)+imgBlock(g.extraImages);}
+      parts+=section(`${tl('s6')} – ${tl('groupTitle')} ${gi+1}`,gc);
     });
   }
-
-  // מכלולים
   if(getSteps().includes(7)){
     const anyAsm=S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]);
     if(anyAsm){
       let a7='';
-      if(S.asmNone){
-        a7+=row(t('asmLbl'),t('asmNoneLabel'));
-      } else {
-        [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{
-          if(S['asm'+sfx]){
-            a7+=subsec(t(lk));
-            if(S['asm'+sfx+'Desc']) a7+=row(t('asmDesc'),S['asm'+sfx+'Desc']);
-            a7+=imgBlock(S['asm'+sfx+'Img']);
-          }
-        });
-      }
-      parts+=section(t('s7'),a7);
+      if(S.asmNone){a7=row(tl('asmLbl'),tl('asmNoneLabel'));}
+      else{[['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{if(S['asm'+sfx]){a7+=subsec(tl(lk))+(S['asm'+sfx+'Desc']?row(tl('asmDesc'),S['asm'+sfx+'Desc']):'')+imgBlock(S['asm'+sfx+'Img']);}});}
+      parts+=section(tl('s7'),a7);
     }
   }
-
-  // סימולציה
-  if(getSteps().includes(8)){
-    let s8=row(t('simLbl'),S.simulation==='yes'?t('yes'):t('no'));
-    if(S.simulation==='yes') s8+=note(t('simNote'));
-    parts+=section(t('s8'),s8);
-  }
-
-  // מידע נוסף
-  let s9=row(t('extraLbl'),S.extraInfo==='yes'?t('yes'):t('no'));
-  if(S.extraInfo==='yes'){
-    if(S.extraInfoDesc) s9+=row(t('extraDesc'),S.extraInfoDesc);
-    s9+=imgBlock(S.extraInfoImg);
-  }
-  parts+=section(t('s9'),s9);
-
-  // footer
-  parts+=`<div class="pdf-section" style="${secStyle}border-top:2px solid #eee;margin-top:4px">
-    <div style="background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:12px;font-size:20px;color:#1a5f7a;text-align:center;margin-bottom:10px">✉ ${t('sumEmail')}</div>
-    <div style="font-size:16px;color:#bbb;display:flex;justify-content:space-between"><span>${t('pdfFor')}</span><span>${t('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>
-  </div>`;
-
+  if(getSteps().includes(8)){let s8=row(tl('simLbl'),S.simulation==='yes'?tl('yes'):tl('no'));if(S.simulation==='yes')s8+=note(tl('simNote'));parts+=section(tl('s8'),s8);}
+  let s9=row(tl('extraLbl'),S.extraInfo==='yes'?tl('yes'):tl('no'));
+  if(S.extraInfo==='yes'){if(S.extraInfoDesc)s9+=row(tl('extraDesc'),S.extraInfoDesc);s9+=imgBlock(S.extraInfoImg);}
+  parts+=section(tl('s9'),s9);
+  parts+=`<div class="pdf-section" style="${secStyle}border-top:2px solid #eee;margin-top:4px"><div style="background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:12px;font-size:20px;color:#1a5f7a;text-align:center;margin-bottom:10px">✉ ${tl('sumEmail')}</div><div style="font-size:16px;color:#bbb;display:flex;justify-content:space-between"><span>${tl('pdfFor')}</span><span>${tl('dateLabel')}: ${new Date().toLocaleDateString()}</span></div></div>`;
   return `<div style="${base}">${parts}</div>`;
 }
 
@@ -1275,37 +1181,38 @@ async function doPDF(share=false){
   document.getElementById('loading-text').textContent=t('loading');
   ov.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
-  tmpl.innerHTML=buildPdfHtml();
+  // אם שפה רוסית — PDF דו-לשוני: רוסית + עברית
+  const isBilingual=lang==='ru';
+  if(isBilingual){
+    tmpl.innerHTML=
+      `<div style="width:900px">`+
+      buildPdfHtml('ru')+
+      `<div style="width:900px;height:4px;background:#E8611A;margin:8px 0"></div>`+
+      buildPdfHtml('he')+
+      `</div>`;
+  } else {
+    tmpl.innerHTML=buildPdfHtml();
+  }
   tmpl.style.display='block';
   await new Promise(r=>setTimeout(r,600));
   try{
     const {jsPDF}=window.jspdf;
     const W=210,H=297;
-    const SCALE=1.5; // קטן יותר = קובץ קטן יותר
+    const SCALE=1.5;
     const PPM=900/W,PH=H*PPM;
-
-    // צולמים כל section בנפרד כדי למנוע חיתוך
     const sections=tmpl.querySelectorAll('.pdf-section');
     const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
     let curY=0;
     let firstPage=true;
-
     for(const sec of sections){
       const cv=await html2canvas(sec,{scale:SCALE,useCORS:true,backgroundColor:'#fff',logging:false,width:900});
-      const secH=(cv.height/SCALE/PPM); // גובה ב-mm
+      const secH=(cv.height/SCALE/PPM);
       const secW=W;
-
-      // אם ה-section לא נכנס בשאריות הדף — פתח דף חדש
-      if(!firstPage && curY+secH>H-10){
-        pdf.addPage();
-        curY=0;
-      }
+      if(!firstPage && curY+secH>H-10){pdf.addPage();curY=0;}
       firstPage=false;
-
       pdf.addImage(cv.toDataURL('image/jpeg',0.6),'JPEG',0,curY,secW,secH);
       curY+=secH+2;
     }
-
     const blob=pdf.output('blob');
     const name=`איפיון-פוסט-${(S.company||'cimatron').replace(/\s+/g,'-')}.pdf`;
     if(share && navigator.share){
