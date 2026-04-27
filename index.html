@@ -120,7 +120,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v2.8</div>
+    <div class="version-tag">v2.9</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -1147,42 +1147,58 @@ async function doPDF(share=false){
   document.getElementById('loading-text').textContent=t('loading');
   ov.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
-  // אם שפה רוסית — PDF דו-לשוני: רוסית + עברית
   tmpl.innerHTML=buildPdfHtml();
   tmpl.style.display='block';
   await new Promise(r=>setTimeout(r,600));
   try{
     const {jsPDF}=window.jspdf;
-    const W=210,H=297;
-    const SCALE=1.5;
-    const PPM=900/W,PH=H*PPM;
+    const W=210,H=297,SCALE=1.5,PPM=900/W,PH=H*PPM;
     const sections=tmpl.querySelectorAll('.pdf-section');
     const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
-    let curY=0;
-    let firstPage=true;
+    let curY=0,firstPage=true;
     for(const sec of sections){
       const cv=await html2canvas(sec,{scale:SCALE,useCORS:true,backgroundColor:'#fff',logging:false,width:900});
-      const secH=(cv.height/SCALE/PPM);
-      const secW=W;
-      if(!firstPage && curY+secH>H-10){pdf.addPage();curY=0;}
+      const secH=cv.height/SCALE/PPM;
+      if(!firstPage&&curY+secH>H-10){pdf.addPage();curY=0;}
       firstPage=false;
-      pdf.addImage(cv.toDataURL('image/jpeg',0.6),'JPEG',0,curY,secW,secH);
+      pdf.addImage(cv.toDataURL('image/jpeg',0.6),'JPEG',0,curY,W,secH);
       curY+=secH+2;
     }
     const blob=pdf.output('blob');
     const name=`איפיון-פוסט-${(S.company||'cimatron').replace(/\s+/g,'-')}.pdf`;
-    if(share && navigator.share){
-      const file=new File([blob],name,{type:'application/pdf'});
-      if(navigator.canShare&&navigator.canShare({files:[file]})){
-        try{await navigator.share({title:t('appTitle'),files:[file]});return;}
-        catch(e){if(e.name==='AbortError')return;}
+
+    if(share){
+      // נסיון 1: שיתוף עם קובץ מצורף
+      if(navigator.share&&navigator.canShare){
+        const file=new File([blob],name,{type:'application/pdf'});
+        if(navigator.canShare({files:[file]})){
+          try{await navigator.share({title:t('appTitle'),files:[file]});return;}
+          catch(e){if(e.name==='AbortError')return;}
+        }
       }
+      // נסיון 2: שיתוף טקסט בלבד (ללא קובץ)
+      if(navigator.share){
+        downloadBlob(blob,name);
+        try{await navigator.share({title:t('appTitle'),text:`${t('appTitle')} – ${S.company}`});}
+        catch(e){}
+        return;
+      }
+      // נסיון 3: fallback — הורדה בלבד
+      downloadBlob(blob,name);
+      alert(lang==='he'?'הקובץ הורד — ניתן לשלוח אותו ידנית':'The file was downloaded — please share it manually');
+    } else {
+      downloadBlob(blob,name);
     }
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();document.body.removeChild(a);
-    setTimeout(()=>URL.revokeObjectURL(url),3000);
   }catch(e){console.error(e);alert('שגיאה ביצירת PDF: '+e.message);}
   finally{tmpl.style.display='none';ov.classList.remove('show');}
+}
+
+function downloadBlob(blob,name){
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement('a');
+  a.href=url;a.download=name;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
 
 // ============================================================
