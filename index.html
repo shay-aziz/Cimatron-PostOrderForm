@@ -432,12 +432,12 @@ function step3(){
   </div>
   ${S.onSite==='no'?`<div class="field-group">
     <div class="field-label">${t('expectedDateLbl')} <span class="required">*</span></div>
-    <div class="notice-box">${t('expectedDateNote')}</div>
     <div style="margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="font-size:15px;font-weight:700;color:#E8611A">${S.expectedDate?formatDate(S.expectedDate):''}</span>
       <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();" class="date-orange"
         style="background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:10px 16px;font-size:15px;font-weight:700;color:#E8611A;cursor:pointer;outline:none;font-family:Arial;width:60px">
     </div>
+    <div class="notice-box" style="margin-top:8px">${t('expectedDateNote')}</div>
     <div class="error-msg" id="err-expectedDate"></div>
   </div>`:''}`;
 }
