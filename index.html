@@ -121,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v1.9</div>
+    <div class="version-tag">v2.0</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -143,7 +143,7 @@ he:{
   intro:'טופס זה מרכז את בקשות הלקוח והוא מהווה בסיס להצעת המחיר, הערכת מועד האספקה והתאמה מיטבית של תכולת הפוסט לצרכי הלקוח.\nיש למלא טופס זה לכל פוסט נדרש.',
   next:'הבא ›',prev:'‹ קודם',finish:'סיום ›',yes:'כן',no:'לא',optional:'(אופציונלי)',addImage:'צרף תמונה',addDesc:'הוסף תיאור',
   s1:'פרטי לקוח',s2:'בחירת התוכנה',s3:'פרטי מכונה',s4:'סוג מכונה',s5:'הגדרת מכונה',s6:'קבוצות כלים',s7:'מכלולים',s8:'סימולציה',s9:'מידע נוסף',ss:'סיכום',
-  machineDetailsSection:'פרטי המכונה',genderNote:'השאלון מנוסח בלשון זכר מטעמי נוחות בלבד, אך מיועד ומתייחס באופן שווה לכל המגדרים.',selectDate:'בחר תאריך',
+  machineDetailsSection:'פרטי המכונה',genderNote:'השאלון מנוסח בלשון זכר מטעמי נוחות בלבד, אך מיועד ומתייחס באופן שווה לכל המגדרים.',selectDate:'בחר תאריך',multipleImagesNote:'ניתן לצרף יותר מתמונה אחת',
   company:'שם החברה',contactName:'איש קשר טכני (שם + שם משפחה)',phone:'מספר טלפון',email:'אימייל',
   softwareLbl:'ציין את התוכנה שעבורה נדרש הפוסט',swCimatron:'סימטרון',swGibbs:'גיבסקאם',
   machineName:'שם המכונה',controllerName:'שם הבקרה',
@@ -193,7 +193,7 @@ en:{
   intro:'This form consolidates customer requirements and serves as the basis for the price quote, delivery estimate, and post customization.\nThis form must be filled out for each required post.',
   next:'Next ›',prev:'‹ Back',finish:'Finish ›',yes:'Yes',no:'No',optional:'(optional)',addImage:'Attach image',addDesc:'Add description',
   s1:'Contact Info',s2:'Software Selection',s3:'Machine Info',s4:'Machine Type',s5:'Machine Config',s6:'Tool Groups',s7:'Assemblies',s8:'Simulation',s9:'Extra Info',ss:'Summary',
-  machineDetailsSection:'Machine Details',genderNote:'This questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',selectDate:'Select date',
+  machineDetailsSection:'Machine Details',genderNote:'This questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',selectDate:'Select date',multipleImagesNote:'You can attach more than one image',
   company:'Company Name',contactName:'Technical Contact (First + Last Name)',phone:'Phone Number',email:'Email',
   softwareLbl:'Software required for the post',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
   machineName:'Machine Name',controllerName:'Controller Name',
@@ -243,7 +243,7 @@ ru:{
   intro:'Эта форма собирает требования клиента и служит основой для коммерческого предложения и настройки поста.\nЭту форму необходимо заполнять для каждого требуемого поста.',
   next:'Далее ›',prev:'‹ Назад',finish:'Завершить ›',yes:'Да',no:'Нет',optional:'(необязательно)',addImage:'Прикрепить фото',addDesc:'Добавить описание',
   s1:'Данные клиента',s2:'Выбор ПО',s3:'Данные станка',s4:'Тип станка',s5:'Конфигурация',s6:'Группы инструментов',s7:'Доп. узлы',s8:'Симуляция',s9:'Доп. информация',ss:'Итог',
-  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',
+  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',multipleImagesNote:'Можно прикрепить несколько фото',
   company:'Название компании',contactName:'Технический контакт (Имя + Фамилия)',phone:'Номер телефона',email:'Email',
   softwareLbl:'ПО, для которого требуется пост',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
   machineName:'Название станка',controllerName:'Система ЧПУ',
@@ -433,12 +433,13 @@ function step3(){
   ${S.onSite==='no'?`<div class="field-group">
     <div class="field-label">${t('expectedDateLbl')} <span class="required">*</span></div>
     <div class="notice-box">${t('expectedDateNote')}</div>
-    <div style="margin-top:8px;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap">
+    <div style="margin-top:8px;display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="font-size:15px;font-weight:700;color:#E8611A">${S.expectedDate?formatDate(S.expectedDate):''}</span>
-      <label style="display:inline-flex;align-items:center;gap:6px;background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:10px 18px;cursor:pointer;font-size:14px;font-weight:700;color:#E8611A">
-        📅 ${t('selectDate')}
-        <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();" style="position:absolute;opacity:0;width:1px;height:1px;pointer-events:none">
-      </label>
+      <div style="position:relative;display:inline-block">
+        <div style="background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:700;color:#E8611A;pointer-events:none">📅 ${t('selectDate')}</div>
+        <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();"
+          style="position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;font-size:16px">
+      </div>
     </div>
     <div class="error-msg" id="err-expectedDate"></div>
   </div>`:''}`;
@@ -843,13 +844,13 @@ function fTextImg(key,val,req,imgKey){
 function fImg(stateKey){
   const imgs=S[stateKey]||[];
   return `<div>
-    <label class="file-label">📷 ${t('addImage')}<input type="file" accept="image/*" capture="environment" multiple onchange="handleImg('${stateKey}',this.files)"></label>
+    <label class="file-label">📷 ${t('addImage')} <span style="font-size:11px;color:#aaa;font-weight:400">${t('multipleImagesNote')}</span><input type="file" accept="image/*" multiple onchange="handleImg('${stateKey}',this.files)"></label>
     ${imgs.length?`<div class="file-preview">${imgs.map((i,idx)=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span><span onclick="removeImg('${stateKey}',${idx})" style="color:#e74c3c;cursor:pointer;font-size:11px">✕</span></div>`).join('')}</div>`:''}
   </div>`;
 }
-function fImgCb(onchangeCode,imgs,stateExpr){
+function fImgCb(onchangeCode,imgs){
   return `<div>
-    <label class="file-label">📷 ${t('addImage')}<input type="file" accept="image/*" capture="environment" multiple onchange="${onchangeCode}"></label>
+    <label class="file-label">📷 ${t('addImage')} <span style="font-size:11px;color:#aaa;font-weight:400">${t('multipleImagesNote')}</span><input type="file" accept="image/*" multiple onchange="${onchangeCode}"></label>
     ${(imgs||[]).length?`<div class="file-preview">${(imgs||[]).map(i=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span></div>`).join('')}</div>`:''}
   </div>`;
 }
@@ -1093,11 +1094,11 @@ function buildPdfHtml(){
   const or='#E8611A';
   const logo=logoBase64?`<img src="${logoBase64}" style="height:36px">`:'';
   const hdr=`<div style="background:${or};padding:16px 28px;display:flex;align-items:center;justify-content:space-between;margin-bottom:20px"><div><div style="color:#fff;font-size:20px;font-weight:700">${t('appTitle')}</div><div style="color:#ffe0cc;font-size:13px">${t('appSub')}</div></div>${logo}</div>`;
-  const sec=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:5px 14px;border-radius:5px;font-size:13px;font-weight:700;margin:14px 0 8px">${txt}</div>`;
-  const row=(l,v)=>v?`<div style="display:flex;gap:10px;margin-bottom:6px;font-size:13px"><span style="color:#999;min-width:150px;flex-shrink:0;font-size:12px">${l}</span><span style="color:#222">${v}</span></div>`:'';
+  const sec=(txt)=>`<div style="background:${or};color:#fff;display:inline-block;padding:8px 20px;border-radius:5px;font-size:22px;font-weight:700;margin:18px 0 12px">${txt}</div>`;
+  const row=(l,v)=>v?`<div style="display:flex;gap:12px;margin-bottom:10px;font-size:22px"><span style="color:#999;min-width:200px;flex-shrink:0;font-size:20px">${l}</span><span style="color:#222">${v}</span></div>`:'';
   const pdfImgs=(imgs)=>{
     if(!imgs||!imgs.length) return '';
-    return `<div style="margin:8px 0 12px">${imgs.map(i=>`<img src="${i.data}" style="width:100%;max-width:836px;margin-bottom:8px;display:block;border-radius:4px">`).join('')}</div>`;
+    return `<div style="margin:10px 0 16px;text-align:center">${imgs.map(i=>`<img src="${i.data}" style="width:80%;display:block;margin:0 auto 10px;border-radius:6px">`).join('')}</div>`;
   };
   const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
   let c='';
