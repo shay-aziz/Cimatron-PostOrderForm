@@ -623,78 +623,7 @@ function buildGroup(g,gi,mt){
     }
   }
 
-  // For lathe/latheMill: static/rotating tools, fixtures, extra desc
-  if(!isMTM){
-    h+=buildFullToolGroupFields(g,gi,false);
-  }
-
   h+='</div>';
-  return h;
-}
-
-function buildFullToolGroupFields(g,gi,isSwiss){
-  const updInp=(k)=>`updateGVal(${gi},${isSwiss},'${k}',this.value)`;
-  let h='';
-  // Static tools
-  h+=`<div class="field-group"><div class="field-label">${t('staticLbl')} <span class="required">*</span></div>
-    <input class="field-input" type="number" min="0" value="${g.staticCount!==''?g.staticCount:''}" oninput="${updInp('staticCount')}" style="max-width:120px">
-    ${parseInt(g.staticCount)>0?`
-    <div style="margin-top:8px"><div class="field-label">${t('staticNumsLbl')}</div>
-    <input class="field-input" value="${g.staticNums||''}" oninput="${updInp('staticNums')}"></div>
-    ${toolDetails(g,gi,isSwiss,'static')}`:''}
-  </div>`;
-  // Rotating tools
-  h+=`<div class="field-group"><div class="field-label">${t('rotLbl')} <span class="required">*</span></div>
-    <input class="field-input" type="number" min="0" value="${g.rotCount!==''?g.rotCount:''}" oninput="${updInp('rotCount')}" style="max-width:120px">
-    ${parseInt(g.rotCount)>0?`
-    <div style="margin-top:8px"><div class="field-label">${t('rotNumsLbl')}</div>
-    <input class="field-input" value="${g.rotNums||''}" oninput="${updInp('rotNums')}"></div>
-    ${toolDetails(g,gi,isSwiss,'rot')}`:''}
-  </div>`;
-  // Extra desc
-  h+=`<div class="field-group"><div class="field-label">${t('groupExtraLbl')} <span class="required">*</span></div>
-    <div class="radio-group">
-      ${radio3(`g${gi}ext`,'yes',t('yes'),g.extraDescYN==='yes',`updateG(${gi},${isSwiss},'extraDescYN','yes')`)}
-      ${radio3(`g${gi}ext`,'no',t('no'),g.extraDescYN==='no',`updateG(${gi},${isSwiss},'extraDescYN','no')`)}
-    </div>
-    ${g.extraDescYN==='yes'?`<textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="${updInp('extraDesc')}" style="margin-top:6px">${g.extraDesc||''}</textarea>
-      ${fImgCb(`updateGImgArr(${gi},${isSwiss},'extraImages',this.files)`,g.extraImages)}`:''}
-  </div>`;
-  return h;
-}
-
-function toolDetails(g,gi,isSwiss,pfx){
-  const dirKey=pfx+'Dir', fixKey=pfx+'Fixture', fixArr=pfx+'Fixtures';
-  if(!g[fixArr]) g[fixArr]=[];
-  const updInp=(k)=>`updateGVal(${gi},${isSwiss},'${k}',this.value)`;
-  let h=`<div class="field-group" style="margin-top:8px">
-    <div class="field-label">${t('dirLbl')} <span class="required">*</span></div>
-    <div class="radio-group" style="flex-wrap:wrap">
-      ${radio3(`tgd_${gi}_${pfx}`,'diam',t('dirDiam'),g[dirKey]==='diam',`updateG(${gi},${isSwiss},'${dirKey}','diam')`)}
-      ${radio3(`tgd_${gi}_${pfx}`,'face',t('dirFace'),g[dirKey]==='face',`updateG(${gi},${isSwiss},'${dirKey}','face')`)}
-      ${radio3(`tgd_${gi}_${pfx}`,'5ax',t('dir5ax'),g[dirKey]==='5ax',`updateG(${gi},${isSwiss},'${dirKey}','5ax')`)}
-    </div></div>
-  <div class="field-group">
-    <div class="field-label">${t('fixtureLbl')} <span class="required">*</span></div>
-    <div class="radio-group">
-      ${radio3(`tgf_${gi}_${pfx}`,'yes',t('yes'),g[fixKey]==='yes',`updateG(${gi},${isSwiss},'${fixKey}','yes')`)}
-      ${radio3(`tgf_${gi}_${pfx}`,'no',t('no'),g[fixKey]==='no',`updateG(${gi},${isSwiss},'${fixKey}','no')`)}
-    </div>
-    ${g[fixKey]==='yes'?`<div style="margin-top:8px">
-      ${g[fixArr].map((fx,fi)=>`<div class="section-card" style="margin-bottom:8px">
-        <div class="section-card-title">${t('fixTitle')} ${fi+1}
-          <button class="btn-remove" onclick="removeFix(${gi},${isSwiss},'${fixArr}',${fi})">${t('removeFixture')}</button>
-        </div>
-        <div class="field-label" style="margin-bottom:4px">${t('fixtureTypeLbl')} <span class="required">*</span></div>
-        <input class="field-input" placeholder="${t('fixtureTypeLbl')}" value="${fx.type||''}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'type',this.value)" style="margin-bottom:6px">
-        <div class="field-label" style="margin-bottom:4px">${t('fixtureStationsLbl')} <span class="required">*</span></div>
-        <input class="field-input" placeholder="${t('fixtureStationsPlaceholder')}" value="${fx.stations||''}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'stations',this.value)" style="margin-bottom:6px">
-        <textarea class="textarea-field" placeholder="${t('addDesc')}" oninput="updateFix(${gi},${isSwiss},'${fixArr}',${fi},'desc',this.value)">${fx.desc||''}</textarea>
-        ${fImgCb(`updateFixImg(${gi},${isSwiss},'${fixArr}',${fi},this.files)`,fx.images)}
-      </div>`).join('')}
-      <button class="btn-add" style="font-size:13px;padding:7px 14px;margin-top:4px" onclick="addFix(${gi},${isSwiss},'${fixArr}')">+ ${t('addFixture')}</button>
-    </div>`:''}
-  </div>`;
   return h;
 }
 
@@ -1197,22 +1126,16 @@ function buildPdfHtml(forceLang){
     S.toolGroups.forEach((g,gi)=>{
       let gc='';
       gc+=row(tl('turretPosLbl'),g.pos);
+      // ספינדל (אם יותר מ-1)
+      if(parseInt(S.spindleCount)>1&&g.spCap)
+        gc+=row(tl('spCapLbl'),{main:tl('spMain'),sub:tl('spSub'),both:tl('spBoth')}[g.spCap]);
       gc+=row(tl('turretTypeLbl'),g.turretType);
       if(g.turretType==='turret'){
         gc+=row(tl('yAxisLbl'),g.yAxis);
         gc+=row(tl('toolCountLbl'),g.toolCount);
         gc+=row(tl('isMillingLbl'),g.isMilling==='yes'?tl('yes'):tl('no'));
       }
-      if(g.spCap) gc+=row(tl('spCapLbl'),{main:tl('spMain'),sub:tl('spSub'),both:tl('spBoth')}[g.spCap]);
-      if(g.spCapDesc) gc+=row('',g.spCapDesc);
-      gc+=row(tl('staticLbl'),g.staticCount||'0');
-      if(parseInt(g.staticCount)>0) gc+=row(tl('staticNumsLbl'),g.staticNums);
-      gc+=row(tl('rotLbl'),g.rotCount||'0');
-      if(parseInt(g.rotCount)>0) gc+=row(tl('rotNumsLbl'),g.rotNums);
-      gc+=row(tl('groupExtraLbl'),g.extraDescYN==='yes'?tl('yes'):tl('no'));
-      if(g.extraDescYN==='yes'&&g.extraDesc) gc+=row('',g.extraDesc);
       parts+=section(`${tl('s6')} – ${tl('groupTitle')} ${gi+1}`,gc);
-      parts+=imgBlock(g.extraImages||[]);
     });
   }
 
