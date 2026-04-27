@@ -1108,7 +1108,8 @@ function buildPdfHtml(forceLang){
   const subsec=(txt)=>`<div style="font-weight:700;color:${or};font-size:20px;margin:10px 0 6px">${txt}</div>`;
   const imgBlock=(imgs)=>{
     if(!imgs||!imgs.length) return '';
-    return `<div style="margin:10px 0;text-align:center">${imgs.map(i=>`<img src="${i.data}" style="width:80%;display:block;margin:0 auto 8px;border-radius:6px;object-fit:contain">`).join('')}</div>`;
+    // כל תמונה ב-section נפרד כדי למנוע חיתוך בין דפים
+    return imgs.map(i=>`<div class="pdf-section" style="${secStyle}text-align:center"><img src="${i.data}" style="width:80%;display:block;margin:0 auto;border-radius:6px;object-fit:contain"></div>`).join('');
   };
   const section=(title,content)=>{
     if(!content) return '';
@@ -1116,56 +1117,145 @@ function buildPdfHtml(forceLang){
   };
   const mtMap={lathe:tl('tLath'),latheMill:tl('tLathMill'),mtm:tl('tMTM'),swiss:tl('tSwiss'),mill3:tl('tMill3'),mill4:tl('tMill4'),mill5:tl('tMill5'),other:tl('tOther')};
   let parts=hdr;
-  parts+=section(tl('s1'),row(tl('company'),S.company)+row(tl('contactName'),S.contactName)+row(tl('phone'),S.phone)+row(tl('email'),S.email));
-  parts+=section(tl('s2'),row(tl('softwareLbl'),S.software==='cimatron'?tl('swCimatron'):tl('swGibbs')));
-  let s3=row(tl('machineName'),S.machineName)+imgBlock(S.machineNameImg)+row(tl('controllerName'),S.controllerName)+imgBlock(S.controllerImg)+row(tl('onSiteLbl'),S.onSite==='yes'?tl('yes'):tl('no'));
+
+  // ── סעיף 1: פרטי לקוח ──
+  parts+=section(tl('s1'),
+    row(tl('company'),S.company)+
+    row(tl('contactName'),S.contactName)+
+    row(tl('phone'),S.phone)+
+    row(tl('email'),S.email||'—')
+  );
+
+  // ── סעיף 2: תוכנה ──
+  parts+=section(tl('s2'),
+    row(tl('softwareLbl'),S.software==='cimatron'?tl('swCimatron'):tl('swGibbs'))
+  );
+
+  // ── סעיף 3: פרטי מכונה ──
+  parts+=section(tl('s3'), row(tl('machineName'),S.machineName));
+  parts+=imgBlock(S.machineNameImg);
+  parts+=section('', row(tl('controllerName'),S.controllerName));
+  parts+=imgBlock(S.controllerImg);
+  let s3c=row(tl('onSiteLbl'),S.onSite==='yes'?tl('yes'):tl('no'));
   if(S.onSite==='no'){
-    s3+=`<div style="font-size:22px;margin-bottom:6px;color:#222">${tl('expectedDateLbl')}</div>`;
-    s3+=note(tl('expectedDateNote'));
-    s3+=`<div style="font-size:22px;font-weight:700;color:#E8611A;margin-top:4px">${formatDate(S.expectedDate)}</div>`;
+    s3c+=`<div style="font-size:22px;color:#222;margin-bottom:4px">${tl('expectedDateLbl')}</div>`;
+    s3c+=note(tl('expectedDateNote'));
+    s3c+=`<div style="font-size:22px;font-weight:700;color:#E8611A;margin-top:6px">${formatDate(S.expectedDate)}</div>`;
   }
-  parts+=section(tl('s3'),s3);
+  parts+=section('',s3c);
+
+  // ── סעיף 4: סוג מכונה ──
   let s4=row(tl('machineTypeLbl'),mtMap[mt]||'');
   if(mt==='other') s4+=row(tl('otherDescLbl'),S.machineTypeOther);
   parts+=section(tl('s4'),s4);
-  if(mt==='lathe'){parts+=section(tl('s5'),row(tl('turretPosLbl'),S.turretPos)+row(tl('turretTypeLbl'),S.turretType)+row(tl('toolCountLbl'),S.toolCount));}
-  else if(mt==='latheMill'){parts+=section(tl('s5'),row(tl('turretPosLbl'),S.turretPos)+row(tl('turretTypeLbl'),S.turretType)+row(tl('yAxisLbl'),S.yAxis)+row(tl('toolCountLbl'),S.toolCount));}
-  else if(mt==='mtm'){
+
+  // ── סעיף 5: הגדרת מכונה ──
+  if(mt==='lathe'){
+    parts+=section(tl('s5'),
+      row(tl('turretPosLbl'),S.turretPos)+
+      row(tl('turretTypeLbl'),S.turretType)+
+      row(tl('toolCountLbl'),S.toolCount)
+    );
+  } else if(mt==='latheMill'){
+    parts+=section(tl('s5'),
+      row(tl('turretPosLbl'),S.turretPos)+
+      row(tl('turretTypeLbl'),S.turretType)+
+      row(tl('yAxisLbl'),S.yAxis)+
+      row(tl('toolCountLbl'),S.toolCount)
+    );
+  } else if(mt==='mtm'){
     let s5=row(tl('spindleCountLbl'),S.spindleCount);
-    if(parseInt(S.spindleCount)>1){s5+=note(tl('mtmStdNote'));s5+=row(tl('mtmSpecialLbl'),S.mtmSpecial==='yes'?tl('yes'):tl('no'));if(S.mtmSpecial==='yes')s5+=row('',S.mtmSpecialDesc);}
+    if(parseInt(S.spindleCount)>1){
+      s5+=note(tl('mtmStdNote'));
+      s5+=row(tl('mtmSpecialLbl'),S.mtmSpecial==='yes'?tl('yes'):tl('no'));
+      if(S.mtmSpecial==='yes'&&S.mtmSpecialDesc) s5+=row('',S.mtmSpecialDesc);
+    }
     parts+=section(tl('s5'),s5);
   } else if(mt==='swiss'){
-    let s5=imgBlock(S.swissImg)+note(tl('swissStdNote'))+row(tl('swissSpecialLbl'),S.swissSpecial==='yes'?tl('yes'):tl('no'));
-    if(S.swissSpecial==='yes') s5+=row('',S.swissSpecialDesc);
-    S.swissDevices.forEach((d,di)=>{s5+=subsec(`${tl('fixTitle')} ${di+1}`)+row(tl('fixtureTypeLbl'),d.type)+row(tl('fixtureStationsLbl'),d.stations)+(d.desc?row(tl('addDesc'),d.desc):'')+imgBlock(d.images);});
+    let s5=note(tl('swissStdNote'));
+    s5+=row(tl('swissSpecialLbl'),S.swissSpecial==='yes'?tl('yes'):tl('no'));
+    if(S.swissSpecial==='yes'&&S.swissSpecialDesc) s5+=row('',S.swissSpecialDesc);
     parts+=section(tl('s5'),s5);
-  } else if(mt==='mill4'){parts+=section(tl('s5'),row(tl('mill4AxisLbl'),S.mill4Axis));}
-  else if(mt==='mill5'){parts+=section(tl('s5'),row(tl('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?tl('mountTable'):tl('mountHead')))+row(tl('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?tl('mountTable'):tl('mountHead'))));}
+    parts+=imgBlock(S.swissImg);
+    S.swissDevices.forEach((d,di)=>{
+      let ds=row(tl('fixtureTypeLbl'),d.type)+row(tl('fixtureStationsLbl'),d.stations);
+      if(d.desc) ds+=row(tl('addDesc'),d.desc);
+      parts+=section(`${tl('fixTitle')} ${di+1}`,ds);
+      parts+=imgBlock(d.images);
+    });
+  } else if(mt==='mill4'){
+    parts+=section(tl('s5'),row(tl('mill4AxisLbl'),S.mill4Axis));
+  } else if(mt==='mill5'){
+    parts+=section(tl('s5'),
+      row(tl('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?tl('mountTable'):tl('mountHead')))+
+      row(tl('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?tl('mountTable'):tl('mountHead')))
+    );
+  }
+
+  // ── סעיף 6: קבוצות כלים (MTM) ──
   if(getSteps().includes(6)){
     S.toolGroups.forEach((g,gi)=>{
-      let gc=row(tl('turretPosLbl'),g.pos)+row(tl('turretTypeLbl'),g.turretType);
-      if(g.turretType==='turret'){gc+=row(tl('yAxisLbl'),g.yAxis)+row(tl('toolCountLbl'),g.toolCount);if(mt==='mtm')gc+=row(tl('isMillingLbl'),g.isMilling==='yes'?tl('yes'):tl('no'));}
-      if(g.spCap)gc+=row(tl('spCapLbl'),{main:tl('spMain'),sub:tl('spSub'),both:tl('spBoth')}[g.spCap]);
-      if(parseInt(g.staticCount)>0){gc+=row(tl('staticLbl'),g.staticCount)+row(tl('staticNumsLbl'),g.staticNums);}
-      if(parseInt(g.rotCount)>0){gc+=row(tl('rotLbl'),g.rotCount)+row(tl('rotNumsLbl'),g.rotNums);}
-      if(g.extraDescYN==='yes'){gc+=row(tl('groupExtraLbl'),g.extraDesc)+imgBlock(g.extraImages);}
+      let gc='';
+      gc+=row(tl('turretPosLbl'),g.pos);
+      gc+=row(tl('turretTypeLbl'),g.turretType);
+      if(g.turretType==='turret'){
+        gc+=row(tl('yAxisLbl'),g.yAxis);
+        gc+=row(tl('toolCountLbl'),g.toolCount);
+        gc+=row(tl('isMillingLbl'),g.isMilling==='yes'?tl('yes'):tl('no'));
+      }
+      if(g.spCap) gc+=row(tl('spCapLbl'),{main:tl('spMain'),sub:tl('spSub'),both:tl('spBoth')}[g.spCap]);
+      if(g.spCapDesc) gc+=row('',g.spCapDesc);
+      gc+=row(tl('staticLbl'),g.staticCount||'0');
+      if(parseInt(g.staticCount)>0) gc+=row(tl('staticNumsLbl'),g.staticNums);
+      gc+=row(tl('rotLbl'),g.rotCount||'0');
+      if(parseInt(g.rotCount)>0) gc+=row(tl('rotNumsLbl'),g.rotNums);
+      gc+=row(tl('groupExtraLbl'),g.extraDescYN==='yes'?tl('yes'):tl('no'));
+      if(g.extraDescYN==='yes'&&g.extraDesc) gc+=row('',g.extraDesc);
       parts+=section(`${tl('s6')} – ${tl('groupTitle')} ${gi+1}`,gc);
+      parts+=imgBlock(g.extraImages||[]);
     });
   }
+
+  // ── סעיף 7: מכלולים ──
   if(getSteps().includes(7)){
     const anyAsm=S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]);
     if(anyAsm){
-      let a7='';
-      if(S.asmNone){a7=row(tl('asmLbl'),tl('asmNoneLabel'));}
-      else{[['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{if(S['asm'+sfx]){a7+=subsec(tl(lk))+(S['asm'+sfx+'Desc']?row(tl('asmDesc'),S['asm'+sfx+'Desc']):'')+imgBlock(S['asm'+sfx+'Img']);}});}
-      parts+=section(tl('s7'),a7);
+      if(S.asmNone){
+        parts+=section(tl('s7'),row(tl('asmLbl'),tl('asmNoneLabel')));
+      } else {
+        let firstAsm=true;
+        [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']].forEach(([sfx,lk])=>{
+          if(S['asm'+sfx]){
+            let ac=subsec(tl(lk));
+            if(S['asm'+sfx+'Desc']) ac+=row(tl('asmDesc'),S['asm'+sfx+'Desc']);
+            parts+=section(firstAsm?tl('s7'):'',ac);
+            parts+=imgBlock(S['asm'+sfx+'Img']||[]);
+            firstAsm=false;
+          }
+        });
+      }
     }
   }
-  if(getSteps().includes(8)){let s8=row(tl('simLbl'),S.simulation==='yes'?tl('yes'):tl('no'));if(S.simulation==='yes')s8+=note(tl('simNote'));parts+=section(tl('s8'),s8);}
+
+  // ── סעיף 8: סימולציה ──
+  if(getSteps().includes(8)){
+    let s8=row(tl('simLbl'),S.simulation==='yes'?tl('yes'):tl('no'));
+    if(S.simulation==='yes') s8+=note(tl('simNote'));
+    parts+=section(tl('s8'),s8);
+  }
+
+  // ── סעיף 9: מידע נוסף ──
   let s9=row(tl('extraLbl'),S.extraInfo==='yes'?tl('yes'):tl('no'));
-  if(S.extraInfo==='yes'){if(S.extraInfoDesc)s9+=row(tl('extraDesc'),S.extraInfoDesc);s9+=imgBlock(S.extraInfoImg);}
+  if(S.extraInfo==='yes'&&S.extraInfoDesc) s9+=row(tl('extraDesc'),S.extraInfoDesc);
   parts+=section(tl('s9'),s9);
-  parts+=`<div class="pdf-section" style="${secStyle}border-top:2px solid #eee;margin-top:4px"><div style="background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:12px;font-size:20px;color:#1a5f7a;text-align:center;margin-bottom:10px">✉ ${tl('sumEmail')}</div><div style="font-size:16px;color:#bbb;display:flex;justify-content:space-between"><span>${tl('pdfFor')}</span><span>${tl('dateLabel')}: ${new Date().toLocaleDateString()}</span></div></div>`;
+  if(S.extraInfo==='yes') parts+=imgBlock(S.extraInfoImg||[]);
+
+  // ── Footer ──
+  parts+=`<div class="pdf-section" style="${secStyle}border-top:2px solid #eee;margin-top:4px">
+    <div style="background:#e8f4f8;border:1px solid #b3d9e8;border-radius:6px;padding:12px;font-size:20px;color:#1a5f7a;text-align:center;margin-bottom:10px">✉ ${tl('sumEmail')}</div>
+    <div style="font-size:16px;color:#bbb;display:flex;justify-content:space-between"><span>${tl('pdfFor')}</span><span>${tl('dateLabel')}: ${new Date().toLocaleDateString()}</span></div>
+  </div>`;
+
   return `<div style="${base}">${parts}</div>`;
 }
 
