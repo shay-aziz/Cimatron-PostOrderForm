@@ -69,6 +69,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
 .btn-action{padding:12px 20px;font-size:14px;border-radius:10px;cursor:pointer;font-weight:700;border:none;display:flex;align-items:center;gap:6px}
 .btn-pdf{background:#E8611A;color:#fff}
 .btn-share{background:#2A5FA8;color:#fff}
+.btn-share-alt{background:#27ae60;color:#fff}
 .btn-copy{background:#555;color:#fff}
 .btn-reset-partial{background:#fff;color:#E8611A;border:2px solid #E8611A}
 .btn-reset-full{background:#fff;color:#c0392b;border:2px solid #c0392b}
@@ -120,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v3.0</div>
+    <div class="version-tag">v3.2</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -178,7 +179,7 @@ he:{
   simNote:'באחריות הלקוח לדאוג למודל תלת מימדי לצורך הסימולציה. ניתן לקבל מודל זה מיבואן המכונה.',
   extraLbl:'האם יש מידע נוסף כמו צירים נוספים או כל פרט אחר שלא ציינת?',extraDesc:'תיאור',
   sumTitle:'סיכום הטופס',sumEmail:'יש לשלוח את הטופס לסימטרון: shay.aziz@cimatron.com',
-  btnPdf:'שמור כ PDF',btnShare:'שתף PDF',btnEdit:'ערוך',btnResetPartial:'איפוס ושמור פרטי לקוח',btnResetFull:'איפוס מלא',
+  btnPdf:'שמור כ PDF',btnShare:'שתף PDF',btnShareAlt:'שתף בפורמט...',btnEdit:'ערוך',btnResetPartial:'איפוס ושמור פרטי לקוח',btnResetFull:'איפוס מלא',
   copied:'הועתק!',loading:'מכין PDF...',asmNoneLabel:'ללא מכלולים נוספים',otherDesc:'פרט כאן...',
   otherDescLbl:'תיאור סוג המכונה',swissDevicesLbl:'התקנים (אופציונלי)',mtmStep5Note:'לאחר בחירת מספר הספינדלים בדף הבא תוכל להגדיר קבוצות כלים.',
   fixtureStationsLbl:'ציין את מספרי התחנות שבהן ניתן להרכיב את ההתקן',fixtureStationsPlaceholder:'למשל: 3, 7, 11',
@@ -228,7 +229,7 @@ en:{
   simNote:'Customer is responsible for providing a 3D model for simulation. This can be obtained from the machine importer.',
   extraLbl:'Any additional information such as extra axes or any detail not mentioned?',extraDesc:'Description',
   sumTitle:'Form Summary',sumEmail:'Send this form to Cimatron: shay.aziz@cimatron.com',
-  btnPdf:'Save as PDF',btnShare:'Share PDF',btnEdit:'Edit',btnResetPartial:'Reset (keep contact)',btnResetFull:'Full Reset',
+  btnPdf:'Save as PDF',btnShare:'Share PDF',btnShareAlt:'Share as...',btnEdit:'Edit',btnResetPartial:'Reset (keep contact)',btnResetFull:'Full Reset',
   copied:'Copied!',loading:'Preparing PDF...',asmNoneLabel:'No additional assemblies',otherDesc:'Describe here...',
   otherDescLbl:'Machine type description',swissDevicesLbl:'Fixtures (optional)',mtmStep5Note:'After selecting the number of spindles on the next page, you can define tool groups.',
   fixtureStationsLbl:'Specify the station numbers where this fixture can be mounted',fixtureStationsPlaceholder:'e.g. 3, 7, 11',
@@ -689,6 +690,7 @@ function paintSummary(body){
     <div class="action-bar">
       <button class="btn-action btn-pdf" onclick="doPDF()">📄 ${t('btnPdf')}</button>
       <button class="btn-action btn-share" onclick="doSharePDF()">↗ ${t('btnShare')}</button>
+      <button class="btn-action btn-share-alt" onclick="doShareAlt()">📤 ${t('btnShareAlt')}</button>
       <button class="btn-action btn-edit" onclick="prevStep()">‹ ${t('prev')}</button>
       <button class="btn-action btn-reset-full" onclick="doResetFull()">🗑 ${t('btnResetFull')}</button>
       <button class="btn-action btn-reset-partial" onclick="doResetPartial()">↺ ${t('btnResetPartial')}</button>
@@ -1142,12 +1144,26 @@ async function doSharePDF(){
   await doPDF(true);
 }
 
+async function doShareAlt(){
+  // מוריד את ה-PDF קודם
+  await doPDF(false);
+  // אחר כך פותח שיתוף טקסט עם הנחיה
+  const msg=lang==='he'
+    ?`${t('appTitle')} – ${S.company}\n\nהקובץ הורד למכשיר. יש לצרף אותו בשיתוף.`
+    :`${t('appTitle')} – ${S.company}\n\nFile downloaded. Please attach it when sharing.`;
+  if(navigator.share){
+    try{await navigator.share({title:t('appTitle'),text:msg});}catch(e){}
+  } else {
+    alert(msg);
+  }
+}
+
 async function doPDF(share=false){
   const ov=document.getElementById('loading-overlay');
   document.getElementById('loading-text').textContent=t('loading');
   ov.classList.add('show');
   try{
-    const blob=await buildPdfBlob();
+    const blob=await generatePdfBlob();
     const name=`איפיון-פוסט-${(S.company||'cimatron').replace(/\s+/g,'-')}.pdf`;
     if(share){
       if(navigator.share&&navigator.canShare){
@@ -1158,11 +1174,7 @@ async function doPDF(share=false){
         }
       }
       downloadBlob(blob,name);
-      if(navigator.share){
-        try{await navigator.share({title:t('appTitle'),text:`${t('appTitle')} – ${S.company}`});}catch(e){}
-      } else {
-        alert(lang==='he'?'הקובץ הורד למכשיר':'File downloaded to device');
-      }
+      alert(lang==='he'?'הקובץ הורד — שלח אותו ידנית':'File downloaded — please share manually');
     } else {
       downloadBlob(blob,name);
     }
@@ -1178,162 +1190,35 @@ function downloadBlob(blob,name){
   setTimeout(()=>URL.revokeObjectURL(url),3000);
 }
 
-async function buildPdfBlob(){
+async function generatePdfBlob(){
   const {jsPDF}=window.jspdf;
-  const doc=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
-  const W=210,H=297,ML=14,MR=14,MT=26;
-  const TW=W-ML-MR;
-  const isRTL=lang==='he';
-  let y=MT;
+  // יצירת container זמני בגוף הדף (לא fixed) כדי ש-html2canvas יעבוד
+  const container=document.createElement('div');
+  container.style.cssText='position:absolute;top:0;left:-9999px;width:900px;background:#fff;z-index:-1';
+  container.innerHTML=buildPdfHtml();
+  document.body.appendChild(container);
+  await new Promise(r=>setTimeout(r,400));
 
-  function checkPage(need=10){if(y+need>H-12){doc.addPage();y=15;}}
-  function secTitle(txt){
-    checkPage(14);
-    doc.setFillColor(232,97,26);
-    doc.roundedRect(ML,y,TW,9,2,2,'F');
-    doc.setTextColor(255,255,255);
-    doc.setFontSize(11);
-    doc.setFont('helvetica','bold');
-    doc.text(txt,isRTL?ML+TW-3:ML+3,y+6.2,{align:isRTL?'right':'left'});
-    y+=12;
-  }
-  function row(lbl,val){
-    if(val===undefined||val===null||val==='') return;
-    const vs=String(val);
-    doc.setFontSize(9);
-    if(lbl){
-      doc.setTextColor(140,140,140);
-      doc.setFont('helvetica','normal');
-      const lx=isRTL?ML+TW:ML;
-      const lw=TW*0.42;
-      const ll=doc.splitTextToSize(lbl,lw);
-      const need=ll.length*5+3;
-      checkPage(need);
-      doc.text(ll,lx,y,{align:isRTL?'right':'left'});
-    }
-    doc.setTextColor(30,30,30);
-    doc.setFont('helvetica','bold');
-    const vx=isRTL?ML+TW*0.55:ML+TW*0.45;
-    const vw=TW*0.55;
-    const vl=doc.splitTextToSize(vs,vw);
-    const need2=vl.length*5+3;
-    checkPage(need2);
-    doc.text(vl,isRTL?vx:ML+TW*0.45,y,{align:isRTL?'right':'left'});
-    y+=vl.length*5+2;
-  }
-  function noteBox(txt){
-    if(!txt) return;
-    const ls=doc.splitTextToSize(txt,TW-6);
-    const bh=ls.length*4.5+6;
-    checkPage(bh+4);
-    doc.setFillColor(255,243,224);
-    doc.setDrawColor(255,224,178);
-    doc.roundedRect(ML,y,TW,bh,2,2,'FD');
-    doc.setTextColor(100,80,40);
-    doc.setFontSize(8);
-    doc.setFont('helvetica','normal');
-    doc.text(ls,isRTL?ML+TW-3:ML+3,y+5,{align:isRTL?'right':'left'});
-    y+=bh+3;
-  }
-  async function addImg(data){
-    await new Promise(res=>{
-      const img=new Image();
-      img.onload=()=>{
-        const r=img.width/img.height;
-        const iw=TW*0.8,ih=iw/r;
-        checkPage(ih+4);
-        try{doc.addImage(img,ML+(TW-iw)/2,y,iw,ih);}catch(e){}
-        y+=ih+4;res();
-      };
-      img.onerror=()=>res();
-      img.src=data;
-    });
+  const W=210,H=297,SCALE=1.8,PPM=900/W,PH=H*PPM;
+  const sections=container.querySelectorAll('.pdf-section');
+  const pdf=new jsPDF({orientation:'p',unit:'mm',format:'a4'});
+  let curY=0,firstPage=true;
+
+  for(const sec of sections){
+    let cv;
+    try{
+      cv=await html2canvas(sec,{scale:SCALE,useCORS:true,backgroundColor:'#fff',logging:false,width:900,allowTaint:true});
+    }catch(e){continue;}
+    if(!cv||cv.width===0) continue;
+    const secH=cv.height/SCALE/PPM;
+    if(!firstPage&&curY+secH>H-8){pdf.addPage();curY=0;}
+    firstPage=false;
+    pdf.addImage(cv.toDataURL('image/jpeg',0.7),'JPEG',0,curY,W,secH);
+    curY+=secH+1;
   }
 
-  // Header
-  doc.setFillColor(232,97,26);
-  doc.rect(0,0,W,20,'F');
-  if(logoBase64){try{doc.addImage(logoBase64,'PNG',isRTL?W-54:ML,2,42,16);}catch(e){}}
-  doc.setTextColor(255,255,255);
-  doc.setFontSize(13);doc.setFont('helvetica','bold');
-  doc.text(t('appTitle'),isRTL?W-ML:ML,11,{align:isRTL?'right':'left'});
-  doc.setFontSize(8);
-  doc.text(t('appSub'),isRTL?W-ML:ML,17,{align:isRTL?'right':'left'});
-
-  const mt=S.machineType;
-  const mtMap={lathe:t('tLath'),latheMill:t('tLathMill'),mtm:t('tMTM'),swiss:t('tSwiss'),mill3:t('tMill3'),mill4:t('tMill4'),mill5:t('tMill5'),other:t('tOther')};
-
-  secTitle(t('s1'));
-  row(t('company'),S.company);row(t('contactName'),S.contactName);row(t('phone'),S.phone);row(t('email'),S.email||'—');
-
-  secTitle(t('s2'));
-  row(t('softwareLbl'),S.software==='cimatron'?t('swCimatron'):t('swGibbs'));
-
-  secTitle(t('s3'));
-  row(t('machineName'),S.machineName);
-  for(const i of (S.machineNameImg||[])) await addImg(i.data);
-  row(t('controllerName'),S.controllerName);
-  for(const i of (S.controllerImg||[])) await addImg(i.data);
-  row(t('onSiteLbl'),S.onSite==='yes'?t('yes'):t('no'));
-  if(S.onSite==='no'){
-    row(t('expectedDateLbl'),'');
-    noteBox(t('expectedDateNote'));
-    row('',formatDate(S.expectedDate));
-  }
-
-  secTitle(t('s4'));
-  row(t('machineTypeLbl'),mtMap[mt]||'');
-  if(mt==='other') row(t('otherDescLbl'),S.machineTypeOther);
-
-  if(mt==='lathe'){secTitle(t('s5'));row(t('turretPosLbl'),S.turretPos);row(t('turretTypeLbl'),S.turretType);row(t('toolCountLbl'),S.toolCount);}
-  else if(mt==='latheMill'){secTitle(t('s5'));row(t('turretPosLbl'),S.turretPos);row(t('turretTypeLbl'),S.turretType);row(t('yAxisLbl'),S.yAxis);row(t('toolCountLbl'),S.toolCount);}
-  else if(mt==='mtm'){
-    secTitle(t('s5'));row(t('spindleCountLbl'),S.spindleCount);
-    if(parseInt(S.spindleCount)>1){noteBox(t('mtmStdNote'));row(t('mtmSpecialLbl'),S.mtmSpecial==='yes'?t('yes'):t('no'));if(S.mtmSpecial==='yes'&&S.mtmSpecialDesc)row('',S.mtmSpecialDesc);}
-  } else if(mt==='swiss'){
-    secTitle(t('s5'));noteBox(t('swissStdNote'));
-    row(t('swissSpecialLbl'),S.swissSpecial==='yes'?t('yes'):t('no'));
-    if(S.swissSpecial==='yes'&&S.swissSpecialDesc) row('',S.swissSpecialDesc);
-    for(const i of (S.swissImg||[])) await addImg(i.data);
-    for(let di=0;di<S.swissDevices.length;di++){const d=S.swissDevices[di];row(`${t('fixTitle')} ${di+1}`,d.type);row(t('fixtureStationsLbl'),d.stations);if(d.desc)row(t('addDesc'),d.desc);for(const i of (d.images||[]))await addImg(i.data);}
-  } else if(mt==='mill4'){secTitle(t('s5'));row(t('mill4AxisLbl'),S.mill4Axis);}
-  else if(mt==='mill5'){secTitle(t('s5'));row(t('mill5Ax1'),S.ax1Type+' – '+(S.ax1Mount==='table'?t('mountTable'):t('mountHead')));row(t('mill5Ax2'),S.ax2Type+' – '+(S.ax2Mount==='table'?t('mountTable'):t('mountHead')));}
-
-  if(getSteps().includes(6)){
-    S.toolGroups.forEach((g,gi)=>{
-      secTitle(`${t('s6')} – ${t('groupTitle')} ${gi+1}`);
-      row(t('turretPosLbl'),g.pos);
-      if(parseInt(S.spindleCount)>1&&g.spCap) row(t('spCapLbl'),{main:t('spMain'),sub:t('spSub'),both:t('spBoth')}[g.spCap]);
-      row(t('turretTypeLbl'),g.turretType);
-      if(g.turretType==='turret'){row(t('yAxisLbl'),g.yAxis);row(t('toolCountLbl'),g.toolCount);row(t('isMillingLbl'),g.isMilling==='yes'?t('yes'):t('no'));}
-    });
-  }
-
-  if(getSteps().includes(7)){
-    const anyAsm=S.asmNone||['Stinger','Lunette','Fork','Bar','Other'].some(k=>S['asm'+k]);
-    if(anyAsm){
-      secTitle(t('s7'));
-      if(S.asmNone){row(t('asmLbl'),t('asmNoneLabel'));}
-      else{for(const [sfx,lk] of [['Stinger','asmStinger'],['Lunette','asmLunette'],['Fork','asmFork'],['Bar','asmBar'],['Other','asmOther']]){if(S['asm'+sfx]){row(t(lk),S['asm'+sfx+'Desc']||'✓');for(const i of (S['asm'+sfx+'Img']||[]))await addImg(i.data);}}}
-    }
-  }
-
-  if(getSteps().includes(8)){secTitle(t('s8'));row(t('simLbl'),S.simulation==='yes'?t('yes'):t('no'));if(S.simulation==='yes')noteBox(t('simNote'));}
-
-  secTitle(t('s9'));
-  row(t('extraLbl'),S.extraInfo==='yes'?t('yes'):t('no'));
-  if(S.extraInfo==='yes'){if(S.extraInfoDesc)row(t('extraDesc'),S.extraInfoDesc);for(const i of (S.extraInfoImg||[]))await addImg(i.data);}
-
-  checkPage(16);y+=2;
-  doc.setFillColor(232,244,248);doc.setDrawColor(179,217,232);
-  doc.roundedRect(ML,y,TW,9,2,2,'FD');
-  doc.setTextColor(26,95,122);doc.setFontSize(8);
-  doc.text('✉ '+t('sumEmail'),W/2,y+5.8,{align:'center'});
-  y+=13;
-  doc.setTextColor(160,160,160);doc.setFontSize(7);
-  doc.text(t('dateLabel')+': '+new Date().toLocaleDateString(),isRTL?W-ML:ML,y,{align:isRTL?'right':'left'});
-
-  return doc.output('blob');
+  document.body.removeChild(container);
+  return pdf.output('blob');
 }
 
 // ============================================================
