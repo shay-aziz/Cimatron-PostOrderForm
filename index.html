@@ -115,13 +115,12 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <span>🌐</span>
     <button class="lang-btn active" onclick="setLang('he')">עברית</button>
     <button class="lang-btn" onclick="setLang('en')">English</button>
-    <button class="lang-btn" onclick="setLang('ru')">Русский</button>
-  </div>
+    </div>
   <header>
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v2.5</div>
+    <div class="version-tag">v2.7</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -186,7 +185,7 @@ he:{
   cfPartial:'הטופס יאופס אך פרטי הלקוח יישמרו. האם אתה בטוח?',
   cfFull:'כל הטופס ימחק. האם אתה בטוח?',cfYes:'כן',cfNo:'לא',
   eReq:'שדה חובה',eSel:'יש לבחור אפשרות',eGroup:'יש להוסיף לפחות קבוצת כלים אחת',eAsm:'יש לבחור אפשרות',
-  dateLabel:'תאריך',pdfFor:'טופס זה נוצר עבור חברת סימטרון',
+  dateLabel:'תאריך',pdfFor:'טופס זה נוצר עבור חברת סימטרון',emailBody:'שלום שי, מצורף טופס איפיון הפוסט. יש לצרף את קובץ ה-PDF שהורד למכשירך. תודה',
 },
 en:{
   appTitle:'Post Specification – Cimatron & GibbsCAM',appSub:'Cimatron Israel Team',
@@ -236,57 +235,7 @@ en:{
   cfPartial:'Form will be reset but contact details kept. Are you sure?',
   cfFull:'Entire form will be deleted. Are you sure?',cfYes:'Yes',cfNo:'No',
   eReq:'Required field',eSel:'Please select an option',eGroup:'Please add at least one tool group',eAsm:'Please select an option',
-  dateLabel:'Date',pdfFor:'This form was created for Cimatron',
-},
-ru:{
-  appTitle:'Спецификация поста – Cimatron и GibbsCAM',appSub:'Команда Cimatron Израиль',
-  intro:'Эта форма собирает требования клиента и служит основой для коммерческого предложения и настройки поста.\nЭту форму необходимо заполнять для каждого требуемого поста.',
-  next:'Далее ›',prev:'‹ Назад',finish:'Завершить ›',yes:'Да',no:'Нет',optional:'(необязательно)',addImage:'Прикрепить фото',addDesc:'Добавить описание',
-  s1:'Данные клиента',s2:'Выбор ПО',s3:'Данные станка',s4:'Тип станка',s5:'Конфигурация',s6:'Группы инструментов',s7:'Доп. узлы',s8:'Симуляция',s9:'Доп. информация',ss:'Итог',
-  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',multipleImagesNote:'Можно прикрепить несколько фото',camera:'Сделать фото',gallery:'Выбрать из галереи',
-  company:'Название компании',contactName:'Технический контакт (Имя + Фамилия)',phone:'Номер телефона',email:'Email',
-  softwareLbl:'ПО, для которого требуется пост',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
-  machineName:'Название станка',controllerName:'Система ЧПУ',
-  onSiteLbl:'Станок на заводе?',
-  expectedDateLbl:'Ожидаемая дата тестирования поста?',
-  expectedDateNote:'Когда станок в рабочем состоянии + оператор + инструменты + заготовка',
-  machineTypeLbl:'Тип станка',
-  tLath:'Токарный',tLathMill:'Токарно-фрезерный (шпиндель 1)',tMTM:'MTM (2+ шпинделя или 1+ группа)',tSwiss:'Swiss',tMill3:'3-осевой фрезерный',tMill4:'4-осевой фрезерный',tMill5:'5-осевой фрезерный',tOther:'Другое',
-  turretPosLbl:'Положение револьвера/головки',posUp:'Верхнее',posDown:'Нижнее',
-  turretTypeLbl:'Револьвер или головка смены?',ttTurret:'Револьвер',ttHead:'Головка смены инструмента',
-  yAxisLbl:'Ось Y',yAxisYes:'Есть ось Y',yAxisNo:'Нет оси Y',
-  toolCountLbl:'Количество инструментов?',
-  spindleCountLbl:'Количество шпинделей?',spindlesSection:'Шпиндели',
-  addGroup:'Добавить группу',removeGroup:'Удалить группу',groupTitle:'Группа инструментов',
-  mtmSpecialLbl:'Особые требования сверх стандарта?',
-  mtmStdNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление каждой головки/револьвера на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку и продолжение обработки.\n• Вытягивание прутка субшпинделем.\n\nРуководство: опишите все требования сверх стандарта.',
-  swissImgLbl:'Можно прикрепить фото этикеток станка с описанием осей и инструментов',
-  swissSpecialLbl:'Особые требования сверх стандарта?',
-  swissStdNote:'Стандартный пост поддерживает:\n• Фрезерование, точение и сверление на каждом шпинделе отдельно.\n• Передачу детали с главного на субшпиндель, включая отрезку.\n• Rechuck\n\nОпишите все требования сверх стандарта.',
-  mill4AxisLbl:'Выберите ось вращения',mill5Ax1:'Ось вращения 1',mill5Ax2:'Ось вращения 2',
-  axX:'Вращение X',axY:'Вращение Y',axZ:'Вращение Z',
-  mountLbl:'Стол или голова',mountTable:'Стол',mountHead:'На голове',
-  spCapLbl:'Обработка на главном, вспомогательном или обоих шпинделях?',spMain:'Главный',spSub:'Вспомогательный',spBoth:'Оба',
-  staticLbl:'Невращающихся инструментов?',staticNumsLbl:'Укажите номера невращающихся инструментов',
-  rotLbl:'Вращающихся инструментов?',rotNumsLbl:'Укажите номера вращающихся инструментов',
-  dirLbl:'Направление инструмента: диаметр, торец или 5 осей?',dirDiam:'Диаметр',dirFace:'Торец',dir5ax:'5 осей',
-  fixtureLbl:'Возможность добавить приспособление?',fixtureTypeLbl:'Тип приспособления',addFixture:'Добавить приспособление',removeFixture:'Удалить',fixTitle:'Приспособление',
-  isMillingLbl:'Этот револьвер фрезерный?',
-  groupExtraLbl:'Дополнительное описание группы',
-  asmLbl:'Дополнительные узлы?',asmNote:'Для каждого варианта требуется описание.',
-  asmNone:'Нет',asmStinger:'Поджим',asmLunette:'Люнет',asmFork:'Вилка',asmBar:'Прутковый питатель',asmOther:'Другое',asmDesc:'Описание',
-  simLbl:'Симуляция станка требуется?',
-  simNote:'Клиент несёт ответственность за предоставление 3D-модели для симуляции.',
-  extraLbl:'Дополнительная информация (оси, прочие детали)?',extraDesc:'Описание',
-  sumTitle:'Итоговая форма',sumEmail:'Отправьте форму в Cimatron: shay.aziz@cimatron.com',
-  btnPdf:'Сохранить PDF',btnShare:'Поделиться PDF',btnEdit:'Редактировать',btnResetPartial:'Сброс (оставить контакт)',btnResetFull:'Полный сброс',
-  copied:'Скопировано!',loading:'Подготовка PDF...',asmNoneLabel:'Без дополнительных узлов',otherDesc:'Опишите здесь...',
-  otherDescLbl:'Описание типа станка',swissDevicesLbl:'Приспособления (необязательно)',mtmStep5Note:'После выбора количества шпинделей на следующей странице можно определить группы инструментов.',
-  fixtureStationsLbl:'Укажите номера позиций для монтажа приспособления',fixtureStationsPlaceholder:'напр. 3, 7, 11',
-  cfPartial:'Форма будет сброшена, данные клиента останутся. Вы уверены?',
-  cfFull:'Вся форма будет удалена. Вы уверены?',cfYes:'Да',cfNo:'Нет',
-  eReq:'Обязательное поле',eSel:'Выберите вариант',eGroup:'Добавьте хотя бы одну группу',eAsm:'Выберите вариант',
-  dateLabel:'Дата',pdfFor:'Форма создана для компании Cimatron',
+  dateLabel:'Date',pdfFor:'This form was created for Cimatron',emailBody:'Hi Shay, please find attached the post specification form. Please attach the PDF file downloaded to your device. Thank you',
 }};
 
 // ============================================================
@@ -348,7 +297,7 @@ function totalCount(){return getSteps().length;}
 // ============================================================
 function setLang(l){
   lang=l;
-  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===({he:'עברית',en:'English',ru:'Русский'}[l])));
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===({he:'עברית',en:'English'}[l])));
   document.documentElement.lang=l;
   document.documentElement.dir=l==='he'?'rtl':'ltr';
   paint();
@@ -1190,7 +1139,12 @@ function formatDate(d){
 }
 
 async function doSharePDF(){
-  await doPDF(true);
+  // שלב 1: הורד את ה-PDF
+  await doPDF(false);
+  // שלב 2: פתח mailto עם הכתובת והנחיה לצרף
+  const subject=encodeURIComponent(t('appTitle')+' – '+S.company);
+  const body=encodeURIComponent(t('emailBody'));
+  window.location.href=`mailto:shay.aziz@cimatron.com?subject=${subject}&body=${body}`;
 }
 
 async function doPDF(share=false){
@@ -1199,17 +1153,7 @@ async function doPDF(share=false){
   ov.classList.add('show');
   const tmpl=document.getElementById('pdf-template');
   // אם שפה רוסית — PDF דו-לשוני: רוסית + עברית
-  const isBilingual=lang==='ru';
-  if(isBilingual){
-    tmpl.innerHTML=
-      `<div style="width:900px">`+
-      buildPdfHtml('ru')+
-      `<div style="width:900px;height:4px;background:#E8611A;margin:8px 0"></div>`+
-      buildPdfHtml('he')+
-      `</div>`;
-  } else {
-    tmpl.innerHTML=buildPdfHtml();
-  }
+  tmpl.innerHTML=buildPdfHtml();
   tmpl.style.display='block';
   await new Promise(r=>setTimeout(r,600));
   try{
