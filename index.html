@@ -1119,7 +1119,11 @@ function buildPdfHtml(forceLang){
   parts+=section(tl('s1'),row(tl('company'),S.company)+row(tl('contactName'),S.contactName)+row(tl('phone'),S.phone)+row(tl('email'),S.email));
   parts+=section(tl('s2'),row(tl('softwareLbl'),S.software==='cimatron'?tl('swCimatron'):tl('swGibbs')));
   let s3=row(tl('machineName'),S.machineName)+imgBlock(S.machineNameImg)+row(tl('controllerName'),S.controllerName)+imgBlock(S.controllerImg)+row(tl('onSiteLbl'),S.onSite==='yes'?tl('yes'):tl('no'));
-  if(S.onSite==='no'){s3+=note(tl('expectedDateNote'));s3+=row(tl('expectedDateLbl'),formatDate(S.expectedDate));}
+  if(S.onSite==='no'){
+    s3+=`<div style="font-size:22px;margin-bottom:6px;color:#222">${tl('expectedDateLbl')}</div>`;
+    s3+=note(tl('expectedDateNote'));
+    s3+=`<div style="font-size:22px;font-weight:700;color:#E8611A;margin-top:4px">${formatDate(S.expectedDate)}</div>`;
+  }
   parts+=section(tl('s3'),s3);
   let s4=row(tl('machineTypeLbl'),mtMap[mt]||'');
   if(mt==='other') s4+=row(tl('otherDescLbl'),S.machineTypeOther);
