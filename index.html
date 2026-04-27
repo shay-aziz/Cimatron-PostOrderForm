@@ -96,7 +96,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
   .btn{padding:9px 12px;font-size:13px}
 }
 .date-orange::-webkit-datetime-edit{display:none}
-.date-orange::-webkit-calendar-picker-indicator{font-size:24px;cursor:pointer;opacity:1;filter:invert(40%) sepia(90%) saturate(500%) hue-rotate(0deg)}
+.date-orange::-webkit-calendar-picker-indicator{width:32px;height:32px;cursor:pointer;opacity:1;filter:invert(40%) sepia(90%) saturate(500%) hue-rotate(0deg);background-size:contain}
 </style>
 </head>
 <body>
@@ -121,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v2.0</div>
+    <div class="version-tag">v2.1</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -143,7 +143,7 @@ he:{
   intro:'טופס זה מרכז את בקשות הלקוח והוא מהווה בסיס להצעת המחיר, הערכת מועד האספקה והתאמה מיטבית של תכולת הפוסט לצרכי הלקוח.\nיש למלא טופס זה לכל פוסט נדרש.',
   next:'הבא ›',prev:'‹ קודם',finish:'סיום ›',yes:'כן',no:'לא',optional:'(אופציונלי)',addImage:'צרף תמונה',addDesc:'הוסף תיאור',
   s1:'פרטי לקוח',s2:'בחירת התוכנה',s3:'פרטי מכונה',s4:'סוג מכונה',s5:'הגדרת מכונה',s6:'קבוצות כלים',s7:'מכלולים',s8:'סימולציה',s9:'מידע נוסף',ss:'סיכום',
-  machineDetailsSection:'פרטי המכונה',genderNote:'השאלון מנוסח בלשון זכר מטעמי נוחות בלבד, אך מיועד ומתייחס באופן שווה לכל המגדרים.',selectDate:'בחר תאריך',multipleImagesNote:'ניתן לצרף יותר מתמונה אחת',
+  machineDetailsSection:'פרטי המכונה',genderNote:'השאלון מנוסח בלשון זכר מטעמי נוחות בלבד, אך מיועד ומתייחס באופן שווה לכל המגדרים.',selectDate:'בחר תאריך',multipleImagesNote:'ניתן לצרף יותר מתמונה אחת',camera:'צלם תמונה',gallery:'בחר מהגלריה',
   company:'שם החברה',contactName:'איש קשר טכני (שם + שם משפחה)',phone:'מספר טלפון',email:'אימייל',
   softwareLbl:'ציין את התוכנה שעבורה נדרש הפוסט',swCimatron:'סימטרון',swGibbs:'גיבסקאם',
   machineName:'שם המכונה',controllerName:'שם הבקרה',
@@ -193,7 +193,7 @@ en:{
   intro:'This form consolidates customer requirements and serves as the basis for the price quote, delivery estimate, and post customization.\nThis form must be filled out for each required post.',
   next:'Next ›',prev:'‹ Back',finish:'Finish ›',yes:'Yes',no:'No',optional:'(optional)',addImage:'Attach image',addDesc:'Add description',
   s1:'Contact Info',s2:'Software Selection',s3:'Machine Info',s4:'Machine Type',s5:'Machine Config',s6:'Tool Groups',s7:'Assemblies',s8:'Simulation',s9:'Extra Info',ss:'Summary',
-  machineDetailsSection:'Machine Details',genderNote:'This questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',selectDate:'Select date',multipleImagesNote:'You can attach more than one image',
+  machineDetailsSection:'Machine Details',genderNote:'This questionnaire is written in masculine form for convenience only, but is intended equally for all genders.',selectDate:'Select date',multipleImagesNote:'You can attach more than one image',camera:'Take photo',gallery:'Choose from gallery',
   company:'Company Name',contactName:'Technical Contact (First + Last Name)',phone:'Phone Number',email:'Email',
   softwareLbl:'Software required for the post',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
   machineName:'Machine Name',controllerName:'Controller Name',
@@ -243,7 +243,7 @@ ru:{
   intro:'Эта форма собирает требования клиента и служит основой для коммерческого предложения и настройки поста.\nЭту форму необходимо заполнять для каждого требуемого поста.',
   next:'Далее ›',prev:'‹ Назад',finish:'Завершить ›',yes:'Да',no:'Нет',optional:'(необязательно)',addImage:'Прикрепить фото',addDesc:'Добавить описание',
   s1:'Данные клиента',s2:'Выбор ПО',s3:'Данные станка',s4:'Тип станка',s5:'Конфигурация',s6:'Группы инструментов',s7:'Доп. узлы',s8:'Симуляция',s9:'Доп. информация',ss:'Итог',
-  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',multipleImagesNote:'Можно прикрепить несколько фото',
+  machineDetailsSection:'Данные станка',genderNote:'Анкета написана в мужском роде для удобства, но предназначена одинаково для всех полов.',selectDate:'Выбрать дату',multipleImagesNote:'Можно прикрепить несколько фото',camera:'Сделать фото',gallery:'Выбрать из галереи',
   company:'Название компании',contactName:'Технический контакт (Имя + Фамилия)',phone:'Номер телефона',email:'Email',
   softwareLbl:'ПО, для которого требуется пост',swCimatron:'Cimatron',swGibbs:'GibbsCAM',
   machineName:'Название станка',controllerName:'Система ЧПУ',
@@ -433,13 +433,10 @@ function step3(){
   ${S.onSite==='no'?`<div class="field-group">
     <div class="field-label">${t('expectedDateLbl')} <span class="required">*</span></div>
     <div class="notice-box">${t('expectedDateNote')}</div>
-    <div style="margin-top:8px;display:inline-flex;align-items:center;gap:12px;flex-wrap:wrap">
+    <div style="margin-top:8px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <span style="font-size:15px;font-weight:700;color:#E8611A">${S.expectedDate?formatDate(S.expectedDate):''}</span>
-      <div style="position:relative;display:inline-block">
-        <div style="background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:9px 16px;font-size:14px;font-weight:700;color:#E8611A;pointer-events:none">📅 ${t('selectDate')}</div>
-        <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();"
-          style="position:absolute;inset:0;opacity:0;width:100%;height:100%;cursor:pointer;font-size:16px">
-      </div>
+      <input type="date" id="f-expectedDate" value="${S.expectedDate}" oninput="S.expectedDate=this.value;paint();" class="date-orange"
+        style="background:#fff8f5;border:1.5px solid #E8611A;border-radius:8px;padding:10px 16px;font-size:15px;font-weight:700;color:#E8611A;cursor:pointer;outline:none;font-family:Arial;width:60px">
     </div>
     <div class="error-msg" id="err-expectedDate"></div>
   </div>`:''}`;
@@ -841,18 +838,23 @@ function fTextImg(key,val,req,imgKey){
     <div class="error-msg" id="err-${key}"></div>
   </div>`;
 }
-function fImg(stateKey){
-  const imgs=S[stateKey]||[];
+function imgButtons(onchangeCode, imgs, removeCode){
+  const preview=(imgs||[]).length?`<div class="file-preview">${(imgs||[]).map((i,idx)=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span>${removeCode?`<span onclick="${removeCode.replace('IDX',idx)}" style="color:#e74c3c;cursor:pointer;font-size:11px">✕</span>`:''}</div>`).join('')}</div>`:'';
   return `<div>
-    <label class="file-label">📷 ${t('addImage')} <span style="font-size:11px;color:#aaa;font-weight:400">${t('multipleImagesNote')}</span><input type="file" accept="image/*" multiple onchange="handleImg('${stateKey}',this.files)"></label>
-    ${imgs.length?`<div class="file-preview">${imgs.map((i,idx)=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span><span onclick="removeImg('${stateKey}',${idx})" style="color:#e74c3c;cursor:pointer;font-size:11px">✕</span></div>`).join('')}</div>`:''}
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:4px">
+      <label class="file-label" style="gap:4px">📷 ${t('camera')}<input type="file" accept="image/*" capture="environment" multiple onchange="${onchangeCode}"></label>
+      <label class="file-label" style="gap:4px">🖼 ${t('gallery')}<input type="file" accept="image/*" multiple onchange="${onchangeCode}"></label>
+    </div>
+    <div style="font-size:11px;color:#aaa;margin-top:3px">${t('multipleImagesNote')}</div>
+    ${preview}
   </div>`;
 }
+function fImg(stateKey){
+  const imgs=S[stateKey]||[];
+  return imgButtons(`handleImg('${stateKey}',this.files)`,imgs,`removeImg('${stateKey}',IDX)`);
+}
 function fImgCb(onchangeCode,imgs){
-  return `<div>
-    <label class="file-label">📷 ${t('addImage')} <span style="font-size:11px;color:#aaa;font-weight:400">${t('multipleImagesNote')}</span><input type="file" accept="image/*" multiple onchange="${onchangeCode}"></label>
-    ${(imgs||[]).length?`<div class="file-preview">${(imgs||[]).map(i=>`<div class="file-preview-item"><img src="${i.data}"><span>${i.name}</span></div>`).join('')}</div>`:''}
-  </div>`;
+  return imgButtons(onchangeCode,imgs,null);
 }
 function removeImg(stateKey,idx){S[stateKey].splice(idx,1);paint();}
 // radio2: binds to S[name] directly
