@@ -121,7 +121,7 @@ header{background:#fff;border-bottom:1px solid #ddd;padding:10px 16px;display:fl
     <img id="logo-img" alt="Cimatron" style="height:38px;object-fit:contain">
     <div class="header-title" id="hdr-title">איפיון פוסט סימטרון וגיבסקאם</div>
     <div class="header-sub" id="hdr-sub">צוות סימטרון ישראל</div>
-    <div class="version-tag">v3.2</div>
+    <div class="version-tag">v3.3</div>
   </header>
   <div class="step-indicator" id="step-indicator"></div>
   <div id="app-body"></div>
@@ -690,7 +690,6 @@ function paintSummary(body){
     <div class="action-bar">
       <button class="btn-action btn-pdf" onclick="doPDF()">📄 ${t('btnPdf')}</button>
       <button class="btn-action btn-share" onclick="doSharePDF()">↗ ${t('btnShare')}</button>
-      <button class="btn-action btn-share-alt" onclick="doShareAlt()">📤 ${t('btnShareAlt')}</button>
       <button class="btn-action btn-edit" onclick="prevStep()">‹ ${t('prev')}</button>
       <button class="btn-action btn-reset-full" onclick="doResetFull()">🗑 ${t('btnResetFull')}</button>
       <button class="btn-action btn-reset-partial" onclick="doResetPartial()">↺ ${t('btnResetPartial')}</button>
@@ -1174,7 +1173,9 @@ async function doPDF(share=false){
         }
       }
       downloadBlob(blob,name);
-      alert(lang==='he'?'הקובץ הורד — שלח אותו ידנית':'File downloaded — please share manually');
+      alert(lang==='he'
+        ?'הקובץ הורד — ניתן למצוא אותו בתיקיית ההורדות.\nשלח אותו ידנית.'
+        :'File downloaded — you can find it in your Downloads folder.\nPlease share it manually.');
     } else {
       downloadBlob(blob,name);
     }
